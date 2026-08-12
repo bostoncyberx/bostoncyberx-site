@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Saying Yes to AI: The Executive Guide to Secure AI Adoption</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  @page { size: A4; margin: 0; }
+  html, body {
+    font-family: 'Inter', sans-serif;
+    font-size: 10.5pt;
+    line-height: 1.65;
+    color: #0F172A;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    page-break-after: always;
+    padding: 22mm;
+    position: relative;
+    background: #FFFFFF;
+    overflow: hidden;
+  }
+  .page.dark { background: #0A0E1A; color: #F8FAFC; }
+  h1, h2, h3 { font-family: 'Archivo', sans-serif; }
+  h2 {
+    font-size: 21pt;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    margin-bottom: 4mm;
+  }
+  h3 {
+    font-size: 12.5pt;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin-bottom: 2mm;
+  }
+  p { max-width: 65ch; margin-bottom: 3.5mm; }
+  .mono { font-family: 'IBM Plex Mono', monospace; }
+  .kicker {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 7.5pt;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #3B82F6;
+    margin-bottom: 3mm;
+  }
+  .rule { border: none; border-top: 1px solid #E2E8F0; margin: 6mm 0; }
+  .footer {
+    position: absolute;
+    bottom: 12mm;
+    left: 22mm;
+    right: 22mm;
+    display: flex;
+    justify-content: space-between;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 7pt;
+    letter-spacing: 0.14em;
+    color: #94A3B8;
+    border-top: 1px solid #E2E8F0;
+    padding-top: 3mm;
+  }
+  .pull-stat {
+    background: #F1F5F9;
+    border-left: 3px solid #3B82F6;
+    padding: 6mm 8mm;
+    margin: 6mm 0;
+    max-width: 65ch;
+  }
+  .pull-stat .big {
+    font-family: 'Archivo', sans-serif;
+    font-size: 34pt;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    color: #3B82F6;
+    display: block;
+    margin-bottom: 2mm;
+  }
+  .pull-stat .label { font-weight: 600; display: block; margin-bottom: 1.5mm; }
+  .attr {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 7pt;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #64748B;
+  }
+  .decision {
+    border-top: 1px solid #E2E8F0;
+    padding-top: 5mm;
+    margin-bottom: 7mm;
+    max-width: 65ch;
+  }
+  .decision .num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 8pt;
+    letter-spacing: 0.16em;
+    color: #3B82F6;
+    display: block;
+    margin-bottom: 1.5mm;
+  }
+  ul.clean { list-style: none; max-width: 65ch; }
+  ul.clean li {
+    padding: 2.5mm 0 2.5mm 7mm;
+    border-bottom: 1px solid #E2E8F0;
+    position: relative;
+  }
+  ul.clean li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 4.6mm;
+    width: 2.6mm;
+    height: 2.6mm;
+    background: #3B82F6;
+  }
+  .phase {
+    border-left: 3px solid #3B82F6;
+    padding: 1mm 0 1mm 7mm;
+    margin-bottom: 7mm;
+    max-width: 65ch;
+  }
+  .phase .window {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 7.5pt;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #3B82F6;
+    display: block;
+    margin-bottom: 1mm;
+  }
+  .cover-brand { display: flex; align-items: center; gap: 5mm; }
+  .cover-wordmark {
+    font-family: 'Archivo', sans-serif;
+    font-weight: 600;
+    font-size: 13pt;
+    letter-spacing: 0.06em;
+    color: #F8FAFC;
+  }
+  .cover-title {
+    font-family: 'Archivo', sans-serif;
+    font-size: 40pt;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    color: #F8FAFC;
+    margin: 10mm 0 6mm;
+  }
+  .cover-sub {
+    font-size: 13pt;
+    line-height: 1.5;
+    color: #94A3B8;
+    max-width: 55ch;
+  }
+  .tagline { font-family: 'Archivo', sans-serif; font-size: 11.5pt; font-weight: 600; letter-spacing: 0.01em; }
+  .t-blue { color: #3B82F6; }
+  .t-cyan { color: #22D3EE; }
+  .t-green { color: #34D399; }
+  .contact-block {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9pt;
+    line-height: 2.1;
+    color: #94A3B8;
+    letter-spacing: 0.04em;
+  }
+  .contact-block strong { color: #F8FAFC; font-weight: 500; }
+</style>
+</head>
+<body>
+
+<!-- PAGE 1 · COVER -->
+<div class="page dark" style="display:flex; flex-direction:column; justify-content:space-between;">
+  <div class="cover-brand">
+    <svg width="46" height="46" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-label="BCX X mark">
+      <line x1="12" y1="12" x2="88" y2="88" stroke="#3B82F6" stroke-width="13" stroke-linecap="round"/>
+      <line x1="88" y1="12" x2="58" y2="42" stroke="#22D3EE" stroke-width="13" stroke-linecap="round"/>
+      <line x1="42" y1="58" x2="12" y2="88" stroke="#34D399" stroke-width="13" stroke-linecap="round"/>
+    </svg>
+    <span class="cover-wordmark">bostoncyberx</span>
+  </div>
+  <div>
+    <div class="mono" style="font-size:8pt; letter-spacing:0.2em; color:#22D3EE; margin-bottom:4mm;">BCX PAPER 01 &middot; AUGUST 2026</div>
+    <h1 class="cover-title">Saying Yes<br>to AI</h1>
+    <p class="cover-sub">The executive guide to secure AI adoption. Five decisions and 90 days separate the companies that govern AI from the companies that hope for the best.</p>
+  </div>
+  <div>
+    <hr style="border:none; border-top:1px solid #1E293B; margin-bottom:6mm;">
+    <div class="tagline"><span class="t-blue">Transform with AI.</span> <span class="t-cyan">Defend with AI.</span> <span class="t-green">Achieve with AI.</span></div>
+  </div>
+</div>
+
+<!-- PAGE 2 · EXECUTIVE SUMMARY -->
+<div class="page">
+  <div class="kicker">Executive Summary</div>
+  <h2>Your company is already an AI company. The question is who is in charge of that.</h2>
+  <p>AI adoption in the mid-market is no longer a strategy question. It already happened. 82% of mid-market companies now have AI in production. Only 26% have it governed at scale. That is a 56-point gap between what your business is doing and what your business controls.</p>
+  <p>Inside that gap sits most of the risk your board is starting to ask about. Roughly 55% of employees use AI tools their company never approved. Client data flows into free chatbots. Contracts get summarized by services with no data agreement. Nobody logs any of it, so nobody can answer for any of it.</p>
+  <p>The instinct of many leadership teams is to slow down or ban the tools. That instinct is wrong on both counts. Bans push AI use underground, where you cannot see it. Slowing down concedes ground to competitors, and it does nothing about the attackers, who adopted AI before you did.</p>
+  <p>The better answer is to say yes on your own terms. This paper gives you the five decisions that close the governance gap and a 90-day sequence to make them real. None of the five requires a data science team. All five belong to the executive team, not to IT.</p>
+  <hr class="rule">
+  <h3>What this paper covers</h3>
+  <ul class="clean">
+    <li><strong>The 56-point gap.</strong> Why AI adoption outran AI governance, and what that costs you.</li>
+    <li><strong>The five decisions.</strong> A sanctioned path, data rules, a named owner, an upgraded defense, and a board metric.</li>
+    <li><strong>The 90-day sequence.</strong> Assess, build the roadmap, then operate. Each phase has a deliverable.</li>
+    <li><strong>What good looks like.</strong> The measurable outcomes you should expect within two quarters.</li>
+  </ul>
+  <div class="footer"><span>BCX PAPER 01 &middot; SAYING YES TO AI</span><span>PAGE 2</span></div>
+</div>
+
+<!-- PAGE 3 · THE 56-POINT GAP -->
+<div class="page">
+  <div class="kicker">Section 01</div>
+  <h2>The 56-point gap</h2>
+  <p>Two numbers describe the state of mid-market AI better than any survey commentary.</p>
+  <div class="pull-stat">
+    <span class="big">82% vs 26%</span>
+    <span class="label">82% of mid-market companies have AI in production. Only 26% have it governed at scale.</span>
+    <span class="attr">Source: Netrio mid-market research</span>
+  </div>
+  <p>The 56 points between those numbers are not an abstraction. They are specific, daily behaviors happening inside your company right now: an analyst pasting a client list into a free chatbot to draft an email, a manager uploading a contract for a quick summary, a developer wiring an AI service into a workflow without a security review. Each act is individually reasonable. Your people are trying to work faster. Collectively, those acts move your data outside every control you have built.</p>
+  <div class="pull-stat">
+    <span class="big">~55%</span>
+    <span class="label">Roughly 55% of employees use AI tools their employer never approved.</span>
+    <span class="attr">Source: UHY shadow AI research</span>
+  </div>
+  <p>This is shadow AI, and it is the predictable result of demand without supply. When employees see a faster way to work and leadership offers no approved way to do it, they choose the faster way. Banning tools does not change that math. It just removes your visibility.</p>
+  <p>The gap has a second face. Attackers use AI with no governance committee and no procurement cycle. Machine-written phishing, cloned executive voices, and automated reconnaissance are now standard technique. So the companies in the gap are exposed twice: their own data leaks out through unsanctioned tools, and their defenses face adversaries who move at machine speed.</p>
+  <p>Closing a 56-point gap sounds like a multi-year program. It is not. In our experience it comes down to five decisions, and every one of them belongs on the executive team's desk.</p>
+  <div class="footer"><span>BCX PAPER 01 &middot; SAYING YES TO AI</span><span>PAGE 3</span></div>
+</div>
+
+<!-- PAGE 4 · FIVE DECISIONS 1-3 -->
+<div class="page">
+  <div class="kicker">Section 02</div>
+  <h2>The five decisions that close it</h2>
+  <p>These are business decisions, not technical ones. Your IT team or partner will implement them, but only leadership can make them. Companies that decide all five typically close most of their governance gap within one quarter.</p>
+
+  <div class="decision">
+    <span class="num">DECISION 01</span>
+    <h3>Give people a sanctioned AI path</h3>
+    <p>Shadow AI exists because the approved way to use AI does not. Pick one or two enterprise-grade AI tools with commercial data protections, buy the licenses, and tell every employee: this is the tool, here is your login, use it for real work. The moment a sanctioned path exists, most unsanctioned use dries up on its own. You are not banning AI. You are supplying it.</p>
+  </div>
+
+  <div class="decision">
+    <span class="num">DECISION 02</span>
+    <h3>Set the data rules</h3>
+    <p>Write down, in one page, what may and may not go into an AI tool. Client names, financials, health information, and anything under NDA stay out of consumer tools, full stop. Approved tools with data agreements have wider limits. One page, plain language, signed by the CEO, covered in 20 minutes at an all-hands. A policy nobody reads is not governance. A page everybody remembers is.</p>
+  </div>
+
+  <div class="decision">
+    <span class="num">DECISION 03</span>
+    <h3>Name one governance owner</h3>
+    <p>Somebody must own AI governance by name: the approved tool list, the data rules, exceptions, and the quarterly review. In larger firms this is a chief AI officer. In a 100-person company it is a fractional executive or a named leader with a defined mandate. What fails is the committee with no owner. When everyone owns AI risk, no one does, and the gap stays open.</p>
+  </div>
+  <div class="footer"><span>BCX PAPER 01 &middot; SAYING YES TO AI</span><span>PAGE 4</span></div>
+</div>
+
+<!-- PAGE 5 · FIVE DECISIONS 4-5 -->
+<div class="page">
+  <div class="decision" style="border-top:none; padding-top:0;">
+    <span class="num">DECISION 04</span>
+    <h3>Upgrade the defense to match the threat</h3>
+    <p>Your attackers already made their AI decision. Phishing emails are now written by machines that never misspell. Finance teams get calls in a voice that sounds exactly like the CEO because it was cloned from a webinar recording. A defense built for 2020 threats does not hold against this. The upgrade is specific: modern detection on every device, monitoring that watches around the clock, and a finance team trained to verify any payment request through a second channel, no matter whose voice asks. AI-assisted defense is how small teams see what attackers automate.</p>
+  </div>
+
+  <div class="decision">
+    <span class="num">DECISION 05</span>
+    <h3>Put one AI metric in front of the board</h3>
+    <p>What the board reviews, the company manages. Add one line to the quarterly board pack: percentage of company AI use happening inside sanctioned, governed tools. Start honest. Most companies start below 30%. Watching that number climb toward 90% is the clearest signal, inside and outside the company, that you adopted AI on purpose rather than by accident. It also gives your board a real answer to the question they are already asking.</p>
+  </div>
+
+  <hr class="rule">
+  <h3>Why governance is the growth play</h3>
+  <p>It is tempting to file these five decisions under risk management. The evidence says to file them under growth. 74% of companies remain stuck in AI pilots that never reach production, and the ones that break out share one trait: guardrails that let them deploy with confidence.</p>
+  <div class="pull-stat">
+    <span class="big">74%</span>
+    <span class="label">74% of companies are stuck in AI pilots. Governance is what separates them from the companies seeing returns.</span>
+    <span class="attr">Source: Grant Thornton</span>
+  </div>
+  <p>Mid-market companies are backing this with money: 88% plan to spend $100K or more on AI this year. The question is whether that spend lands inside a governed program or on top of a gap.</p>
+  <div class="footer"><span>BCX PAPER 01 &middot; SAYING YES TO AI</span><span>PAGE 5</span></div>
+</div>
+
+<!-- PAGE 6 · THE 90-DAY SEQUENCE -->
+<div class="page">
+  <div class="kicker">Section 03</div>
+  <h2>The 90-day sequence</h2>
+  <p>Five decisions become real through a sequence, not a memo. Here is the 90-day path we run with clients. Each phase ends in a deliverable you can hold.</p>
+
+  <div class="phase">
+    <span class="window">Days 1 to 30 &middot; Assess</span>
+    <h3>Find out what is actually happening</h3>
+    <p>You cannot govern what you cannot see. The first month is discovery: which AI tools are in use across the company, sanctioned or not; what data is flowing into them; and how your current defenses score against current threats. We run this as a fixed-scope assessment across seven pillars: AI use, data, identity, detection, compliance, people, and resilience. The deliverable is a scored, board-ready report. Most executives are surprised by the tool count. Almost none are surprised by zero.</p>
+  </div>
+
+  <div class="phase">
+    <span class="window">Days 31 to 60 &middot; Roadmap</span>
+    <h3>Make the five decisions and write the plan</h3>
+    <p>With the facts on the table, leadership makes the five decisions in a single working session: which tools get sanctioned, what the data rules say, who owns governance, what the defense upgrade includes, and what the board metric will be. The deliverable is a 90-day roadmap with owners and dates, plus the one-page AI use policy, published to the whole company. Sanctioned tools roll out in this window so the policy arrives with the supply, not before it.</p>
+  </div>
+
+  <div class="phase">
+    <span class="window">Days 61 to 90 &middot; Operate</span>
+    <h3>Turn decisions into routine</h3>
+    <p>The final month moves from project to operations: detection and monitoring go live, the finance team runs its first verification drill, the first governance review happens on calendar, and the board metric appears in the quarterly pack with a real number behind it. The deliverable is a running program with a monthly rhythm, not a binder on a shelf.</p>
+  </div>
+
+  <p>Ninety days is not a marketing number. It is roughly one quarter, which means a leadership team that starts now presents a governed AI program at its next board meeting.</p>
+  <div class="footer"><span>BCX PAPER 01 &middot; SAYING YES TO AI</span><span>PAGE 6</span></div>
+</div>
+
+<!-- PAGE 7 · WHAT GOOD LOOKS LIKE -->
+<div class="page">
+  <div class="kicker">Section 04</div>
+  <h2>What good looks like</h2>
+  <p>Governance programs fail when success stays vague. Here is what you should be able to say, concretely, within two quarters of starting. Treat this list as your acceptance criteria.</p>
+  <ul class="clean">
+    <li><strong>Every employee has a sanctioned AI tool</strong> with commercial data protections, and knows it is the approved path.</li>
+    <li><strong>A one-page data policy is published</strong> and every employee has acknowledged it. New hires get it in week one.</li>
+    <li><strong>One named owner runs AI governance</strong> with a quarterly review on the calendar and authority to approve exceptions.</li>
+    <li><strong>Detection and monitoring cover every device</strong>, watched 24/7, with a defined response plan when something fires.</li>
+    <li><strong>Finance verifies every payment change through a second channel.</strong> A cloned voice on a phone call cannot move your money.</li>
+    <li><strong>The board sees one AI governance metric each quarter</strong> and the number is moving in the right direction.</li>
+    <li><strong>Shadow AI is measured, not guessed.</strong> You can state what share of AI use is sanctioned, and the trend line.</li>
+    <li><strong>AI projects ship.</strong> At least one governed AI use case is in production and its productivity effect is measured.</li>
+  </ul>
+  <hr class="rule">
+  <p>Notice what this list does not require: a data science team, a seven-figure budget, or a pause on adoption. It requires decisions, sequence, and ownership. Companies that reach this state get a compounding advantage. They adopt new AI capabilities faster than competitors because the guardrails are already in place, and every new tool inherits the same rules, the same owner, and the same review.</p>
+  <p>That is the real meaning of saying yes to AI. Not yes to everything, blindly. Yes to a specific set of tools, under specific rules, watched by a specific owner, defended by a program built for the threats AI created. Yes, on your terms.</p>
+  <div class="footer"><span>BCX PAPER 01 &middot; SAYING YES TO AI</span><span>PAGE 7</span></div>
+</div>
+
+<!-- PAGE 8 · CLOSING -->
+<div class="page dark" style="display:flex; flex-direction:column; justify-content:space-between;">
+  <div class="cover-brand">
+    <svg width="38" height="38" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-label="BCX X mark">
+      <line x1="12" y1="12" x2="88" y2="88" stroke="#3B82F6" stroke-width="13" stroke-linecap="round"/>
+      <line x1="88" y1="12" x2="58" y2="42" stroke="#22D3EE" stroke-width="13" stroke-linecap="round"/>
+      <line x1="42" y1="58" x2="12" y2="88" stroke="#34D399" stroke-width="13" stroke-linecap="round"/>
+    </svg>
+    <span class="cover-wordmark" style="font-size:11pt;">bostoncyberx</span>
+  </div>
+  <div>
+    <h2 style="color:#F8FAFC; font-size:26pt; max-width:16em;">Find out where you stand in 10 minutes.</h2>
+    <p style="color:#94A3B8; font-size:11.5pt; max-width:55ch;">The free BCX AI &amp; Security Readiness Assessment scores your company across the same seven pillars we use in client engagements: AI use, data, identity, detection, compliance, people, and resilience. Ten minutes, self-scored, and you get the results immediately. It is the first step of the 90-day sequence, and it costs you nothing.</p>
+    <p class="mono" style="color:#22D3EE; font-size:10pt; letter-spacing:0.08em;">bostoncyberx.com/assessment</p>
+  </div>
+  <div>
+    <div class="tagline" style="margin-bottom:8mm;"><span class="t-blue">Transform with AI.</span> <span class="t-cyan">Defend with AI.</span> <span class="t-green">Achieve with AI.</span></div>
+    <hr style="border:none; border-top:1px solid #1E293B; margin-bottom:6mm;">
+    <div class="contact-block">
+      <strong>bostoncyberx</strong><br>
+      One Marina Park Drive, Boston, MA 02210<br>
+      617.241.5445 &middot; info@bostoncyberx.com &middot; bostoncyberx.com
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

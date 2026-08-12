@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>bostoncyberx | Dawn concept</title>
+<meta name="description" content="BCX in daylight. The AI-native transformation partner: transform with AI, defend with AI, achieve with AI.">
+<link rel="icon" type="image/svg+xml" href="/assets/img/bcx-mark.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@200;300;400;500;600;700;800;900&family=Instrument+Serif:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#10141C;
+  --ink-soft:#3A4454;
+  --ink-quiet:#5B6577;
+  --sky:#DCE8F4;
+  --mist:#EDF2F7;
+  --paper:#FAF7F2;
+  --red:#FF3B30;
+  --red-action:#E02D22;
+  --amber:#F2B441;
+  --wash-blue:#E4EEFB;
+  --wash-cyan:#E2F6FA;
+  --wash-green:#E5F6EE;
+  --pillar-blue:#2F5FC4;
+  --pillar-cyan:#0E7A8C;
+  --pillar-green:#1B7F4C;
+  --hair:rgba(16,20,28,.14);
+  --h1size:clamp(3.4rem, 8.5vw, 7.6rem);
+  --wrap:min(1240px, calc(100vw - clamp(2.5rem, 6vw, 6rem)));
+  --ease:cubic-bezier(.22,.61,.2,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+html,body{overflow-x:clip}
+body{
+  font-family:"Archivo",system-ui,sans-serif;
+  color:var(--ink);
+  background:linear-gradient(180deg, var(--sky) 0%, var(--mist) 46%, var(--paper) 100%);
+  font-size:16px;
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+.ser{font-family:"Instrument Serif",serif;font-style:italic;font-weight:400}
+img{max-width:100%;display:block}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--red-action);outline-offset:3px;border-radius:4px}
+.wrap{width:var(--wrap);margin-inline:auto}
+
+/* grain */
+.grain{position:fixed;inset:0;z-index:60;pointer-events:none;opacity:.02;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='2' stitchTiles='stitch'/></filter><rect width='180' height='180' filter='url(%23n)'/></svg>");
+  background-size:180px 180px;
+}
+
+/* skip link */
+.skip{position:absolute;left:1rem;top:-4rem;z-index:100;background:var(--ink);color:var(--paper);padding:.65rem 1.1rem;border-radius:999px;font-size:.85rem;font-weight:600;text-decoration:none;transition:top .25s}
+.skip:focus{top:1rem}
+
+/* ---------- NAV ---------- */
+.navbar{position:fixed;top:clamp(.8rem,2vw,1.4rem);left:50%;transform:translateX(-50%);z-index:50;width:min(1080px, calc(100vw - 2rem))}
+.nav-pill{
+  display:flex;align-items:center;justify-content:space-between;gap:1rem;
+  background:rgba(255,255,255,.55);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border:1px solid rgba(16,20,28,.1);border-radius:999px;
+  padding:.55rem .65rem .55rem 1.35rem;
+  box-shadow:0 8px 32px rgba(16,20,28,.08);
+}
+.nav-mark img{height:20px;width:auto}
+.nav-links{display:flex;gap:clamp(.6rem,2vw,1.7rem);list-style:none}
+.nav-links a{font-size:.86rem;font-weight:500;text-decoration:none;color:var(--ink);letter-spacing:.01em;padding:.35rem .15rem;border-bottom:2px solid transparent;transition:border-color .25s}
+.nav-links a:hover{border-bottom-color:var(--red)}
+.pill{display:inline-flex;align-items:center;gap:.5rem;border-radius:999px;font-weight:600;text-decoration:none;border:0;cursor:pointer;transition:background .25s var(--ease), transform .25s var(--ease)}
+.pill-red{background:var(--red-action);color:#fff;padding:.7rem 1.35rem;font-size:.88rem}
+.pill-red:hover{background:var(--red);transform:translateY(-1px)}
+.nav-burger{display:none;background:none;border:0;cursor:pointer;padding:.5rem .7rem;border-radius:999px}
+.nav-burger span{display:block;width:20px;height:2px;background:var(--ink);margin:4.5px 0;border-radius:2px;transition:transform .3s var(--ease), opacity .3s}
+.nav-menu{display:none}
+.nav-open .nav-menu{display:block;margin-top:.6rem;background:rgba(255,255,255,.82);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid rgba(16,20,28,.1);border-radius:24px;padding:1rem 1.3rem;box-shadow:0 16px 44px rgba(16,20,28,.12)}
+.nav-menu ul{list-style:none}
+.nav-menu a{display:block;padding:.65rem 0;font-weight:600;text-decoration:none;border-bottom:1px solid var(--hair)}
+.nav-menu li:last-child a{border-bottom:0}
+.nav-menu .pill-red{margin-top:.6rem;justify-content:center;display:flex}
+.nav-open .nav-burger span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.nav-open .nav-burger span:nth-child(2){opacity:0}
+.nav-open .nav-burger span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+
+/* ---------- HERO ---------- */
+.hero{padding-top:clamp(7rem,14vh,10rem)}
+.hero-top{position:relative;z-index:2}
+.kicker{font-size:.78rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);display:flex;align-items:center;gap:.7rem;margin-bottom:clamp(1.4rem,3vw,2.6rem)}
+.kicker::before{content:"";width:34px;height:2px;background:var(--red);border-radius:2px}
+.hero-grid{position:relative}
+.hero-note{position:absolute;top:.4rem;right:0;max-width:24ch;text-align:right;font-size:.92rem;line-height:1.5;color:var(--ink-soft)}
+.hero-note strong{font-weight:600;color:var(--ink)}
+h1{font-size:var(--h1size);line-height:.97;font-weight:800;letter-spacing:-.025em}
+h1 .hl{display:block;white-space:nowrap}
+h1 .ser{font-size:1.08em;letter-spacing:-.01em;line-height:.9}
+h1 .co{font-weight:700}
+h1 .l2, h1 .l3{color:#fff;text-shadow:0 1px 24px rgba(16,20,28,.25)}
+.hero-media{position:relative;z-index:1;margin-top:calc(var(--h1size) * -2.08);
+  width:96vw;margin-left:calc(50% - 48vw);
+  border-radius:44px 150px 56px 120px;
+  overflow:hidden;background:var(--ink);
+  height:clamp(480px, 56vw, 760px);
+  box-shadow:0 40px 90px rgba(16,20,28,.28);
+}
+.hero-media img{width:100%;height:100%;object-fit:cover;opacity:.96;animation:kenburns 14s ease-in-out infinite alternate}
+@keyframes kenburns{from{transform:scale(1.0) translate(0,0)}to{transform:scale(1.04) translate(-1.2%,1%)}}
+.hero-media::after{content:"";position:absolute;inset:0;background:linear-gradient(200deg, transparent 42%, rgba(10,13,20,.62) 88%);pointer-events:none}
+.hero-lead{position:absolute;z-index:2;right:clamp(1.4rem,5vw,4.5rem);bottom:clamp(1.6rem,4.5vw,3.6rem);max-width:44ch;color:rgba(255,255,255,.95);font-size:clamp(.98rem,1.25vw,1.12rem);line-height:1.62;padding:1.5rem 1.7rem;background:linear-gradient(180deg,rgba(10,13,20,.38),rgba(10,13,20,.55));border-radius:18px;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);text-shadow:0 1px 12px rgba(6,9,15,.45)}
+.hero-lead p{margin-bottom:1.4rem}
+.cta-row{display:flex;flex-wrap:wrap;align-items:center;gap:1.1rem}
+.pill-lg{padding:.95rem 1.7rem;font-size:.95rem}
+.ghost-link{font-weight:600;font-size:.92rem;text-decoration:none;border-bottom:2px solid rgba(255,255,255,.45);padding-bottom:.2rem;color:#fff;transition:border-color .25s}
+.ghost-link:hover{border-bottom-color:var(--red)}
+.ghost-link .arr{display:inline-block;transition:transform .25s var(--ease)}
+.ghost-link:hover .arr{transform:translateX(4px)}
+
+/* ---------- TICKER ---------- */
+.ticker{margin-top:clamp(2.2rem,5vw,3.6rem)}
+.ticker .wrap{display:flex;align-items:center;gap:1.6rem;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);padding:.85rem 0}
+.tick-label{flex:none;font-size:.72rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft)}
+.tick-clip{overflow:hidden;flex:1;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+.tick-track{display:flex;width:max-content;gap:0;animation:tick 38s linear infinite}
+.ticker:hover .tick-track{animation-play-state:paused}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.tick-set{display:flex;align-items:center;flex:none}
+.tick-item{display:inline-flex;align-items:center;gap:.55rem;font-size:.74rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);white-space:nowrap;padding-right:1.1rem}
+.tick-item::after{content:"·";padding-left:1.1rem;color:var(--ink-quiet)}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--red);flex:none;animation:pulse 2.4s ease-in-out infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(255,59,48,.45)}55%{box-shadow:0 0 0 6px rgba(255,59,48,0)}}
+
+/* ---------- SECTIONS shared ---------- */
+section{padding-block:clamp(3.6rem,8vw,7rem)}
+.eyebrow{font-size:.74rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:1.1rem;display:flex;align-items:center;gap:.6rem}
+.eyebrow::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--red)}
+h2{font-size:clamp(2rem,4.4vw,3.4rem);line-height:1.04;font-weight:800;letter-spacing:-.02em}
+h2 .ser{font-size:1.1em}
+
+/* ---------- AGENDA ---------- */
+.agenda h2{max-width:14ch;margin-bottom:clamp(2rem,4.5vw,3.4rem)}
+.ag-list{list-style:none;border-top:1px solid var(--hair)}
+.ag-item{border-bottom:1px solid var(--hair)}
+.ag-head{width:100%;display:flex;align-items:baseline;gap:clamp(1rem,3vw,2.4rem);background:none;border:0;cursor:pointer;text-align:left;padding:clamp(1.1rem,2.4vw,1.7rem) 0;font-family:inherit;color:inherit}
+.ag-num{font-family:"Instrument Serif",serif;font-style:italic;font-size:clamp(1.5rem,2.6vw,2.2rem);color:var(--ink-quiet);flex:none;width:2.4ch;transition:color .35s}
+.ag-title{position:relative;font-size:clamp(1.5rem,3.6vw,2.9rem);font-weight:700;letter-spacing:-.018em;line-height:1.08;transition:color .35s}
+.squig{position:absolute;left:0;right:0;bottom:-.28em;width:100%;height:.34em;pointer-events:none;overflow:visible}
+.squig path{fill:none;stroke:var(--amber);stroke-width:5;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1;opacity:0}
+.ag-item.active .squig path{opacity:1}
+.ag-item.active .ag-num{color:var(--red-action)}
+.ag-item.active .squig path{transition:stroke-dashoffset .9s var(--ease) .1s;stroke-dashoffset:0}
+.ag-item:not(.active) .ag-title:hover{color:var(--ink-soft)}
+.ag-body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .55s var(--ease)}
+.ag-item.active .ag-body{grid-template-rows:1fr}
+.ag-inner{overflow:hidden}
+.ag-inner-pad{padding:0 0 clamp(1.3rem,2.6vw,2rem) calc(2.4ch + clamp(1rem,3vw,2.4rem));max-width:62ch}
+.ag-q{font-size:clamp(1rem,1.4vw,1.18rem);color:var(--ink-soft);line-height:1.6;margin-bottom:.9rem}
+.ink-link{font-weight:600;font-size:.92rem;text-decoration:none;color:var(--ink);border-bottom:2px solid rgba(16,20,28,.25);padding-bottom:.15rem;transition:border-color .25s}
+.ink-link:hover{border-bottom-color:var(--red)}
+.ink-link .arr{display:inline-block;transition:transform .25s var(--ease)}
+.ink-link:hover .arr{transform:translateX(4px)}
+
+/* ---------- PILLARS ---------- */
+.pillars{display:grid;gap:clamp(1.4rem,2.6vw,2.2rem)}
+.pillar{border-radius:28px;padding:clamp(1.8rem,4vw,3.4rem);display:grid;grid-template-columns:1.55fr 1fr;gap:clamp(1.8rem,4vw,3.6rem);align-items:center}
+.pillar-blue{background:var(--wash-blue)}
+.pillar-cyan{background:var(--wash-cyan)}
+.pillar-green{background:var(--wash-green)}
+.pl-label{font-size:.74rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;margin-bottom:1rem}
+.pillar-blue .pl-label{color:var(--pillar-blue)}
+.pillar-cyan .pl-label{color:var(--pillar-cyan)}
+.pillar-green .pl-label{color:var(--pillar-green)}
+.pl-head{font-size:clamp(1.9rem,3.6vw,2.9rem);font-weight:800;letter-spacing:-.02em;line-height:1.02;margin-bottom:.9rem}
+.pl-head .ser{font-size:1.1em}
+.pl-promise{font-size:clamp(.98rem,1.25vw,1.1rem);color:var(--ink-soft);line-height:1.62;max-width:52ch;margin-bottom:1.5rem}
+.pl-bullets{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:1rem 2rem;margin-bottom:1.7rem}
+.pl-bullets li{font-size:.92rem;line-height:1.5;padding-left:1.15rem;position:relative}
+.pl-bullets li::before{content:"";position:absolute;left:0;top:.48em;width:7px;height:7px;border-radius:50%;background:var(--red)}
+.pl-bullets strong{display:block;font-weight:700}
+.pl-bullets span{color:var(--ink-soft);font-size:.86rem}
+.pl-media{position:relative}
+.pl-media .frame{border-radius:22px;overflow:hidden;border:8px solid #fff;box-shadow:0 24px 60px rgba(16,20,28,.18);aspect-ratio:4/4.6}
+.pl-media .frame img{width:100%;height:100%;object-fit:cover;animation:kenburns 16s ease-in-out infinite alternate}
+.rot-l{transform:rotate(-1.2deg)}
+.rot-r{transform:rotate(1deg)}
+.rot-s{transform:rotate(-.7deg)}
+
+/* ---------- FORGE ---------- */
+.forge{background:var(--paper)}
+.forge-head{max-width:26ch;margin-bottom:1.3rem}
+.forge-thesis{max-width:64ch;font-size:clamp(1rem,1.3vw,1.15rem);color:var(--ink-soft);line-height:1.66;margin-bottom:clamp(2.6rem,5vw,4.2rem)}
+.forge-path{position:relative;padding-top:.5rem}
+.forge-arc{position:absolute;left:0;right:0;top:0;width:100%;height:120px;pointer-events:none}
+.arc-dots{stroke:var(--ink);opacity:.55}
+.arc-reveal{stroke-dasharray:1;stroke-dashoffset:1}
+.forge-path.in .arc-reveal{transition:stroke-dashoffset 2s var(--ease) .2s;stroke-dashoffset:0}
+.forge-stages{list-style:none;display:grid;grid-template-columns:repeat(5,1fr);gap:1rem;position:relative}
+.stage{text-align:center;padding:0 .4rem}
+.stage-ltr{width:74px;height:74px;border-radius:50%;background:var(--paper);border:2px solid var(--ink);display:flex;align-items:center;justify-content:center;font-size:1.7rem;font-weight:800;margin:0 auto 1.1rem;position:relative;z-index:1}
+.stage:nth-child(odd) .stage-ltr{transform:translateY(6px) rotate(-2deg)}
+.stage:nth-child(even) .stage-ltr{transform:translateY(-14px) rotate(2deg)}
+.stage-name{font-weight:700;font-size:1.02rem;letter-spacing:-.01em;margin-bottom:.3rem}
+.stage-q{font-family:"Instrument Serif",serif;font-style:italic;font-size:1.02rem;color:var(--ink-quiet)}
+.forge-note{margin-top:clamp(2.4rem,5vw,3.6rem);max-width:58ch;font-size:.92rem;color:var(--ink-quiet);line-height:1.6;border-top:1px solid var(--hair);padding-top:1.2rem}
+
+/* ---------- BASTION ---------- */
+.bastion-card{position:relative;background:var(--ink);color:var(--paper);border-radius:28px;overflow:hidden;box-shadow:0 40px 90px rgba(16,20,28,.3)}
+.b-media{position:absolute;top:0;right:0;bottom:0;width:48%;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 55%);mask-image:linear-gradient(90deg,transparent 0%,#000 55%)}
+.b-media img{width:100%;height:100%;object-fit:cover;opacity:.8;animation:kenburns 18s ease-in-out infinite alternate}
+.b-copy{position:relative;z-index:1;max-width:56%;padding:clamp(2rem,4.5vw,3.8rem)}
+.b-label{font-size:.74rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:rgba(250,247,242,.65);display:flex;align-items:center;gap:.6rem;margin-bottom:1.2rem}
+.b-copy h2{color:var(--paper);margin-bottom:1rem;max-width:14ch}
+.b-copy .lede{color:rgba(250,247,242,.78);font-size:clamp(.98rem,1.25vw,1.1rem);line-height:1.62;max-width:44ch;margin-bottom:1.8rem}
+.b-rows{list-style:none;border-top:1px solid rgba(250,247,242,.16);margin-bottom:1.8rem}
+.b-rows li{display:flex;justify-content:space-between;gap:1.5rem;padding:.8rem 0;border-bottom:1px solid rgba(250,247,242,.16);font-size:.92rem}
+.b-rows .k{color:rgba(250,247,242,.6);font-weight:500}
+.b-rows .v{font-weight:600;text-align:right}
+.paper-link{font-weight:600;font-size:.92rem;text-decoration:none;color:var(--paper);border-bottom:2px solid rgba(250,247,242,.35);padding-bottom:.18rem;transition:border-color .25s}
+.paper-link:hover{border-bottom-color:var(--red)}
+.paper-link .arr{display:inline-block;transition:transform .25s var(--ease)}
+.paper-link:hover .arr{transform:translateX(4px)}
+
+/* ---------- CLOSING ---------- */
+.closing{text-align:left}
+.closing h2{font-size:clamp(2.6rem,6.4vw,5.4rem);max-width:15ch;margin-bottom:1.4rem}
+.closing .sub{max-width:56ch;font-size:clamp(1rem,1.3vw,1.16rem);color:var(--ink-soft);line-height:1.66;margin-bottom:2.2rem}
+.close-cta{position:relative;display:inline-flex;flex-wrap:wrap;align-items:center;gap:1.2rem;padding-right:clamp(13rem,18vw,17rem)}
+.ghost-ink{border:1.5px solid rgba(16,20,28,.35);color:var(--ink);background:none;padding:.9rem 1.6rem;font-size:.95rem}
+.ghost-ink:hover{border-color:var(--ink);transform:translateY(-1px)}
+.hand-note{position:absolute;right:0;top:-2.4rem;width:10.5rem;text-align:left;pointer-events:none}
+.hand-note .txt{font-family:"Instrument Serif",serif;font-style:italic;font-size:1.15rem;color:var(--ink-soft);transform:rotate(-3deg);display:block;margin-left:2rem;line-height:1.25}
+.hand-arrow{width:74px;height:56px;transform:translate(-.4rem,.2rem)}
+.hand-arrow path{fill:none;stroke:var(--ink-soft);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+/* ---------- FOOTER ---------- */
+footer{background:var(--paper);border-top:1px solid var(--hair);padding:clamp(2.6rem,5vw,4.4rem) 0 2rem}
+.foot-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1.2fr;gap:clamp(1.6rem,4vw,3rem);padding-bottom:2.4rem;border-bottom:1px solid var(--hair)}
+.foot-mark img{height:22px;width:auto;margin-bottom:1.1rem}
+.foot-triverb{font-size:.95rem;font-weight:600;line-height:1.7;max-width:24ch}
+.foot-triverb .vt{color:var(--pillar-blue)}
+.foot-triverb .vd{color:var(--pillar-cyan)}
+.foot-triverb .va{color:var(--pillar-green)}
+.foot-h{font-size:.72rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-quiet);margin-bottom:.9rem}
+.foot-col ul{list-style:none}
+.foot-col a{display:inline-block;font-size:.9rem;text-decoration:none;color:var(--ink-soft);padding:.22rem 0;transition:color .2s}
+.foot-col a:hover{color:var(--ink)}
+.foot-contact p{font-size:.9rem;color:var(--ink-soft);line-height:1.7}
+.foot-contact a{text-decoration:none;color:var(--ink);font-weight:600}
+.foot-contact a:hover{color:var(--red-action)}
+.foot-legal{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.8rem;padding-top:1.4rem;font-size:.8rem;color:var(--ink-quiet)}
+.foot-legal a{color:var(--ink-quiet);text-decoration:underline;text-underline-offset:3px}
+.foot-legal a:hover{color:var(--ink)}
+
+/* ---------- REVEALS ---------- */
+.js .rv{opacity:0;transform:translateY(20px);transition:opacity .7s var(--ease), transform .7s var(--ease)}
+.js .rv.in{opacity:1;transform:none}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width:1000px){
+  .nav-links{display:none}
+  .nav-pill > .pill-red{display:none}
+  .nav-burger{display:block}
+  .pillar{grid-template-columns:1fr}
+  .pl-media{max-width:440px}
+  .b-media{position:relative;width:100%;height:230px;
+    -webkit-mask-image:linear-gradient(180deg,#000 45%,transparent 100%);mask-image:linear-gradient(180deg,#000 45%,transparent 100%)}
+  .b-copy{max-width:100%;margin-top:-3.2rem}
+}
+@media (max-width:768px){
+  .ticker .wrap{flex-direction:column;align-items:flex-start;gap:.6rem}
+  .tick-clip{min-width:0;width:100%}
+  .tick-track{animation:none;flex-wrap:wrap;width:auto}
+  .tick-set{flex-wrap:wrap;row-gap:.35rem;width:100%}
+  .tick-item::after{display:none}
+  .tick-set[aria-hidden]{display:none}
+  .tick-clip{-webkit-mask-image:none;mask-image:none}
+  .pl-bullets{grid-template-columns:1fr}
+  .forge-arc{display:none}
+  .forge-stages{grid-template-columns:1fr;gap:0;padding-left:.4rem}
+  .forge-stages::before{content:"";position:absolute;left:36px;top:12px;bottom:12px;border-left:2px dotted rgba(16,20,28,.45)}
+  .stage{display:grid;grid-template-columns:74px 1fr;column-gap:1.2rem;row-gap:.1rem;text-align:left;align-items:center;padding:.9rem 0}
+  .stage-ltr{margin:0;transform:none !important;grid-row:1/3}
+  .stage-name{margin-bottom:0;grid-column:2;align-self:end}
+  .stage-q{grid-column:2;align-self:start}
+}
+@media (max-width:640px){
+  :root{--h1size:clamp(2rem, 9vw, 3.4rem)}
+  .hero{padding-top:6.2rem}
+  .hero-note{position:static;text-align:left;max-width:34ch;margin-bottom:1.3rem}
+  h1 .l2, h1 .l3{color:var(--ink);text-shadow:none}
+  .hero-media{margin-top:1.4rem;height:auto;width:100%;margin-left:0;background:transparent;border-radius:0;overflow:visible;box-shadow:none}
+  .hero-media img{aspect-ratio:4/4.4;height:auto;border-radius:28px 70px 34px 56px;box-shadow:0 24px 60px rgba(16,20,28,.22)}
+  .hero-media::after{display:none}
+  .hero-lead{position:static;max-width:100%;color:var(--ink);padding:1.6rem 0 0;font-size:1rem;background:none;border-radius:0;backdrop-filter:none;-webkit-backdrop-filter:none;text-shadow:none}
+  .hero .wrap .hero-lead p{color:var(--ink-soft)}
+  .hero-lead .ghost-link{color:var(--ink);border-bottom-color:rgba(16,20,28,.3)}
+  .ag-inner-pad{padding-left:0}
+  .close-cta{padding-right:0;padding-bottom:5.4rem}
+  .hand-note{top:auto;bottom:0;right:auto;left:.4rem;display:flex;align-items:flex-end;gap:.3rem;width:auto}
+  .hand-note .txt{margin-left:0}
+  .hand-arrow{transform:scaleY(-1) rotate(-12deg)}
+  .foot-grid{grid-template-columns:1fr}
+}
+
+/* ---------- REDUCED MOTION ---------- */
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  .hero-media img,.pl-media .frame img,.b-media img{animation:none}
+  .tick-track{animation:none}
+  .dot{animation:none}
+  .js .rv{opacity:1;transform:none;transition:none}
+  .ag-body{transition:none}
+  .ag-item.active .squig path{transition:none;stroke-dashoffset:0}
+  .forge-path .arc-reveal{transition:none;stroke-dashoffset:0}
+  .pill,.ghost-link .arr,.ink-link .arr,.paper-link .arr{transition:none}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="navbar" id="navbar">
+  <nav aria-label="Primary">
+    <div class="nav-pill">
+      <a class="nav-mark" href="/" aria-label="bostoncyberx home">
+        <img src="/assets/img/bcx-wordmark-line-ink.svg" alt="bostoncyberx" width="150" height="20">
+      </a>
+      <ul class="nav-links">
+        <li><a href="/services/">Services</a></li>
+        <li><a href="/platform/">Platform</a></li>
+        <li><a href="/industries/">Industries</a></li>
+        <li><a href="/insights/">Insights</a></li>
+        <li><a href="/about/">About</a></li>
+      </ul>
+      <a class="pill pill-red" href="/discovery/">Book a Discovery Call</a>
+      <button class="nav-burger" id="navBurger" aria-expanded="false" aria-controls="navMenu" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="nav-menu" id="navMenu">
+      <ul>
+        <li><a href="/services/">Services</a></li>
+        <li><a href="/platform/">Platform</a></li>
+        <li><a href="/industries/">Industries</a></li>
+        <li><a href="/insights/">Insights</a></li>
+        <li><a href="/about/">About</a></li>
+      </ul>
+      <a class="pill pill-red" href="/discovery/">Book a Discovery Call</a>
+    </div>
+  </nav>
+</header>
+
+<main id="main">
+
+  <!-- HERO -->
+  <section class="hero" aria-labelledby="heroH">
+    <div class="wrap hero-top">
+      <p class="kicker">The AI-native transformation partner</p>
+      <div class="hero-grid">
+        <p class="hero-note">The AI-native transformation partner for companies of <strong>25 to 1,000 people</strong>.</p>
+        <h1 id="heroH">
+          <span class="hl l1"><em class="ser">Transform</em> <span class="co">with AI.</span></span>
+          <span class="hl l2">Defend with AI.</span>
+          <span class="hl l3"><em class="ser">Achieve</em> <span class="co">with AI.</span></span>
+        </h1>
+      </div>
+    </div>
+    <div class="hero-media">
+      <img src="/assets/img/agenda-grow.jpg" alt="City light trails rising through a Boston skyline at dawn" fetchpriority="high">
+      <div class="hero-lead">
+        <p>We are an AI-native firm. We run our own company on the technology we recommend, and we help businesses achieve meaningful outcomes through AI transformation, secured by proactive defense and fortified by enterprise resilience.</p>
+        <div class="cta-row">
+          <a class="pill pill-red pill-lg" href="/discovery/">Schedule a 30-minute discovery call</a>
+          <a class="ghost-link" href="/ai-readiness-assessment/">Take the free AI Assessment <span class="arr">&rarr;</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TICKER -->
+  <div class="ticker" role="note" aria-label="This morning at BCX">
+    <div class="wrap">
+      <span class="tick-label">This morning at BCX</span>
+      <div class="tick-clip">
+        <div class="tick-track">
+          <div class="tick-set">
+            <span class="tick-item"><span class="dot" aria-hidden="true"></span>bcxBastion operational</span>
+            <span class="tick-item">3-week bcxCompass baseline</span>
+            <span class="tick-item">90-day roadmap</span>
+            <span class="tick-item">Seven-pillar readiness score</span>
+            <span class="tick-item">FORGE journeys in flight</span>
+          </div>
+          <div class="tick-set" aria-hidden="true">
+            <span class="tick-item"><span class="dot"></span>bcxBastion operational</span>
+            <span class="tick-item">3-week bcxCompass baseline</span>
+            <span class="tick-item">90-day roadmap</span>
+            <span class="tick-item">Seven-pillar readiness score</span>
+            <span class="tick-item">FORGE journeys in flight</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CEO AGENDA -->
+  <section class="agenda" aria-labelledby="agendaH">
+    <div class="wrap">
+      <p class="eyebrow rv">The CEO agenda</p>
+      <h2 id="agendaH" class="rv">What is on <em class="ser">your</em> agenda?</h2>
+      <ul class="ag-list rv" id="agList">
+        <li class="ag-item active">
+          <h3><button class="ag-head" aria-expanded="true">
+            <span class="ag-num" aria-hidden="true">01</span>
+            <span class="ag-title">I need to grow.<svg class="squig" viewBox="0 0 240 14" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M3 9 C 24 3, 40 13, 62 8 C 84 3, 100 13, 122 8 C 144 3, 160 13, 182 8 C 204 4, 220 11, 237 7"/></svg></span>
+          </button></h3>
+          <div class="ag-body"><div class="ag-inner"><div class="ag-inner-pad">
+            <p class="ag-q">How do I grow revenue, improve profitability, and create new business opportunities?</p>
+            <a class="ink-link" href="/industries/">See the AI use cases in your industry <span class="arr">&rarr;</span></a>
+          </div></div></div>
+        </li>
+        <li class="ag-item">
+          <h3><button class="ag-head" aria-expanded="false">
+            <span class="ag-num" aria-hidden="true">02</span>
+            <span class="ag-title">I need to reduce risk.<svg class="squig" viewBox="0 0 240 14" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M3 9 C 24 3, 40 13, 62 8 C 84 3, 100 13, 122 8 C 144 3, 160 13, 182 8 C 204 4, 220 11, 237 7"/></svg></span>
+          </button></h3>
+          <div class="ag-body"><div class="ag-inner"><div class="ag-inner-pad">
+            <p class="ag-q">How do I protect my business, customers, reputation, and operations while enabling growth?</p>
+            <a class="ink-link" href="/platform/">See how bcxBastion holds the line <span class="arr">&rarr;</span></a>
+          </div></div></div>
+        </li>
+        <li class="ag-item">
+          <h3><button class="ag-head" aria-expanded="false">
+            <span class="ag-num" aria-hidden="true">03</span>
+            <span class="ag-title">I need to become more productive.<svg class="squig" viewBox="0 0 240 14" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M3 9 C 24 3, 40 13, 62 8 C 84 3, 100 13, 122 8 C 144 3, 160 13, 182 8 C 204 4, 220 11, 237 7"/></svg></span>
+          </button></h3>
+          <div class="ag-body"><div class="ag-inner"><div class="ag-inner-pad">
+            <p class="ag-q">How do I help my people accomplish more while improving quality and reducing costs?</p>
+            <a class="ink-link" href="/services/">See the working playbook <span class="arr">&rarr;</span></a>
+          </div></div></div>
+        </li>
+        <li class="ag-item">
+          <h3><button class="ag-head" aria-expanded="false">
+            <span class="ag-num" aria-hidden="true">04</span>
+            <span class="ag-title">I need to transform my business.<svg class="squig" viewBox="0 0 240 14" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M3 9 C 24 3, 40 13, 62 8 C 84 3, 100 13, 122 8 C 144 3, 160 13, 182 8 C 204 4, 220 11, 237 7"/></svg></span>
+          </button></h3>
+          <div class="ag-body"><div class="ag-inner"><div class="ag-inner-pad">
+            <p class="ag-q">How do I modernize my business, operating model, and technology without disrupting what already works?</p>
+            <a class="ink-link" href="/services/">See how FORGE stages the change <span class="arr">&rarr;</span></a>
+          </div></div></div>
+        </li>
+        <li class="ag-item">
+          <h3><button class="ag-head" aria-expanded="false">
+            <span class="ag-num" aria-hidden="true">05</span>
+            <span class="ag-title">I need to prepare for what's next.<svg class="squig" viewBox="0 0 240 14" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M3 9 C 24 3, 40 13, 62 8 C 84 3, 100 13, 122 8 C 144 3, 160 13, 182 8 C 204 4, 220 11, 237 7"/></svg></span>
+          </button></h3>
+          <div class="ag-body"><div class="ag-inner"><div class="ag-inner-pad">
+            <p class="ag-q">How do I harness AI and emerging technologies responsibly while positioning my organization for the future?</p>
+            <a class="ink-link" href="/ai-readiness-assessment/">Take the free AI Assessment <span class="arr">&rarr;</span></a>
+          </div></div></div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- PILLARS -->
+  <section aria-label="Three pillars">
+    <div class="wrap pillars">
+
+      <article class="pillar pillar-blue rv">
+        <div>
+          <p class="pl-label">Pillar 01 &middot; Transform</p>
+          <h2 class="pl-head">Put AI to <em class="ser">work.</em></h2>
+          <p class="pl-promise">Strategy, governance, and deployment from a fractional AI office. The use cases that pay, the policies that protect, the rollout your people actually adopt.</p>
+          <ul class="pl-bullets">
+            <li><strong>An AI roadmap your board can read</strong><span>Use cases ranked by return, owners and dates attached.</span></li>
+            <li><strong>Governance that speeds you up</strong><span>Clear rules end the quiet chaos of unapproved tools.</span></li>
+            <li><strong>Adoption, not shelfware</strong><span>Training and guardrails so the rollout sticks.</span></li>
+          </ul>
+          <a class="ink-link" href="/services/ai-consulting-boston/">Explore AI consulting <span class="arr">&rarr;</span></a>
+        </div>
+        <div class="pl-media">
+          <div class="frame rot-l"><img src="/assets/img/bg-transform.jpg" alt="Light streams through a modern atrium, a scene of transformation" loading="lazy"></div>
+        </div>
+      </article>
+
+      <article class="pillar pillar-cyan rv">
+        <div>
+          <p class="pl-label">Pillar 02 &middot; Defend</p>
+          <h2 class="pl-head">Hold the <em class="ser">line.</em></h2>
+          <p class="pl-promise">Security leadership on retainer and AI-powered operations that never clock out. The same intelligence attackers use, working for you.</p>
+          <ul class="pl-bullets">
+            <li><strong>A CISO in the seat</strong><span>Fractional leadership without the $250K hire.</span></li>
+            <li><strong>Insurance renewals without drama</strong><span>Evidence ready before the underwriter asks.</span></li>
+            <li><strong>Watched around the clock</strong><span>bcxBastion detection and response, 24/7.</span></li>
+          </ul>
+          <a class="ink-link" href="/services/vciso-boston/">Explore security leadership <span class="arr">&rarr;</span></a>
+        </div>
+        <div class="pl-media">
+          <div class="frame rot-r"><img src="/assets/img/bg-defend.jpg" alt="A lighthouse with a red dome standing watch over ships" loading="lazy"></div>
+        </div>
+      </article>
+
+      <article class="pillar pillar-green rv">
+        <div>
+          <p class="pl-label">Pillar 03 &middot; Achieve</p>
+          <h2 class="pl-head">Show the <em class="ser">board.</em></h2>
+          <p class="pl-promise">Outcomes in writing, every month. Measured productivity from AI, measured risk reduction, deadlines met with room to spare.</p>
+          <ul class="pl-bullets">
+            <li><strong>Fixed scopes, published ranges</strong><span>You know the price before you commit.</span></li>
+            <li><strong>Deliverables in writing</strong><span>What you get each month, named in advance.</span></li>
+            <li><strong>Board-ready reporting</strong><span>One page that answers the questions directors ask.</span></li>
+          </ul>
+          <a class="ink-link" href="/about/">How we stay accountable <span class="arr">&rarr;</span></a>
+        </div>
+        <div class="pl-media">
+          <div class="frame rot-s"><img src="/assets/img/bg-achieve.jpg" alt="A stone bridge meeting modern steel, old strength carrying new work" loading="lazy"></div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- FORGE -->
+  <section class="forge" aria-labelledby="forgeH">
+    <div class="wrap">
+      <p class="eyebrow rv">The framework</p>
+      <h2 id="forgeH" class="forge-head rv">One framework runs through everything. <em class="ser">FORGE.</em></h2>
+      <p class="forge-thesis rv">You cannot adopt trustworthy AI without cybersecurity, and you cannot defend your organization from disruption without AI. FORGE is the one framework we run across both, from first readiness check to enterprise-grade scale.</p>
+      <div class="forge-path rv" id="forgePath">
+        <svg class="forge-arc" viewBox="0 0 1000 120" preserveAspectRatio="none" aria-hidden="true">
+          <defs>
+            <mask id="arcMask">
+              <path class="arc-reveal" pathLength="1" d="M30 66 C 100 78, 170 46, 250 44 C 330 42, 350 64, 430 66 C 510 68, 540 38, 620 40 C 700 42, 720 66, 800 64 C 862 62, 922 52, 972 48" fill="none" stroke="#fff" stroke-width="34"/>
+            </mask>
+          </defs>
+          <path class="arc-dots" pathLength="1" d="M30 66 C 100 78, 170 46, 250 44 C 330 42, 350 64, 430 66 C 510 68, 540 38, 620 40 C 700 42, 720 66, 800 64 C 862 62, 922 52, 972 48" fill="none" stroke-width="2.6" stroke-linecap="round" stroke-dasharray="0.0018 0.011" mask="url(#arcMask)"/>
+        </svg>
+        <ol class="forge-stages">
+          <li class="stage"><span class="stage-ltr" aria-hidden="true">F</span><p class="stage-name">Foundations</p><p class="stage-q">Are we ready?</p></li>
+          <li class="stage"><span class="stage-ltr" aria-hidden="true">O</span><p class="stage-name">Objectives</p><p class="stage-q">What are we solving for?</p></li>
+          <li class="stage"><span class="stage-ltr" aria-hidden="true">R</span><p class="stage-name">Rapid Pilots</p><p class="stage-q">Can we prove it fast?</p></li>
+          <li class="stage"><span class="stage-ltr" aria-hidden="true">G</span><p class="stage-name">Growth</p><p class="stage-q">How do we scale it?</p></li>
+          <li class="stage"><span class="stage-ltr" aria-hidden="true">E</span><p class="stage-name">Enterprise-Grade</p><p class="stage-q">Is it safe long-term?</p></li>
+        </ol>
+      </div>
+      <p class="forge-note rv">Raw material gets shaped, tempered, and hardened. Each stage adds strength, and a typical mid-sized company runs the full journey in nine to twelve months.</p>
+    </div>
+  </section>
+
+  <!-- BASTION -->
+  <section aria-labelledby="bastionH">
+    <div class="wrap rv">
+      <div class="bastion-card">
+        <div class="b-media" aria-hidden="true">
+          <img src="/assets/img/bg-harbor.jpg" alt="" loading="lazy">
+        </div>
+        <div class="b-copy">
+          <p class="b-label"><span class="dot" aria-hidden="true"></span>The platform &middot; live now</p>
+          <h2 id="bastionH">bcxBastion never <em class="ser">closes.</em></h2>
+          <p class="lede">Everything watched in one place, AI-assisted triage, and a 24/7 response path. Senior analysts, not a ticket queue.</p>
+          <ul class="b-rows">
+            <li><span class="k">Monitoring</span><span class="v">24/7/365</span></li>
+            <li><span class="k">Telemetry</span><span class="v">One console</span></li>
+            <li><span class="k">Triage</span><span class="v">AI-assisted, human-decided</span></li>
+            <li><span class="k">Reporting</span><span class="v">Monthly, board-ready</span></li>
+          </ul>
+          <a class="paper-link" href="/platform/">Explore the platform <span class="arr">&rarr;</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLOSING -->
+  <section class="closing" aria-labelledby="closeH">
+    <div class="wrap">
+      <p class="eyebrow rv">Start here</p>
+      <h2 id="closeH" class="rv">Your next move is a <em class="ser">conversation.</em></h2>
+      <p class="sub rv">Thirty minutes with a senior practitioner. Or start on your own: fourteen questions, ten minutes, and the free AI Assessment shows where you stand across seven pillars.</p>
+      <div class="close-cta rv">
+        <a class="pill pill-red pill-lg" href="/discovery/">Schedule a 30-minute discovery call</a>
+        <a class="pill ghost-ink" href="/ai-readiness-assessment/">Take the free AI Assessment</a>
+        <span class="hand-note" aria-hidden="true">
+          <svg class="hand-arrow" viewBox="0 0 90 60">
+            <path d="M84 10 C 74 34, 46 48, 12 44"/>
+            <path d="M12 44 l11 -9"/>
+            <path d="M12 44 l13 5"/>
+          </svg>
+          <span class="txt">no pitch deck, no obligation</span>
+        </span>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-mark">
+        <img src="/assets/img/bcx-wordmark-line-ink.svg" alt="bostoncyberx" width="165" height="22">
+        <p class="foot-triverb"><span class="vt">Transform</span> with AI. <span class="vd">Defend</span> with AI. <span class="va">Achieve</span> with AI.</p>
+      </div>
+      <nav class="foot-col" aria-label="Company">
+        <p class="foot-h">Company</p>
+        <ul>
+          <li><a href="/services/">Services</a></li>
+          <li><a href="/platform/">Platform</a></li>
+          <li><a href="/industries/">Industries</a></li>
+          <li><a href="/about/">About</a></li>
+        </ul>
+      </nav>
+      <nav class="foot-col" aria-label="Resources">
+        <p class="foot-h">Resources</p>
+        <ul>
+          <li><a href="/insights/">Insights</a></li>
+          <li><a href="/resources/">Resources</a></li>
+          <li><a href="/ai-readiness-assessment/">AI Assessment</a></li>
+          <li><a href="/discovery/">Discovery call</a></li>
+        </ul>
+      </nav>
+      <div class="foot-contact">
+        <p class="foot-h">Visit</p>
+        <p>One Marina Park Drive<br>Boston, MA 02210</p>
+        <p><a href="tel:+16172415445">617.241.5445</a><br>
+        <a href="mailto:info@bostoncyberx.com">info@bostoncyberx.com</a></p>
+      </div>
+    </div>
+    <div class="foot-legal">
+      <p>&copy; 2026 bostoncyberx. All rights reserved. &middot; Boston &middot; New York &middot; Los Angeles &middot; Jacksonville</p>
+      <p><a href="/concepts/">All concepts</a></p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  document.documentElement.classList.add('js');
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* nav */
+  var burger = document.getElementById('navBurger');
+  var navbar = document.getElementById('navbar');
+  burger.addEventListener('click', function(){
+    var open = navbar.classList.toggle('nav-open');
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  });
+
+  /* reveals + forge arc */
+  var revealables = document.querySelectorAll('.rv, .forge-path');
+  if (!reduced && 'IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, {threshold: .18, rootMargin: '0px 0px -40px 0px'});
+    revealables.forEach(function(el){ io.observe(el); });
+  } else {
+    revealables.forEach(function(el){ el.classList.add('in'); });
+  }
+
+  /* agenda */
+  var items = Array.prototype.slice.call(document.querySelectorAll('#agList .ag-item'));
+  var current = 0, timer = null, DWELL = 6000;
+  function setActive(i){
+    current = i;
+    items.forEach(function(it, j){
+      var on = j === i;
+      it.classList.toggle('active', on);
+      it.querySelector('.ag-head').setAttribute('aria-expanded', on ? 'true' : 'false');
+    });
+  }
+  function startTimer(){
+    if (reduced) return;
+    stopTimer();
+    timer = setInterval(function(){ setActive((current + 1) % items.length); }, DWELL);
+  }
+  function stopTimer(){ if (timer){ clearInterval(timer); timer = null; } }
+  items.forEach(function(it, i){
+    var head = it.querySelector('.ag-head');
+    head.addEventListener('click', function(){ setActive(i); startTimer(); });
+    head.addEventListener('mouseenter', function(){ if (i !== current) setActive(i); });
+  });
+  var agList = document.getElementById('agList');
+  agList.addEventListener('mouseenter', stopTimer);
+  agList.addEventListener('mouseleave', startTimer);
+  agList.addEventListener('focusin', stopTimer);
+  agList.addEventListener('focusout', startTimer);
+  startTimer();
+})();
+</script>
+</body>
+</html>

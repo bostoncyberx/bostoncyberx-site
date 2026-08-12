@@ -1,0 +1,1443 @@
+<!DOCTYPE html>
+<!-- bostoncyberx brand kit v1.0
+     Direction contract: this document is a technical specification, so it is laid out
+     as one. A hairline rail carries mono section numbers; applications are rendered as
+     true-proportion PLATES with their real trim size in the caption. Committed to the
+     single ink world of /DESIGN.md, deliberately, because the brand is dark-first.
+     Type here IS the argument: everything below section 03 is set in the recommended
+     stack, so the page is its own proof. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Brand Kit | bostoncyberx</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="bostoncyberx brand kit: three typographic directions, a recommendation, and the complete application system.">
+<link rel="icon" href="/assets/brand/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Inter:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Sans+Condensed:wght@600;700&family=IBM+Plex+Mono:wght@400;500&family=Geist:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0A0E1A; --deep:#111827; --deep2:#151D2E; --deep3:#1B2437;
+  /* --slate2 was #64748B, which is 4.05:1 on ink and fails AA at label sizes.
+     Raised to #7A8CA6: 5.62:1 on ink, 4.91:1 on --deep2. See section 07. */
+  --paper:#F8FAFC; --slate:#94A3B8; --slate2:#7A8CA6;
+  --red:#FF3B30; --blue:#3B82F6; --cyan:#22D3EE; --green:#34D399; --amber:#FBBF24;
+  --edge:rgba(148,163,184,.16); --edge2:rgba(148,163,184,.28);
+
+  --fd:"Archivo",system-ui,sans-serif;      /* display: set expanded, always */
+  --fb:"Inter",system-ui,sans-serif;        /* text */
+  --fm:"Geist Mono",ui-monospace,monospace; /* data, labels, measurement */
+
+  --wide:"wdth" 112;
+  --rail:78px; --maxw:1180px; --r:10px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--ink);color:var(--paper);font-family:var(--fb);font-size:16px;
+     line-height:1.62;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img,svg{max-width:100%;display:block}
+a{color:var(--cyan);text-underline-offset:3px}
+:focus-visible{outline:2px solid var(--cyan);outline-offset:3px;border-radius:2px}
+
+/* ---------------------------------------------------------------- structure */
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+.sec{border-top:1px solid var(--edge);padding:82px 0 12px}
+.sec:first-of-type{border-top:0}
+.head{display:grid;grid-template-columns:var(--rail) 1fr;gap:0 0;margin-bottom:40px}
+.num{font-family:var(--fm);font-size:.76rem;font-weight:500;color:var(--red);
+     letter-spacing:.06em;padding-top:.55rem}
+.head h2{font-family:var(--fd);font-variation-settings:var(--wide);font-weight:700;
+     font-size:clamp(1.55rem,3.1vw,2.3rem);letter-spacing:-.022em;line-height:1.08;text-wrap:balance}
+.head p{grid-column:2;margin-top:.85rem;color:var(--slate);max-width:64ch}
+.body{display:grid;grid-template-columns:var(--rail) 1fr;gap:0}
+/* min-width:0 everywhere a grid or flex child can hold wide content, or the default
+   min-width:auto lets tables and plates push the page wider than the viewport */
+.body>*{grid-column:2;min-width:0}
+@media(max-width:760px){
+  :root{--rail:0px}
+  .head,.body{grid-template-columns:1fr}
+  .num{color:var(--red);padding:0 0 .5rem}
+  .head h2,.head p,.body>*{grid-column:1}
+}
+
+/* ------------------------------------------------------------------ pieces */
+.kick{font-family:var(--fm);font-size:.72rem;font-weight:500;letter-spacing:.14em;
+      text-transform:uppercase;color:var(--slate2);display:block;margin-bottom:1rem}
+.lede{font-size:1.16rem;line-height:1.55;max-width:60ch;color:var(--paper)}
+.note{font-family:var(--fm);font-size:.78rem;line-height:1.6;color:var(--slate);letter-spacing:-.005em}
+h3{font-family:var(--fd);font-variation-settings:var(--wide);font-weight:700;
+   font-size:1.06rem;letter-spacing:-.012em;margin-bottom:.5rem}
+h4{font-family:var(--fm);font-size:.73rem;font-weight:500;letter-spacing:.13em;
+   text-transform:uppercase;color:var(--slate2);margin-bottom:.9rem}
+p+p{margin-top:.9rem}
+.stack{display:flex;flex-direction:column;gap:18px}
+.stack-l{display:flex;flex-direction:column;gap:34px}
+.stack>*,.stack-l>*{min-width:0}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:20px}
+.grid2>*,.grid3>*{min-width:0}
+.panel{background:var(--deep2);border:1px solid var(--edge);border-radius:var(--r);padding:24px}
+.panel.tight{padding:18px}
+
+/* PLATE: a real deliverable rendered at true proportion, captioned with its trim size.
+   The recurring structural device of this document. */
+.plate{border:1px solid var(--edge);border-radius:var(--r);overflow:hidden;background:var(--deep)}
+/* Mockups size their type in cqw so a 3.5in card and a 33in banner both hold their
+   real proportions no matter how wide the plate renders. */
+.plate .art{position:relative;overflow:hidden;container-type:inline-size}
+.plate .cap{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
+     padding:11px 14px;border-top:1px solid var(--edge);background:var(--ink);
+     font-family:var(--fm);font-size:.71rem;color:var(--slate2);letter-spacing:.01em}
+.plate .cap b{color:var(--slate);font-weight:500}
+
+table{width:100%;border-collapse:collapse;font-size:.9rem}
+th,td{text-align:left;padding:.62rem .8rem;border-bottom:1px solid var(--edge);vertical-align:top}
+th{font-family:var(--fm);font-size:.7rem;font-weight:500;letter-spacing:.11em;
+   text-transform:uppercase;color:var(--slate2)}
+td.m{font-family:var(--fm);font-size:.8rem;color:var(--slate);white-space:nowrap;
+     font-variant-numeric:tabular-nums}
+.scroll{overflow-x:auto}
+
+/* -------------------------------------------------------------- 00 masthead */
+.mast{padding:84px 0 74px;position:relative}
+.mast .logo{width:min(560px,88%);margin-bottom:44px}
+.mast h1{font-family:var(--fd);font-variation-settings:"wdth" 108;font-weight:800;
+   font-size:clamp(2.5rem,6.6vw,4.6rem);line-height:.98;letter-spacing:-.035em;
+   text-wrap:balance;max-width:15ch}
+.mast .sub{margin-top:1.5rem;font-size:1.2rem;color:var(--slate);max-width:56ch;line-height:1.5}
+.meta{display:flex;gap:26px;flex-wrap:wrap;margin-top:40px;padding-top:22px;
+      border-top:1px solid var(--edge);font-family:var(--fm);font-size:.75rem;color:var(--slate2)}
+.meta b{color:var(--paper);font-weight:500;display:block;margin-top:.25rem;letter-spacing:-.01em}
+
+/* --------------------------------------------------- 01 the diagnosis */
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--edge);
+    border-radius:var(--r);overflow:hidden}
+.vs>div{padding:30px 26px 26px}
+.vs>div:first-child{border-right:1px solid var(--edge);background:var(--deep)}
+.vs>div:last-child{background:var(--deep2)}
+.vs .tag{font-family:var(--fm);font-size:.7rem;letter-spacing:.13em;text-transform:uppercase;
+   margin-bottom:20px;display:flex;align-items:center;gap:8px}
+.vs .tag i{width:6px;height:6px;border-radius:50%;font-style:normal;flex:none}
+.spec-old{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:clamp(1.7rem,3.5vw,2.6rem);
+   line-height:1.04;letter-spacing:-.018em}
+.spec-new{font-family:var(--fd);font-variation-settings:var(--wide);font-weight:700;
+   font-size:clamp(1.7rem,3.5vw,2.6rem);line-height:1.04;letter-spacing:-.026em}
+.vs .why{margin-top:22px;font-size:.9rem;color:var(--slate);line-height:1.58}
+.vs .why b{color:var(--paper);font-weight:600}
+/* the tell-tale glyphs, shown large so the difference is seen and not merely claimed */
+.glyphs{margin-top:14px;padding-top:16px;border-top:1px solid var(--edge);
+  font-size:clamp(1.9rem,4.4vw,2.9rem);line-height:1.12;color:var(--slate);
+  word-spacing:.16em;font-variant-numeric:tabular-nums}
+@media(max-width:700px){.vs{grid-template-columns:1fr}
+  .vs>div:first-child{border-right:0;border-bottom:1px solid var(--edge)}}
+
+/* Four independent causes, not a sequence, so they are tagged by what each one
+   costs rather than numbered. Numbering here would also collide with the rail. */
+.faults{display:flex;flex-direction:column;gap:0;margin-top:8px}
+.fault{display:grid;grid-template-columns:132px 1fr;gap:6px 20px;padding:19px 0;
+  border-top:1px solid var(--edge)}
+.fault:first-child{border-top:0;padding-top:0}
+.fault i{font-family:var(--fm);font-style:normal;font-size:.67rem;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--red);padding-top:.34rem;grid-row:span 2}
+.fault b{grid-column:2;font-family:var(--fd);font-variation-settings:var(--wide);
+  font-weight:700;font-size:1.02rem;letter-spacing:-.012em}
+.fault span{grid-column:2;color:var(--slate);font-size:.93rem}
+@media(max-width:640px){.fault{grid-template-columns:1fr}
+  .fault i{grid-row:auto;padding-top:0}.fault b,.fault span{grid-column:1}}
+.fault code{font-family:var(--fm);font-size:.85em;color:var(--amber);
+  background:rgba(251,191,36,.09);padding:.1em .4em;border-radius:4px}
+
+/* ------------------------------------------------------ 02 the directions */
+.dir{border:1px solid var(--edge);border-radius:var(--r);overflow:hidden;background:var(--deep)}
+.dir.pick{border-color:rgba(52,211,153,.5)}
+.dir-top{padding:24px 26px 26px;border-bottom:1px solid var(--edge)}
+.dir-id{display:flex;align-items:baseline;gap:12px;margin-bottom:20px;flex-wrap:wrap}
+.dir-id .letter{font-family:var(--fm);font-size:.74rem;color:var(--slate2);letter-spacing:.1em}
+.dir-id .name{font-family:var(--fd);font-variation-settings:"wdth" 118;font-weight:800;
+   font-size:1.5rem;letter-spacing:-.02em}
+.dir-id .badge{font-family:var(--fm);font-size:.66rem;letter-spacing:.11em;text-transform:uppercase;
+   color:var(--green);border:1px solid rgba(52,211,153,.42);border-radius:99px;padding:.2rem .6rem}
+.dir-word{margin:6px 0 18px}
+.dir-word svg,.dir-word img{width:min(330px,92%);height:auto}
+.dir-line{font-size:clamp(1.35rem,2.6vw,1.9rem);line-height:1.12;letter-spacing:-.022em;margin-bottom:14px}
+.dir-txt{font-size:.93rem;color:var(--slate);line-height:1.6;max-width:52ch}
+.dir-data{font-size:.82rem;color:var(--slate);margin-top:14px;letter-spacing:.01em;
+   font-variant-numeric:tabular-nums}
+.dir-data b{color:var(--cyan);font-weight:500}
+.dir-bot{padding:22px 26px 24px;display:flex;flex-direction:column;gap:16px}
+.dir-bot dl{display:grid;grid-template-columns:74px 1fr;gap:8px 14px;font-size:.9rem}
+.dir-bot dt{font-family:var(--fm);font-size:.68rem;letter-spacing:.11em;text-transform:uppercase;
+   color:var(--slate2);padding-top:.24rem}
+.dir-bot dd{color:var(--slate);line-height:1.55}
+.dir-bot dd.win{color:var(--paper)}
+.dir-bot dd.risk::before{content:"";display:inline-block;width:6px;height:6px;background:var(--amber);
+   border-radius:50%;margin-right:8px;vertical-align:.12em}
+.stackline{font-family:var(--fm);font-size:.76rem;color:var(--slate);letter-spacing:-.005em}
+.stackline em{color:var(--paper);font-style:normal}
+
+/* direction-scoped specimen faces */
+.f-signal .dir-line{font-family:var(--fd);font-variation-settings:var(--wide);font-weight:700}
+.f-signal .dir-txt{font-family:"Inter",sans-serif}
+.f-signal .dir-data{font-family:"Geist Mono",monospace}
+.f-forge .dir-line{font-family:"IBM Plex Sans Condensed",sans-serif;font-weight:700;letter-spacing:-.01em}
+.f-forge .dir-txt{font-family:"IBM Plex Sans",sans-serif}
+.f-forge .dir-data{font-family:"IBM Plex Mono",monospace}
+.f-aperture .dir-line{font-family:"Geist",sans-serif;font-weight:700;letter-spacing:-.034em}
+.f-aperture .dir-txt{font-family:"Geist",sans-serif}
+.f-aperture .dir-data{font-family:"Geist Mono",monospace}
+
+/* ------------------------------------------------------- 03 recommendation */
+.verdict{border:1px solid rgba(52,211,153,.38);border-radius:var(--r);
+   background:linear-gradient(180deg,rgba(52,211,153,.07),rgba(52,211,153,0) 62%),var(--deep2);
+   padding:30px 28px}
+.verdict .big{font-family:var(--fd);font-variation-settings:var(--wide);font-weight:700;
+   font-size:clamp(1.4rem,2.8vw,2rem);line-height:1.12;letter-spacing:-.026em;
+   text-wrap:balance;margin-bottom:16px;max-width:26ch}
+.verdict .big em{font-style:normal;color:var(--green)}
+.because{display:grid;gap:0;margin-top:22px}
+.because div{display:grid;grid-template-columns:26px 1fr;gap:14px;padding:15px 0;border-top:1px solid var(--edge)}
+.because div::before{content:"";width:9px;height:9px;margin-top:.42rem;
+   border-left:1.5px solid var(--green);border-bottom:1.5px solid var(--green)}
+.because p{color:var(--slate);font-size:.94rem;margin:0}
+.because b{color:var(--paper);font-weight:600}
+.callout{border-left:2px solid var(--amber);background:rgba(251,191,36,.055);
+   padding:18px 22px;border-radius:0 var(--r) var(--r) 0}
+.callout h3{color:var(--amber)}
+.callout p{color:var(--slate);font-size:.94rem}
+
+/* ══════════════════════════════════ shared application surfaces ══ */
+/* Every application below is rendered on one of these, so the kit is built from
+   the same ingredients the real deliverables are. */
+.surf{background:var(--ink);position:relative;display:flex;overflow:hidden}
+.surf.deep{background:var(--deep2)}
+.surf.pale{background:var(--paper)}
+.grid-bg::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(var(--edge) 1px,transparent 1px) 0 0/100% 34px,
+             linear-gradient(90deg,var(--edge) 1px,transparent 1px) 0 0/34px 100%;
+  opacity:.5}
+.rule{position:absolute;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,var(--blue),var(--cyan) 46%,var(--green))}
+.ar{aspect-ratio:var(--ar,16/9)}
+.pad{padding:clamp(14px,4.4%,42px)}
+.lk{display:flex;align-items:center;gap:.52em;font-family:var(--fd);
+  font-variation-settings:var(--wide);font-weight:800;letter-spacing:-.028em;
+  color:var(--paper);line-height:1;white-space:nowrap}
+.lk .x{color:var(--red)}
+/* viewBox is cropped to the X's ink, so .73em lands the mark just proud of Archivo's
+   0.686em cap height, matching the built lockup files exactly. */
+.lk svg{width:.73em;height:.73em;flex:none}
+.lk.ink{color:var(--ink)}
+.dspl{font-family:var(--fd);font-variation-settings:var(--wide);font-weight:700;
+  letter-spacing:-.028em;line-height:1.04;text-wrap:balance}
+.mono{font-family:var(--fm);font-variant-numeric:tabular-nums;letter-spacing:.01em}
+.mlab{font-family:var(--fm);font-size:.62em;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--slate2)}
+
+/* -------------------------------------------------------- 04 logo system */
+.vargrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
+.varc{border:1px solid var(--edge);border-radius:var(--r);overflow:hidden}
+.varc .box{display:grid;place-items:center;padding:26px 20px;min-height:112px}
+.varc .box img{width:auto;max-height:38px}
+.varc .box.st img{max-height:76px}
+.varc .box.lt{background:var(--paper)}
+.varc .n{padding:9px 12px;border-top:1px solid var(--edge);background:var(--ink);
+  font-family:var(--fm);font-size:.68rem;color:var(--slate2)}
+.clear{position:relative;display:inline-block;padding:var(--cs);outline:1px dashed var(--edge2);
+  outline-offset:0}
+.clear::before,.clear::after{content:"";position:absolute;background:rgba(34,211,238,.30)}
+.clear::before{left:0;top:0;bottom:0;width:var(--cs)}
+.clear::after{right:0;top:0;bottom:0;width:var(--cs)}
+.sizes{display:flex;align-items:flex-end;gap:30px;flex-wrap:wrap}
+.sizes figure{display:flex;flex-direction:column;gap:9px}
+.sizes img{width:auto}
+.dont{display:grid;grid-template-columns:repeat(auto-fit,minmax(158px,1fr));gap:14px}
+.dont figure{border:1px solid rgba(255,59,48,.3);border-radius:var(--r);overflow:hidden}
+.dont .box{height:82px;display:grid;place-items:center;background:var(--deep);overflow:hidden}
+.dont .box .lk{font-size:.98rem}
+.dont figcaption{padding:8px 11px;border-top:1px solid rgba(255,59,48,.3);
+  font-family:var(--fm);font-size:.66rem;color:var(--red);line-height:1.45}
+
+/* ------------------------------------------------------------- 05 motion */
+.motion{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+.replay{font-family:var(--fm);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;
+  background:transparent;border:1px solid var(--edge2);color:var(--slate);border-radius:99px;
+  padding:.42rem .95rem;cursor:pointer;transition:color .12s,border-color .12s}
+.replay:hover{color:var(--cyan);border-color:var(--cyan)}
+
+/* ------------------------------------------------- 06 small applications */
+.favs{display:flex;align-items:flex-end;gap:26px;flex-wrap:wrap}
+.favs figure{display:flex;flex-direction:column;align-items:center;gap:9px}
+.tabbar{background:var(--deep3);border-radius:9px 9px 0 0;padding:7px 8px 0;max-width:340px}
+.tabbar .t{display:flex;align-items:center;gap:8px;background:var(--ink);border-radius:7px 7px 0 0;
+  padding:8px 13px;font-size:.75rem;color:var(--slate)}
+.tabbar .t img{width:15px;height:15px;flex:none}
+/* ink-on-ink tiles are invisible against the page, so the springboard gets its own
+   lighter ground, the way a real home screen wallpaper would provide one */
+.springboard{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;
+  background:linear-gradient(150deg,#243049,#151D2E 62%);padding:15px 14px 12px;border-radius:12px}
+.springboard figure{display:flex;flex-direction:column;align-items:center;gap:6px}
+.springboard img{width:100%;height:auto;border-radius:22%;box-shadow:0 3px 9px rgba(2,6,17,.55)}
+.springboard figcaption{font-size:.58rem;color:var(--paper);letter-spacing:.01em}
+.sig{border-left:2px solid var(--red);padding-left:15px;font-size:.83rem;line-height:1.5}
+.sig .nm{font-family:var(--fd);font-variation-settings:var(--wide);font-weight:700;
+  font-size:.95rem;letter-spacing:-.015em}
+
+/* ------------------------------------------------------------ 07 colour */
+.swatches{display:grid;grid-template-columns:repeat(auto-fit,minmax(148px,1fr));gap:13px}
+.sw{border:1px solid var(--edge);border-radius:var(--r);overflow:hidden}
+.sw .chip{height:76px}
+.sw .meta2{padding:11px 13px;background:var(--deep2)}
+.sw .hex{font-family:var(--fm);font-size:.76rem;color:var(--paper);letter-spacing:.01em}
+.sw .role{font-size:.75rem;color:var(--slate2);margin-top:.18rem;line-height:1.4}
+
+/* -------------------------------------------------------- 08 typography */
+.scale{display:flex;flex-direction:column}
+.srow{display:grid;grid-template-columns:150px 1fr;gap:20px;align-items:baseline;
+  padding:17px 0;border-top:1px solid var(--edge)}
+.srow:first-child{border-top:0}
+.srow .sp{font-family:var(--fm);font-size:.7rem;color:var(--slate2);line-height:1.5}
+.srow .sp b{color:var(--slate);font-weight:500;display:block}
+.srow .ex{overflow:hidden;text-overflow:ellipsis}
+@media(max-width:640px){.srow{grid-template-columns:1fr;gap:7px}}
+
+/* ══════════════════════════════════════════ 09-15 applications ══ */
+/* align-items:start, or plates of different trim ratios stretch to a common row
+   height and leave the caption bar floating in a void */
+.plates{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));
+  gap:18px;align-items:start}
+.plates.wide{grid-template-columns:repeat(auto-fit,minmax(min(420px,100%),1fr))}
+.plates.tall{grid-template-columns:repeat(auto-fit,minmax(min(190px,100%),1fr))}
+.plates>*{min-width:0}
+
+/* every mockup measures from this one padding scale, as a print margin would */
+.mk{position:absolute;inset:0;display:flex;flex-direction:column;padding:6.4cqw;
+  font-family:var(--fb);color:var(--paper);line-height:1.4}
+.mk.pale{color:var(--ink)}
+.mk .t{font-family:var(--fd);font-variation-settings:var(--wide);font-weight:800;
+  letter-spacing:-.03em;line-height:1.02;text-wrap:balance}
+.mk .k{font-family:var(--fm);letter-spacing:.15em;text-transform:uppercase;color:var(--slate2)}
+.mk .d{font-family:var(--fm);font-variant-numeric:tabular-nums}
+.mk .sp{flex:1}
+/* align-self is load-bearing: as a stretched flex item the img box fills the
+   container width and preserveAspectRatio then letterboxes the mark to the centre. */
+.mk img.lg{width:auto;display:block;align-self:flex-start}
+.hr{height:1px;background:linear-gradient(90deg,var(--blue),var(--cyan) 46%,var(--green));
+  border:0;width:100%}
+
+/* deck slide furniture */
+.slide-num{position:absolute;right:6.4cqw;bottom:5cqw;font-family:var(--fm);
+  font-size:2.1cqw;color:var(--slate2)}
+.bul{display:flex;flex-direction:column;gap:2.4cqw;margin-top:3.6cqw}
+.bul li{list-style:none;display:grid;grid-template-columns:1.6cqw 1fr;gap:2.6cqw;
+  font-size:3cqw;color:var(--slate);line-height:1.42}
+.bul li::before{content:"";width:1.5cqw;height:1.5cqw;margin-top:1.1cqw;border-radius:50%;
+  background:var(--cyan)}
+.bul li b{color:var(--paper);font-weight:600}
+
+/* the 82/26 gap figure, drawn rather than tiled */
+.gap{display:flex;flex-direction:column;gap:2.2cqw;margin-top:3.4cqw}
+.gap .row{display:grid;grid-template-columns:1fr auto;align-items:center;gap:2cqw}
+.gap .track{height:4.6cqw;background:rgba(59,130,246,.16);position:relative;overflow:hidden}
+.gap .fill{position:absolute;inset:0 auto 0 0;background:var(--blue)}
+.gap .fill.g{background:rgba(59,130,246,.42)}
+.gap .v{font-family:var(--fd);font-variation-settings:var(--wide);font-weight:800;
+  font-size:4.4cqw;letter-spacing:-.03em;min-width:6.5cqw;text-align:right}
+.gap .lab{font-family:var(--fm);font-size:2.3cqw;color:var(--slate);letter-spacing:.06em;
+  text-transform:uppercase}
+
+/* social, cards, event, zoom */
+.avatar-row{display:flex;align-items:center;gap:3cqw}
+/* the avatar tile is ink, so on an ink card it needs a ring to read as an avatar */
+.avatar-row img{width:11cqw;height:11cqw;border-radius:50%;flex:none;
+  box-shadow:0 0 0 1px var(--edge2)}
+.card-back{display:flex;flex-direction:column;height:100%}
+.qr{width:13cqw;height:13cqw;background:
+  repeating-conic-gradient(var(--ink) 0 25%,transparent 0 50%) 0 0/22% 22%,var(--paper);
+  border-radius:1.6cqw}
+.badge-hole{width:16cqw;height:2.4cqw;border-radius:99px;background:var(--ink);
+  margin:0 auto 4cqw;opacity:.55}
+
+/* merch */
+.merch{display:grid;grid-template-columns:repeat(auto-fit,minmax(178px,1fr));gap:16px}
+.merch figure{border:1px solid var(--edge);border-radius:var(--r);overflow:hidden;background:var(--deep)}
+.merch .art2{aspect-ratio:1;display:grid;place-items:center;padding:16px;
+  background:radial-gradient(120% 100% at 50% 0,#1B2437,#0D1220)}
+.merch svg{width:100%;height:100%}
+.merch figcaption{padding:9px 12px;border-top:1px solid var(--edge);background:var(--ink);
+  font-family:var(--fm);font-size:.67rem;color:var(--slate2);line-height:1.45}
+
+/* implementation */
+pre{background:var(--deep);border:1px solid var(--edge);border-radius:var(--r);padding:18px;
+  overflow-x:auto;font-family:var(--fm);font-size:.79rem;line-height:1.65;color:var(--slate)}
+pre b{color:var(--green);font-weight:400}
+pre s{color:var(--red);text-decoration-color:rgba(255,59,48,.5)}
+pre i{color:var(--slate2);font-style:normal}
+.files{columns:2;column-gap:26px;font-family:var(--fm);font-size:.78rem;color:var(--slate);
+  line-height:1.85}
+.files span{display:block;break-inside:avoid}
+.files span::before{content:"";display:inline-block;width:5px;height:5px;background:var(--green);
+  border-radius:50%;margin-right:9px;vertical-align:.16em}
+@media(max-width:620px){.files{columns:1}}
+</style>
+</head>
+<body>
+
+<main class="wrap">
+
+<!-- ══════════════════════════════════════════════════ 00 masthead ══ -->
+<section class="mast">
+  <img class="logo" src="/assets/brand/logo-animated.svg" alt="bostoncyberx" width="468" height="64">
+  <h1>The type was the tell.</h1>
+  <p class="sub">A complete identity system for bostoncyberx: three typographic
+     directions, one recommendation, and every application built out from it.</p>
+  <div class="meta">
+    <span>Document<b>Brand Kit v1.0</b></span>
+    <span>Date<b>August 2026</b></span>
+    <span>Supersedes<b>docs/03-brand-identity.md §4</b></span>
+    <span>Status<b>For decision</b></span>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════ 01 the diagnosis ══ -->
+<section class="sec" id="diagnosis">
+  <div class="head">
+    <span class="num">01</span>
+    <h2>What the feedback was actually seeing</h2>
+    <p>"The font is not representative of a tech/AI company" is a correct read, and the
+       cause is specific rather than a matter of taste. Four things are producing it.</p>
+  </div>
+  <div class="body stack-l">
+
+    <div class="vs">
+      <div>
+        <span class="tag"><i style="background:var(--red)"></i>Now · Bricolage Grotesque 700</span>
+        <div class="spec-old">Say yes to AI.</div>
+        <div class="spec-old glyphs">a g s y R 8&thinsp;2&#37;</div>
+        <p class="why">Editorial display face. The <b>a</b> carries a curled spur, the
+           <b>g</b> an open tail, the <b>y</b> a tucked leg, and the <b>s</b> is narrowed
+           against its neighbours. Masthead traits, drawn to give a publication a voice.</p>
+      </div>
+      <div>
+        <span class="tag"><i style="background:var(--green)"></i>Proposed · Archivo 700, width 112</span>
+        <div class="spec-new">Say yes to AI.</div>
+        <div class="spec-new glyphs">a g s y R 8&thinsp;2&#37;</div>
+        <p class="why">Swiss-derived grotesque on a width axis. Terminals cut flat and
+           horizontal, apertures held open, every glyph on the same rhythm. It reads as
+           instrumentation rather than as authorship.</p>
+      </div>
+    </div>
+
+    <div class="faults">
+      <div class="fault"><i>Costs credibility</i><b>Personality is the wrong product</b>
+        <span>Bricolage is drawn to be noticed. An assurance brand sells the opposite:
+        the buyer should notice the claim, not the lettering. Every quirk in the face
+        is a small withdrawal from the credibility account.</span></div>
+      <div class="fault"><i>Costs category fit</i><b>It sits in the wrong neighbourhood</b>
+        <span>Buyers pattern-match a typeface before they read a word of it. Bricolage's
+        neighbours are arts institutions, design studios, and indie media. The bench BCX
+        sells alongside, Google Cloud, CrowdStrike, and Palo Alto Networks, all live in
+        precision-grotesque territory.</span></div>
+      <div class="fault"><i>Costs the tech signal</i><b>The monospace was deleted, and it was carrying it</b>
+        <span>The system currently sets <code>--font-mono: var(--font-display)</code>, so
+        every statistic, telemetry label, and measurement on the site renders in that same
+        warm display face. In this category, technical credibility is carried largely by
+        disciplined monospace in data positions. Removing it removed the clearest
+        available "we are an engineering firm" cue.</span></div>
+      <div class="fault"><i>Costs ownability</i><b>The wordmark is a font, not a wordmark</b>
+        <span>"bostoncyberx" set in Bricolage 800 is type someone else drew, used
+        straight. No width axis, no drawn correction, nothing a competitor could not
+        reproduce in a minute.</span></div>
+    </div>
+
+    <div class="callout">
+      <h3>What was right, and stays</h3>
+      <p>The ink world, the pillar colours, the red X as sole identity carrier, the signal
+         line, and the ban on hoodie-and-padlock imagery are all working and are kept
+         unchanged. This is a typographic correction and an application build-out, not a
+         rebrand.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═════════════════════════════════════════════ 02 three directions ══ -->
+<section class="sec" id="directions">
+  <div class="head">
+    <span class="num">02</span>
+    <h2>Three directions, committed</h2>
+    <p>Each is a complete, buildable system on free open-licence fonts, so any of the
+       three ships without a licensing bill or a build step. They differ in what kind of
+       technology company BCX claims to be.</p>
+  </div>
+  <div class="body stack-l">
+
+    <div class="dir pick f-signal">
+      <div class="dir-top">
+        <div class="dir-id">
+          <span class="letter">DIRECTION A</span>
+          <span class="name">Signal</span>
+          <span class="badge">Recommended</span>
+        </div>
+        <div class="dir-word"><img src="/assets/brand/logo-signal.svg" alt="bostoncyberx in Archivo" width="468" height="64"></div>
+        <p class="dir-line">Your AI is only as trustworthy as the network under it.</p>
+        <p class="dir-txt">Swiss-derived precision. Archivo is set on its width axis at
+           display sizes, which gives the wordmark a proportion no competitor gets by
+           installing the same font. Flat terminals, open apertures, zero calligraphic
+           residue.</p>
+        <p class="dir-data">MTTD <b>4.2 min</b> · MTTR <b>18 min</b> · coverage <b>99.4%</b> · 82% adopting / 26% governed</p>
+      </div>
+      <div class="dir-bot">
+        <p class="stackline">Display <em>Archivo</em> (variable, wdth 112) &nbsp;·&nbsp; Text <em>Inter</em> &nbsp;·&nbsp; Data <em>Geist Mono</em></p>
+        <dl>
+          <dt>Reads as</dt><dd>Instrument-grade. Measured, exact, unembellished. A firm that publishes its numbers.</dd>
+          <dt>Wins if</dt><dd class="win">BCX wants to stand level with the partner bench it sells alongside while keeping a wordmark that is genuinely its own.</dd>
+          <dt>Risk</dt><dd class="risk">Archivo at default width is a workhorse and can read generic. The width axis is not optional; it is the direction.</dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="dir f-forge">
+      <div class="dir-top">
+        <div class="dir-id">
+          <span class="letter">DIRECTION B</span>
+          <span class="name">Forge</span>
+        </div>
+        <div class="dir-word"><img src="/assets/brand/logo-forge.svg" alt="bostoncyberx in IBM Plex Sans Condensed" width="378" height="64"></div>
+        <p class="dir-line">Your AI is only as trustworthy as the network under it.</p>
+        <p class="dir-txt">Engineered institution. One superfamily covers display, text,
+           and data, so the monospace is a sibling of the sans rather than a guest. Named
+           for the FORGE framework: shaped, tempered, hardened.</p>
+        <p class="dir-data">MTTD <b>4.2 min</b> · MTTR <b>18 min</b> · coverage <b>99.4%</b> · 82% adopting / 26% governed</p>
+      </div>
+      <div class="dir-bot">
+        <p class="stackline">Display <em>IBM Plex Sans Condensed</em> &nbsp;·&nbsp; Text <em>IBM Plex Sans</em> &nbsp;·&nbsp; Data <em>IBM Plex Mono</em></p>
+        <dl>
+          <dt>Reads as</dt><dd>Standards-bearing. Documented, audited, procurement-ready. Speaks fluent CMMC.</dd>
+          <dt>Wins if</dt><dd class="win">defence supply chain and regulated manufacturing become the primary book, where the compliance register is the buying committee.</dd>
+          <dt>Risk</dt><dd class="risk">Plex is IBM's voice before it is anyone's. Widely deployed, so it can read as borrowed authority, and its humanist warmth blunts the security edge.</dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="dir f-aperture">
+      <div class="dir-top">
+        <div class="dir-id">
+          <span class="letter">DIRECTION C</span>
+          <span class="name">Aperture</span>
+        </div>
+        <div class="dir-word"><img src="/assets/brand/logo-aperture.svg" alt="bostoncyberx in Geist" width="425" height="64"></div>
+        <p class="dir-line">Your AI is only as trustworthy as the network under it.</p>
+        <p class="dir-txt">Machine modern. Tight geometric grotesque with a monospace
+           sibling, set at negative tracking. The typographic language of the frontier
+           labs and the tools built on top of them.</p>
+        <p class="dir-data">MTTD <b>4.2 min</b> · MTTR <b>18 min</b> · coverage <b>99.4%</b> · 82% adopting / 26% governed</p>
+      </div>
+      <div class="dir-bot">
+        <p class="stackline">Display <em>Geist</em> &nbsp;·&nbsp; Text <em>Geist</em> &nbsp;·&nbsp; Data <em>Geist Mono</em></p>
+        <dl>
+          <dt>Reads as</dt><dd>Native to the AI era. Fast, current, technically fluent.</dd>
+          <dt>Wins if</dt><dd class="win">the buyer shifts technical, to heads of engineering and platform teams evaluating bcxBastion on its merits.</dd>
+          <dt>Risk</dt><dd class="risk">Developer-tool coded and closely associated with Vercel. It speaks past a non-technical CFO, and it is the direction that ages fastest.</dd>
+        </dl>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ 03 the recommendation ══ -->
+<section class="sec" id="recommendation">
+  <div class="head">
+    <span class="num">03</span>
+    <h2>The recommendation</h2>
+  </div>
+  <div class="body stack-l">
+
+    <div class="verdict">
+      <p class="big">Ship <em>Direction A, Signal.</em> It fixes the stated problem
+         without adopting another company's voice or another audience's.</p>
+      <div class="because">
+        <div><p><b>It solves the actual complaint.</b> The feedback was about quirk
+          reading as unserious. Archivo removes the quirk and replaces it with rhythm.
+          Nothing else in the visual system has to move.</p></div>
+        <div><p><b>It is ownable without a licence fee.</b> The width axis set to 112 is
+          a proportion nobody else gets by installing Archivo, and the wordmark ships as
+          outlined vectors, so it stays fixed even where the font is not.</p></div>
+        <div><p><b>It stands level with the bench.</b> BCX sells beside Google Cloud,
+          CrowdStrike, and Palo Alto Networks. Direction B borrows IBM's authority
+          instead of building BCX's. Direction A sits in the same register as the
+          partners without imitating any of them.</p></div>
+        <div><p><b>It is legible to the person signing.</b> The buyer is a sceptical,
+          non-technical executive at a 25 to 1,000 person firm. Direction C is drawn for
+          engineers. Direction A reads as competence to both.</p></div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <h3>One reversal, stated plainly</h3>
+      <p>This puts the monospace back, against the earlier "two typefaces, full stop"
+         rule in DESIGN.md. That rule was a correct response to a real problem: IBM Plex
+         Mono clashed with Bricolage, and mixed faces did read amateur. The fix was aimed
+         at the wrong half. Geist Mono is drawn on the same flat-terminal logic as
+         Archivo and sits with it cleanly. It is restricted to data positions only:
+         statistics, telemetry, measurements, section numbers, and specimen labels.
+         It never sets a sentence. If you would not put it in a table, it does not go
+         in Geist Mono.</p>
+    </div>
+
+    <div class="scroll"><table>
+      <thead><tr><th>Decision</th><th>Direction A</th><th>What changes on the site</th></tr></thead>
+      <tbody>
+        <tr><td class="m">Display</td><td>Archivo 600–800, wdth 112</td><td class="m">--font-display swap</td></tr>
+        <tr><td class="m">Text</td><td>Inter 400/500/600</td><td class="m">unchanged</td></tr>
+        <tr><td class="m">Data</td><td>Geist Mono 400/500</td><td class="m">--font-mono restored</td></tr>
+        <tr><td class="m">Colour</td><td>ink / pillars / red X</td><td class="m">unchanged</td></tr>
+        <tr><td class="m">Signal line</td><td>retained as the one motion moment</td><td class="m">unchanged</td></tr>
+        <tr><td class="m">Wordmark</td><td>outlined vector, width-axis locked</td><td class="m">new asset set</td></tr>
+      </tbody>
+    </table></div>
+
+  </div>
+</section>
+
+<!-- ═════════════════════════════════════════════════ 04 logo system ══ -->
+<section class="sec" id="logo">
+  <div class="head">
+    <span class="num">04</span>
+    <h2>Logo system</h2>
+    <p>The wordmark ships as outlined vectors, not live text, so it renders identically
+       whether or not Archivo is installed. The X is the identity carrier and the only
+       place red appears.</p>
+  </div>
+  <div class="body stack-l">
+
+    <div class="vargrid">
+      <div class="varc"><div class="box"><img src="/assets/brand/logo-primary.svg" alt="Primary lockup" width="468" height="64"></div><div class="n">logo-primary.svg &nbsp;·&nbsp; default</div></div>
+      <div class="varc"><div class="box lt"><img src="/assets/brand/logo-on-light.svg" alt="Lockup on light" width="468" height="64"></div><div class="n">logo-on-light.svg</div></div>
+      <div class="varc"><div class="box st"><img src="/assets/brand/logo-stacked.svg" alt="Stacked lockup" width="148" height="64"></div><div class="n">logo-stacked.svg &nbsp;·&nbsp; square formats</div></div>
+      <div class="varc"><div class="box st lt"><img src="/assets/brand/logo-stacked-on-light.svg" alt="Stacked on light" width="148" height="64"></div><div class="n">logo-stacked-on-light.svg</div></div>
+      <div class="varc"><div class="box"><img src="/assets/brand/logo-1c-paper.svg" alt="One colour, paper" width="468" height="64"></div><div class="n">logo-1c-paper.svg &nbsp;·&nbsp; embroidery, etch</div></div>
+      <div class="varc"><div class="box lt"><img src="/assets/brand/logo-1c-ink.svg" alt="One colour, ink" width="468" height="64"></div><div class="n">logo-1c-ink.svg &nbsp;·&nbsp; fax, stamp, invoice</div></div>
+      <div class="varc"><div class="box"><img src="/assets/brand/wordmark.svg" alt="Wordmark" width="387" height="64"></div><div class="n">wordmark.svg &nbsp;·&nbsp; when the mark is already present</div></div>
+      <div class="varc"><div class="box lt"><img src="/assets/brand/mark.svg" alt="Mark, containered" width="64" height="64" style="max-height:56px"></div><div class="n">mark.svg &nbsp;·&nbsp; ink tile, for light or busy grounds</div></div>
+      <div class="varc"><div class="box"><img src="/assets/brand/mark-bare.svg" alt="Mark, free standing" width="64" height="64" style="max-height:56px"></div><div class="n">mark-bare.svg &nbsp;·&nbsp; on any surface</div></div>
+    </div>
+
+    <div class="grid2">
+      <div class="panel">
+        <h4>Clear space</h4>
+        <div style="--cs:34px;margin:6px 0 18px">
+          <span class="clear"><img src="/assets/brand/logo-primary.svg" alt="" width="468" height="64" style="height:56px;width:auto"></span>
+        </div>
+        <p class="note">Minimum clear space on all four sides equals the height of the X.
+           Nothing enters the zone: no type, no rule, no image edge, no button. In the
+           header the zone may overlap the page margin but never other content.</p>
+      </div>
+      <div class="panel">
+        <h4>Minimum sizes</h4>
+        <div class="sizes" style="margin:6px 0 18px">
+          <figure><img src="/assets/brand/logo-primary.svg" alt="" width="468" height="64" style="height:16px"><figcaption class="note">120&nbsp;px / 32&nbsp;mm</figcaption></figure>
+          <figure><img src="/assets/brand/logo-stacked.svg" alt="" width="148" height="64" style="height:32px"><figcaption class="note">64&nbsp;px / 18&nbsp;mm</figcaption></figure>
+          <figure><img src="/assets/brand/mark.svg" alt="" width="64" height="64" style="height:16px"><figcaption class="note">16&nbsp;px</figcaption></figure>
+        </div>
+        <p class="note">Below 120&nbsp;px wide the lockup loses the counters in the
+           wordmark. Use the stacked lockup, and below 64&nbsp;px use the mark alone.
+           Under 16&nbsp;px use favicon.svg, which is redrawn rather than scaled.</p>
+      </div>
+    </div>
+
+    <div>
+      <h3 style="margin-bottom:14px">Misuse</h3>
+      <div class="dont">
+        <figure><div class="box"><img src="/assets/brand/logo-primary.svg" alt="" width="468" height="64" style="height:22px;filter:hue-rotate(190deg) saturate(1.5)"></div><figcaption>Never recolour the X. Red is the identity and nothing else.</figcaption></figure>
+        <figure><div class="box"><img src="/assets/brand/logo-primary.svg" alt="" width="468" height="64" style="height:22px;transform:scaleX(1.45)"></div><figcaption>Never stretch, condense, or re-set the width axis.</figcaption></figure>
+        <figure><div class="box"><img src="/assets/brand/logo-primary.svg" alt="" width="468" height="64" style="height:22px;filter:drop-shadow(0 0 7px #FF3B30)"></div><figcaption>Never add glow, bevel, or shadow to the mark.</figcaption></figure>
+        <figure><div class="box"><img src="/assets/brand/logo-primary.svg" alt="" width="468" height="64" style="height:22px;transform:rotate(-9deg)"></div><figcaption>Never rotate. The lockup is horizontal or stacked.</figcaption></figure>
+        <figure><div class="box" style="background:conic-gradient(from 40deg,#3B82F6,#FBBF24,#34D399,#FF3B30,#3B82F6)"><img src="/assets/brand/logo-1c-paper.svg" alt="" width="468" height="64" style="height:22px"></div><figcaption>Never place on busy or mid-tone imagery without a scrim.</figcaption></figure>
+        <figure><div class="box"><span class="lk" style="font-family:'Bricolage Grotesque',sans-serif;font-variation-settings:normal"><svg viewBox="15 15 34 34" aria-hidden="true"><path d="M18.5 18.5L45.5 45.5" stroke="#FF3B30" stroke-width="7"/><path d="M45.5 18.5L18.5 45.5" stroke="#FF3B30" stroke-width="7"/></svg>bostoncyber<span class="x">x</span></span></div><figcaption>Never re-typeset the wordmark. Use the vector file.</figcaption></figure>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════ 05 motion ══ -->
+<section class="sec" id="motion">
+  <div class="head">
+    <span class="num">05</span>
+    <h2>Motion</h2>
+    <p>The mark animates on one idea: two vectors cross. The AI path and the defence
+       path meet, and the intersection is the business. That is the deck's thesis line
+       drawn rather than written.</p>
+  </div>
+  <div class="body stack-l">
+
+    <div class="motion">
+      <div class="plate">
+        <div class="art surf pad" style="--ar:16/9;align-items:center;justify-content:center">
+          <img id="m1" src="/assets/brand/logo-animated.svg" alt="Animated lockup" width="468" height="64" style="width:78%">
+        </div>
+        <div class="cap"><b>logo-animated.svg</b><span>2.0&nbsp;s · plays once</span></div>
+      </div>
+      <div class="plate">
+        <div class="art surf pad" style="--ar:16/9;align-items:center;justify-content:center">
+          <img src="/assets/brand/mark-animated-loop.svg" alt="Looping mark" width="64" height="64" style="width:34%">
+        </div>
+        <div class="cap"><b>mark-animated-loop.svg</b><span>4.4&nbsp;s · loops</span></div>
+      </div>
+    </div>
+    <p><button class="replay" id="replay" type="button">Replay the sequence</button></p>
+
+    <div class="scroll"><table>
+      <thead><tr><th>Beat</th><th>Timing</th><th>Easing</th><th>What happens</th></tr></thead>
+      <tbody>
+        <tr><td>Transform vector</td><td class="m">0.00 – 0.80 s</td><td class="m">cubic-bezier(.65,0,.35,1)</td><td>Stroke draws top-left to bottom-right.</td></tr>
+        <tr><td>Defend vector</td><td class="m">0.50 – 1.30 s</td><td class="m">cubic-bezier(.65,0,.35,1)</td><td>Second stroke crosses the first.</td></tr>
+        <tr><td>Wordmark</td><td class="m">1.05 – 2.00 s</td><td class="m">cubic-bezier(.22,1,.36,1)</td><td>Hairline wipe travels left to right, cyan edge riding it.</td></tr>
+      </tbody>
+    </table></div>
+
+    <div class="grid2">
+      <div class="panel"><h4>Where it runs</h4>
+        <p class="note">Deck opening slide, video intros and outros, the site header on
+           first load of a session, and event screens between sessions. Nowhere else.</p></div>
+      <div class="panel"><h4>Rules</h4>
+        <p class="note">Plays once per session, never on every page. The looping cut is
+           for video and unattended screens only. Under prefers-reduced-motion both files
+           render fully drawn and static. The signal line on the site remains the only
+           other authored motion.</p></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ 06 small applications ══ -->
+<section class="sec" id="small">
+  <div class="head">
+    <span class="num">06</span>
+    <h2>Favicon and small applications</h2>
+    <p>Below 32&nbsp;px the lockup's proportions collapse, so the favicon is redrawn
+       rather than scaled: heavier stroke, wider crossing, more corner radius.</p>
+  </div>
+  <div class="body stack-l">
+
+    <div class="favs">
+      <figure><img src="/assets/brand/favicon.svg" alt="" width="32" height="32" style="width:64px"><figcaption class="note">48&nbsp;px</figcaption></figure>
+      <figure><img src="/assets/brand/favicon.svg" alt="" width="32" height="32" style="width:32px"><figcaption class="note">32&nbsp;px</figcaption></figure>
+      <figure><img src="/assets/brand/favicon.svg" alt="" width="32" height="32" style="width:16px"><figcaption class="note">16&nbsp;px</figcaption></figure>
+      <figure><img src="/assets/brand/mark.svg" alt="" width="64" height="64" style="width:64px;border-radius:50%"><figcaption class="note">Avatar</figcaption></figure>
+      <figure><img src="/assets/brand/app-icon-maskable.svg" alt="" width="512" height="512" style="width:64px;border-radius:14px"><figcaption class="note">Maskable</figcaption></figure>
+    </div>
+
+    <div class="grid3">
+      <div class="panel tight">
+        <h4>Browser tab</h4>
+        <div class="tabbar"><div class="t"><img src="/assets/brand/favicon.svg" alt="" width="32" height="32">AI Consulting and Cybersecurity&hellip;</div></div>
+      </div>
+      <div class="panel tight">
+        <h4>Home screen</h4>
+        <div class="springboard">
+          <figure><img src="/assets/brand/app-icon-maskable.svg" alt="" width="512" height="512"><figcaption>bcx</figcaption></figure>
+          <figure><img src="/assets/brand/mark.svg" alt="" width="64" height="64"><figcaption>Compass</figcaption></figure>
+          <figure><img src="/assets/brand/favicon.svg" alt="" width="32" height="32"><figcaption>Bastion</figcaption></figure>
+        </div>
+      </div>
+      <div class="panel tight">
+        <h4>Email signature</h4>
+        <div class="sig">
+          <img src="/assets/brand/logo-primary.svg" alt="bostoncyberx" width="468" height="64" style="height:18px;width:auto;margin-bottom:9px">
+          <div class="nm">Firstname Lastname</div>
+          <div style="color:var(--slate)">Title, bostoncyberx</div>
+          <div class="mono" style="color:var(--slate2);font-size:.74rem;margin-top:.4rem">
+            617.241.5445<br>One Marina Park Drive, Boston MA 02210</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="scroll"><table>
+      <thead><tr><th>File</th><th>Size</th><th>Where</th></tr></thead>
+      <tbody>
+        <tr><td class="m">favicon.svg</td><td class="m">32 (scales)</td><td>Modern browsers, the primary favicon</td></tr>
+        <tr><td class="m">favicon.ico</td><td class="m">16, 32, 48</td><td>Legacy fallback, root of the domain</td></tr>
+        <tr><td class="m">app-icon-192.png</td><td class="m">192</td><td>Android home screen, web manifest</td></tr>
+        <tr><td class="m">app-icon-512.png</td><td class="m">512</td><td>Splash and store listings</td></tr>
+        <tr><td class="m">app-icon-maskable.svg</td><td class="m">512</td><td>Adaptive icons, ink bleeds to the edge</td></tr>
+        <tr><td class="m">mark.svg</td><td class="m">64</td><td>LinkedIn, Crunchbase, partner directories</td></tr>
+      </tbody>
+    </table></div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════ 07 colour ══ -->
+<section class="sec" id="colour">
+  <div class="head">
+    <span class="num">07</span>
+    <h2>Colour</h2>
+    <p>Unchanged from the existing system, with one accessibility correction. Ratios
+       below are measured against ink, and every value used for text clears WCAG&nbsp;AA.</p>
+  </div>
+  <div class="body stack-l">
+
+    <div class="swatches">
+      <div class="sw"><div class="chip" style="background:#0A0E1A;box-shadow:inset 0 0 0 1px var(--edge)"></div><div class="meta2"><div class="hex">#0A0E1A</div><div class="role">Ink. Page ground.</div></div></div>
+      <div class="sw"><div class="chip" style="background:#111827"></div><div class="meta2"><div class="hex">#111827</div><div class="role">Deep. Raised surface.</div></div></div>
+      <div class="sw"><div class="chip" style="background:#151D2E"></div><div class="meta2"><div class="hex">#151D2E</div><div class="role">Deep 2. Panels, cards.</div></div></div>
+      <div class="sw"><div class="chip" style="background:#F8FAFC"></div><div class="meta2"><div class="hex">#F8FAFC</div><div class="role">Paper. Primary text. 18.40:1</div></div></div>
+      <div class="sw"><div class="chip" style="background:#94A3B8"></div><div class="meta2"><div class="hex">#94A3B8</div><div class="role">Slate. Secondary text. 7.51:1</div></div></div>
+      <div class="sw"><div class="chip" style="background:#7A8CA6"></div><div class="meta2"><div class="hex">#7A8CA6</div><div class="role">Slate 2. Mono labels. 5.62:1</div></div></div>
+      <div class="sw"><div class="chip" style="background:#FF3B30"></div><div class="meta2"><div class="hex">#FF3B30</div><div class="role">Red. Identity only. 5.43:1</div></div></div>
+      <div class="sw"><div class="chip" style="background:#3B82F6"></div><div class="meta2"><div class="hex">#3B82F6</div><div class="role">Signal Blue. Transform. 5.24:1</div></div></div>
+      <div class="sw"><div class="chip" style="background:#22D3EE"></div><div class="meta2"><div class="hex">#22D3EE</div><div class="role">Electric Cyan. Defend. 10.65:1</div></div></div>
+      <div class="sw"><div class="chip" style="background:#34D399"></div><div class="meta2"><div class="hex">#34D399</div><div class="role">Guard Green. Achieve. 10.02:1</div></div></div>
+      <div class="sw"><div class="chip" style="background:#FBBF24"></div><div class="meta2"><div class="hex">#FBBF24</div><div class="role">Alert Amber. Gap and risk. 11.53:1</div></div></div>
+    </div>
+
+    <div class="callout">
+      <h3>One correction</h3>
+      <p>The old label slate #64748B measures 4.05:1 on ink, which fails AA for text
+         under 18&nbsp;px. It is raised to #7A8CA6 at 5.62:1 on ink and 4.91:1 on panels.
+         The change is invisible at a glance and clears the floor everywhere the token
+         is used.</p>
+    </div>
+
+    <div class="grid2">
+      <div class="panel"><h4>Rules that do not bend</h4>
+        <p class="note">Red is the identity mark and the X wordplay. It is never a UI
+           accent, a chart series, a section wash, or a button. One pillar accent per
+           surface. All three accents appear together in exactly two places: the hero
+           constellation and the signal line hand-off.</p></div>
+      <div class="panel"><h4>Red on light</h4>
+        <p class="note">#FF3B30 on paper measures 3.39:1, which is large-text only. In
+           the logo it is a graphic mark and exempt, but never set red type below
+           24&nbsp;px on a light ground. Use ink and let the X carry the colour.</p></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════ 08 typography ══ -->
+<section class="sec" id="type">
+  <div class="head">
+    <span class="num">08</span>
+    <h2>Typography</h2>
+    <p>Three roles, three faces, no overlap. Archivo is always set on the width axis at
+       display sizes; that proportion is the identity.</p>
+  </div>
+  <div class="body stack-l">
+
+    <div class="scale">
+      <div class="srow"><div class="sp"><b>Display</b>Archivo 800 · wdth 108<br>clamp(2.5, 6.6vw, 4.6rem)<br>tracking &minus;0.035em</div>
+        <div class="ex dspl" style="font-weight:800;font-variation-settings:'wdth' 108;font-size:clamp(1.9rem,4.6vw,3.1rem)">Say yes to AI.</div></div>
+      <div class="srow"><div class="sp"><b>Heading</b>Archivo 700 · wdth 112<br>clamp(1.8, 3.1vw, 2.3rem)<br>tracking &minus;0.022em</div>
+        <div class="ex dspl" style="font-size:clamp(1.35rem,2.7vw,1.9rem)">Defend with the same AI the attackers use</div></div>
+      <div class="srow"><div class="sp"><b>Subhead</b>Archivo 700 · wdth 112<br>1.06rem</div>
+        <div class="ex dspl" style="font-size:1.06rem">What a readiness assessment covers</div></div>
+      <div class="srow"><div class="sp"><b>Body</b>Inter 400 · 16px min<br>line-height 1.62 · max 70ch</div>
+        <div class="ex" style="max-width:56ch">We run your security operations on Google SecOps, CrowdStrike, and Palo Alto Networks, with a 15 minute response target and monthly reporting you can hand to your board.</div></div>
+      <div class="srow"><div class="sp"><b>Label</b>Geist Mono 500 · 0.72rem<br>tracking .14em · uppercase</div>
+        <div class="ex mlab" style="font-size:.72rem">Readiness assessment</div></div>
+      <div class="srow"><div class="sp"><b>Data</b>Geist Mono 400/500<br>tabular figures</div>
+        <div class="ex mono" style="color:var(--slate)">MTTD <b style="color:var(--cyan);font-weight:500">4.2 min</b> &nbsp; MTTR <b style="color:var(--cyan);font-weight:500">18 min</b> &nbsp; coverage <b style="color:var(--cyan);font-weight:500">99.4%</b></div></div>
+    </div>
+
+    <div class="grid2">
+      <div class="panel"><h4>The monospace discipline</h4>
+        <p class="note">Geist Mono sets statistics, telemetry, measurements, prices,
+           dates, code, file names, section numbers, and table keys. It never sets a
+           sentence, a heading, a button, or a paragraph. The test: if it would not sit
+           in a table cell, it is not mono.</p></div>
+      <div class="panel"><h4>The width axis</h4>
+        <p class="note">Display and headings set wdth&nbsp;112. The masthead alone sets
+           108, because at 4&nbsp;rem the wider cut starts to crowd. Body copy is Inter
+           and has no width axis. Never set Archivo at default width in a display
+           position; that is the one setting that makes it look like everyone else.</p></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═════════════════════════════════════════════════ 09 pitch decks ══ -->
+<section class="sec" id="deck">
+  <div class="head">
+    <span class="num">09</span>
+    <h2>Pitch decks</h2>
+    <p>Five master slides cover every deck BCX builds. 16:9, ink ground, one accent per
+       slide. The pillar dividers are the only place a full colour field is allowed.</p>
+  </div>
+  <div class="body stack-l">
+
+    <div class="plates wide">
+
+      <div class="plate">
+        <div class="art ar surf grid-bg" style="--ar:16/9">
+          <div class="mk">
+            <img class="lg" src="/assets/brand/logo-primary.svg" alt="" width="468" height="64" style="height:5.2cqw">
+            <div class="sp"></div>
+            <p class="t" style="font-size:8.4cqw;max-width:15ch">Transform with AI. Defend with AI. Achieve with AI.</p>
+            <hr class="hr" style="margin:4.6cqw 0 3cqw">
+            <p class="k" style="font-size:2.2cqw">Capabilities overview &nbsp;·&nbsp; August 2026</p>
+          </div>
+        </div>
+        <div class="cap"><b>Title</b><span>1920 × 1080 px</span></div>
+      </div>
+
+      <div class="plate">
+        <div class="art ar surf" style="--ar:16/9;background:linear-gradient(100deg,#0A0E1A 32%,rgba(34,211,238,.13))">
+          <div class="mk">
+            <p class="k" style="font-size:2.2cqw;color:var(--cyan)">Pillar 02</p>
+            <div class="sp"></div>
+            <p class="t" style="font-size:15cqw;line-height:.92">Defend</p>
+            <p style="font-size:3cqw;color:var(--slate);max-width:34ch;margin-top:2.4cqw">
+              We protect you with the same AI the attackers use.</p>
+          </div>
+          <div class="slide-num">02 / 14</div>
+        </div>
+        <div class="cap"><b>Pillar divider</b><span>one per territory</span></div>
+      </div>
+
+      <div class="plate">
+        <div class="art ar surf" style="--ar:16/9">
+          <div class="mk">
+            <p class="k" style="font-size:2.2cqw">What bcxBastion runs on</p>
+            <p class="t" style="font-size:5.6cqw;margin-top:2.2cqw;max-width:22ch">Your operations centre, staffed by us</p>
+            <ul class="bul">
+              <li><span><b>Google SecOps</b> for detection engineering and log retention at scale.</span></li>
+              <li><span><b>CrowdStrike</b> on every endpoint, managed and tuned, not just installed.</span></li>
+              <li><span><b>Palo Alto Networks</b> at the perimeter and across east-west traffic.</span></li>
+            </ul>
+          </div>
+          <div class="slide-num">06 / 14</div>
+        </div>
+        <div class="cap"><b>Content</b><span>max 3 points, 1 accent</span></div>
+      </div>
+
+      <div class="plate">
+        <div class="art ar surf" style="--ar:16/9">
+          <div class="mk">
+            <p class="k" style="font-size:2.2cqw">The governance gap</p>
+            <p class="t" style="font-size:4.6cqw;margin-top:2cqw;max-width:26ch">Adoption is outrunning control</p>
+            <div class="gap">
+              <div class="row"><div class="track"><div class="fill" style="width:82%"></div></div><div class="v">82%</div></div>
+              <p class="lab">Using AI at work</p>
+              <div class="row"><div class="track"><div class="fill g" style="width:26%"></div></div><div class="v" style="color:var(--slate)">26%</div></div>
+              <p class="lab">With a governance policy</p>
+            </div>
+            <p class="d" style="font-size:1.9cqw;color:var(--slate2);margin-top:3cqw">Source: Netrio, 2025</p>
+          </div>
+          <div class="slide-num">09 / 14</div>
+        </div>
+        <div class="cap"><b>Data</b><span>drawn figures, never stat tiles</span></div>
+      </div>
+
+      <div class="plate">
+        <div class="art ar surf" style="--ar:16/9;background:linear-gradient(180deg,#0A0E1A 55%,rgba(52,211,153,.1))">
+          <div class="mk">
+            <div class="sp"></div>
+            <p class="t" style="font-size:7cqw;max-width:17ch">Start with a readiness score.</p>
+            <p style="font-size:3cqw;color:var(--slate);margin-top:2.2cqw">Ten minutes, no sales call.</p>
+            <hr class="hr" style="margin:4.4cqw 0 2.8cqw">
+            <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:3cqw">
+              <p class="d" style="font-size:2.1cqw;color:var(--slate)">
+                bostoncyberx.com &nbsp;·&nbsp; 617.241.5445<br>One Marina Park Drive, Boston MA 02210</p>
+              <img class="lg" src="/assets/brand/mark-bare.svg" alt="" width="64" height="64" style="height:6cqw">
+            </div>
+          </div>
+        </div>
+        <div class="cap"><b>Closing</b><span>always one action</span></div>
+      </div>
+
+    </div>
+
+    <div class="grid2">
+      <div class="panel"><h4>Grid</h4>
+        <p class="note">12 columns, 6.4% margin on all sides, gutter 1.6%. Headlines
+           start at the top of the type area, never optically centred. Slide numbers
+           bottom right in Geist Mono at 2.1% of slide width.</p></div>
+      <div class="panel"><h4>Rules</h4>
+        <p class="note">No slide carries more than three points. No bullet is longer than
+           two lines. The red X appears only in the logo, never as a bullet, tick, or
+           cross-out. Body copy never drops below 2.6% of slide width, which is roughly
+           28&nbsp;pt at 1920.</p></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════ 10 thought-leadership papers ══ -->
+<section class="sec" id="papers">
+  <div class="head">
+    <span class="num">10</span>
+    <h2>Thought-leadership papers</h2>
+    <p>Covers run ink, interiors run paper. The papers are read on screen and printed
+       for meetings, so the interior is set for both.</p>
+  </div>
+  <div class="body stack-l">
+
+    <div class="plates">
+
+      <div class="plate">
+        <div class="art ar surf grid-bg" style="--ar:8.5/11">
+          <div class="mk" style="padding:8.5cqw">
+            <img class="lg" src="/assets/brand/logo-primary.svg" alt="" width="468" height="64" style="height:4.6cqw">
+            <div class="sp"></div>
+            <p class="k" style="font-size:2.6cqw">Executive briefing 02</p>
+            <p class="t" style="font-size:11cqw;margin-top:3cqw">Saying yes to AI</p>
+            <p style="font-size:3.5cqw;color:var(--slate);margin-top:3cqw;max-width:24ch">
+              A governance model for companies adopting AI faster than they can police it.</p>
+            <hr class="hr" style="margin:5cqw 0 3cqw">
+            <p class="d" style="font-size:2.4cqw;color:var(--slate2)">14 pages &nbsp;·&nbsp; August 2026</p>
+          </div>
+        </div>
+        <div class="cap"><b>Cover</b><span>Letter, 8.5 × 11 in</span></div>
+      </div>
+
+      <div class="plate">
+        <div class="art ar surf pale" style="--ar:8.5/11">
+          <div class="mk pale" style="padding:8.5cqw">
+            <p class="k" style="font-size:2.2cqw;color:#5A6A80">Section 03</p>
+            <p class="t" style="font-size:6.4cqw;margin-top:2cqw;max-width:20ch">Shadow AI is a data problem</p>
+            <p style="font-size:2.9cqw;color:#31405A;margin-top:3cqw;line-height:1.62">
+              Most companies discover their exposure the same way: someone pastes a
+              customer list into a chat window to save an hour. The tool is not the
+              risk. The absence of a sanctioned alternative is the risk.</p>
+            <div style="border-left:.7cqw solid var(--red);padding-left:3.4cqw;margin-top:4cqw">
+              <p class="t" style="font-size:4.4cqw;max-width:18ch">Ban the tool and you move the traffic, not the risk.</p>
+            </div>
+            <p style="font-size:2.9cqw;color:#31405A;margin-top:4cqw;line-height:1.62">
+              The organisations that close this gap fastest do one thing first: they give
+              people an approved place to do the work.</p>
+            <div class="sp"></div>
+            <div style="display:flex;justify-content:space-between;border-top:1px solid rgba(10,14,26,.14);padding-top:2.4cqw">
+              <span class="d" style="font-size:2cqw;color:#5A6A80">bostoncyberx</span>
+              <span class="d" style="font-size:2cqw;color:#5A6A80">07</span>
+            </div>
+          </div>
+        </div>
+        <div class="cap"><b>Interior</b><span>ink on paper, 70ch measure</span></div>
+      </div>
+
+    </div>
+
+    <div class="panel"><h4>Rules</h4>
+      <p class="note">Covers are ink with the blueprint grid at 50% opacity. Interiors
+         are paper with ink type; body copy sets in Inter at 10.5&nbsp;pt with a
+         14&nbsp;pt leading and a 70 character measure. Pull quotes take the red rule,
+         which is the only red on an interior page. Running feet carry the wordmark
+         left and the folio right, both in Geist Mono.</p></div>
+
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════ 11 social media ══ -->
+<section class="sec" id="social">
+  <div class="head">
+    <span class="num">11</span>
+    <h2>Social media</h2>
+    <p>LinkedIn is the channel that matters, so the system is built for it first and
+       scales down to everything else.</p>
+  </div>
+  <div class="body stack-l">
+
+    <div class="plate">
+      <div class="art ar surf grid-bg" style="--ar:4/1">
+        <!-- the company avatar overlays the lower left on LinkedIn, so that corner
+             stays empty and the composition runs from 26% to the right margin -->
+        <div class="mk" style="padding:4cqw 5cqw 4cqw 26cqw;justify-content:center">
+          <p class="t" style="font-size:4.6cqw;max-width:34ch">You cannot adopt trustworthy AI without cybersecurity.</p>
+          <p class="d" style="font-size:1.7cqw;color:var(--slate2);margin-top:1.6cqw">
+            AI transformation and AI-powered defence &nbsp;·&nbsp; Boston</p>
+        </div>
+        <div style="position:absolute;left:5cqw;top:50%;transform:translateY(-50%);
+             width:14cqw;height:14cqw;border-radius:50%;border:1px dashed var(--edge2);
+             display:grid;place-items:center">
+          <span class="d" style="font-size:1.5cqw;color:var(--slate2)">avatar</span>
+        </div>
+      </div>
+      <div class="cap"><b>LinkedIn banner</b><span>1584 × 396 px · lower left 26% reserved for the avatar</span></div>
+    </div>
+
+    <div class="plates">
+
+      <div class="plate">
+        <div class="art ar surf" style="--ar:1/1">
+          <div class="mk" style="padding:8cqw">
+            <div class="avatar-row">
+              <img src="/assets/brand/mark.svg" alt="" width="64" height="64">
+              <div><p style="font-size:3.4cqw;font-weight:600">bostoncyberx</p>
+                   <p class="d" style="font-size:2.6cqw;color:var(--slate2)">Boston, MA</p></div>
+            </div>
+            <div class="sp"></div>
+            <p class="t" style="font-size:8cqw;max-width:15ch">Ban the tool and you move the traffic, not the risk.</p>
+            <hr class="hr" style="margin:5cqw 0 0">
+          </div>
+        </div>
+        <div class="cap"><b>Quote card</b><span>1200 × 1200 px</span></div>
+      </div>
+
+      <div class="plate">
+        <div class="art ar surf" style="--ar:1/1;background:linear-gradient(160deg,#0A0E1A 48%,rgba(59,130,246,.16))">
+          <div class="mk" style="padding:8cqw">
+            <p class="k" style="font-size:2.8cqw">The governance gap</p>
+            <div class="sp"></div>
+            <p class="t" style="font-size:26cqw;line-height:.86;color:var(--blue)">82<span style="font-size:.5em">%</span></p>
+            <p style="font-size:4cqw;margin-top:2.6cqw;max-width:20ch">use AI at work.
+               <span style="color:var(--slate)">26% have a policy for it.</span></p>
+            <div class="sp"></div>
+            <div style="display:flex;justify-content:space-between;align-items:flex-end">
+              <span class="d" style="font-size:2.3cqw;color:var(--slate2)">Netrio, 2025</span>
+              <img src="/assets/brand/logo-primary.svg" alt="" width="468" height="64" style="height:3.4cqw;width:auto">
+            </div>
+          </div>
+        </div>
+        <div class="cap"><b>Stat card</b><span>1200 × 1200 px</span></div>
+      </div>
+
+      <div class="plate">
+        <div class="art ar surf grid-bg" style="--ar:1200/630">
+          <div class="mk" style="padding:6cqw">
+            <img class="lg" src="/assets/brand/logo-primary.svg" alt="" width="468" height="64" style="height:4.4cqw">
+            <div class="sp"></div>
+            <p class="t" style="font-size:7.4cqw;max-width:18ch">AI &amp; Security Readiness Assessment</p>
+            <p style="font-size:2.8cqw;color:var(--slate);margin-top:2.2cqw">Ten minutes. Scored. No sales call.</p>
+          </div>
+          <div style="position:absolute;left:0;right:0;bottom:0;height:.5cqw;
+               background:linear-gradient(90deg,var(--blue),var(--cyan) 46%,var(--green))"></div>
+        </div>
+        <div class="cap"><b>Open Graph</b><span>1200 × 630 px</span></div>
+      </div>
+
+    </div>
+
+    <div class="panel"><h4>Rules</h4>
+      <p class="note">One idea per card. The headline is the post; the caption is not
+         where the argument lives. Stat cards take the pillar colour that owns the
+         subject, never red. The mark appears once, bottom right, at 3.4% of card width.
+         No stock photography, no padlocks, no hooded figures, ever.</p></div>
+
+  </div>
+</section>
+
+<!-- ═════════════════════════════════════════════ 12 business cards ══ -->
+<section class="sec" id="cards">
+  <div class="head">
+    <span class="num">12</span>
+    <h2>Business cards</h2>
+    <p>Uncoated ink stock, 400&nbsp;gsm, with the X foiled or spot-varnished. The card
+       is one of the few places the mark is allowed to be the entire composition.</p>
+  </div>
+  <div class="body stack-l">
+
+    <div class="plates">
+      <div class="plate">
+        <div class="art ar surf" style="--ar:3.5/2">
+          <div class="mk" style="padding:9cqw;justify-content:center;align-items:center">
+            <img src="/assets/brand/mark-bare.svg" alt="" width="64" height="64" style="height:22cqw">
+          </div>
+        </div>
+        <div class="cap"><b>Front</b><span>3.5 × 2 in · X in red foil</span></div>
+      </div>
+      <div class="plate">
+        <div class="art ar surf" style="--ar:3.5/2">
+          <div class="mk card-back" style="padding:9cqw">
+            <img class="lg" src="/assets/brand/logo-primary.svg" alt="" width="468" height="64" style="height:6cqw">
+            <div class="sp"></div>
+            <p class="t" style="font-size:6.4cqw">Firstname Lastname</p>
+            <p style="font-size:3.4cqw;color:var(--slate);margin-top:.6cqw">Principal, Security Operations</p>
+            <p class="d" style="font-size:3cqw;color:var(--slate2);margin-top:3.4cqw;line-height:1.6">
+              617.241.5445<br>first@bostoncyberx.com<br>One Marina Park Drive, Boston MA 02210</p>
+          </div>
+        </div>
+        <div class="cap"><b>Back</b><span>3.5 × 2 in · contact in Geist Mono</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════ 13 event materials & posters ══ -->
+<section class="sec" id="event">
+  <div class="head">
+    <span class="num">13</span>
+    <h2>Event materials and posters</h2>
+    <p>Read at four metres, then at one. The headline carries the room; the detail
+       rewards the person who walks over.</p>
+  </div>
+  <div class="body stack-l">
+
+    <div class="plates tall">
+
+      <div class="plate">
+        <div class="art ar surf grid-bg" style="--ar:33/80">
+          <div class="mk" style="padding:9cqw 8cqw">
+            <img class="lg" src="/assets/brand/logo-primary.svg" alt="" width="468" height="64" style="height:7cqw">
+            <div class="sp"></div>
+            <p class="t" style="font-size:15cqw">Say yes to AI.</p>
+            <hr class="hr" style="margin:6cqw 0 5cqw">
+            <p style="font-size:5cqw;color:var(--slate);line-height:1.42">AI transformation
+               and AI-powered defence, from one team in Boston.</p>
+            <div class="sp"></div>
+            <p class="d" style="font-size:3.6cqw;color:var(--slate2)">bostoncyberx.com</p>
+          </div>
+        </div>
+        <div class="cap"><b>Pull-up banner</b><span>33 × 80 in</span></div>
+      </div>
+
+      <div class="plate">
+        <div class="art ar surf" style="--ar:2/3;background:linear-gradient(165deg,#0A0E1A 46%,rgba(34,211,238,.14))">
+          <div class="mk" style="padding:8cqw">
+            <p class="k" style="font-size:3cqw;color:var(--cyan)">The Signal &nbsp;·&nbsp; Live</p>
+            <div class="sp"></div>
+            <p class="t" style="font-size:14cqw">Shadow AI in the mid-market</p>
+            <p style="font-size:4.4cqw;color:var(--slate);margin-top:4cqw;line-height:1.42">
+              What your people are already pasting into chat windows, and what to do
+              about it this quarter.</p>
+            <hr class="hr" style="margin:6cqw 0 4cqw">
+            <p class="d" style="font-size:3.4cqw">Thursday 18 September &nbsp;·&nbsp; 12:00 ET<br>
+              <span style="color:var(--slate2)">Register at bostoncyberx.com/signal</span></p>
+          </div>
+        </div>
+        <div class="cap"><b>Event poster</b><span>24 × 36 in</span></div>
+      </div>
+
+      <div class="plate">
+        <div class="art ar surf" style="--ar:4/3">
+          <div class="mk" style="padding:7cqw;text-align:center;align-items:center">
+            <div class="badge-hole"></div>
+            <img class="lg" src="/assets/brand/logo-primary.svg" alt="" width="468" height="64" style="height:5.4cqw;align-self:center">
+            <div class="sp"></div>
+            <p class="t" style="font-size:11cqw">Firstname<br>Lastname</p>
+            <p class="d" style="font-size:3.4cqw;color:var(--slate2);margin-top:2.4cqw">
+              Principal, Security Operations</p>
+            <div class="sp"></div>
+            <hr class="hr">
+          </div>
+        </div>
+        <div class="cap"><b>Name badge</b><span>4 × 3 in</span></div>
+      </div>
+
+    </div>
+
+    <div class="panel"><h4>Rules</h4>
+      <p class="note">Banner headlines set at 15% of banner width or larger. Nothing
+         critical sits in the bottom 12% of a pull-up, which is below eye line and often
+         blocked by a table. Booth backdrops use the pillar divider composition at
+         3&nbsp;m wide: one word, one colour field, no body copy.</p></div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ 14 zoom backgrounds ══ -->
+<section class="sec" id="zoom">
+  <div class="head">
+    <span class="num">14</span>
+    <h2>Zoom backgrounds</h2>
+    <p>Built around the speaker, not behind them. A head and shoulders fills the centre
+       40% and the bottom third, so nothing goes there.</p>
+  </div>
+  <div class="body stack-l">
+
+    <div class="plates">
+
+      <div class="plate">
+        <div class="art ar surf" style="--ar:16/9;background:radial-gradient(120% 92% at 76% 8%,#1A2439 0,#0A0E1A 62%)">
+          <div class="mk" style="padding:5.4cqw">
+            <img class="lg" src="/assets/brand/logo-primary.svg" alt="" width="468" height="64" style="height:4cqw">
+            <div class="sp"></div>
+            <p class="d" style="font-size:1.9cqw;color:var(--slate2)">bostoncyberx.com</p>
+          </div>
+        </div>
+        <div class="cap"><b>Everyday</b><span>1920 × 1080 px · logo top left only</span></div>
+      </div>
+
+      <div class="plate">
+        <div class="art ar surf grid-bg" style="--ar:16/9;background:linear-gradient(100deg,#0A0E1A 56%,rgba(59,130,246,.16))">
+          <div class="mk" style="padding:5.4cqw">
+            <img class="lg" src="/assets/brand/logo-primary.svg" alt="" width="468" height="64" style="height:4cqw">
+            <div class="sp"></div>
+            <p class="t" style="font-size:4.2cqw;max-width:13ch">Transform with AI.<br>Defend with AI.</p>
+            <hr class="hr" style="margin-top:2.6cqw;max-width:30%">
+          </div>
+        </div>
+        <div class="cap"><b>Webinar</b><span>1920 × 1080 px · type inside the left 34%</span></div>
+      </div>
+
+      <div class="plate">
+        <div class="art ar surf" style="--ar:16/9;background:linear-gradient(180deg,#151D2E,#0A0E1A)">
+          <div class="mk" style="padding:5.4cqw;align-items:center;justify-content:center">
+            <img src="/assets/brand/mark-bare.svg" alt="" width="64" height="64" style="height:13cqw;opacity:.14">
+          </div>
+          <div style="position:absolute;left:0;right:0;bottom:0;height:.4cqw;
+               background:linear-gradient(90deg,var(--blue),var(--cyan) 46%,var(--green))"></div>
+        </div>
+        <div class="cap"><b>Neutral</b><span>1920 × 1080 px · client calls, mark at 14%</span></div>
+      </div>
+
+    </div>
+
+    <div class="panel"><h4>Rules</h4>
+      <p class="note">Type stays inside the left 34% and clear of the bottom third,
+         which is where the speaker and the name bar sit. Backgrounds are flat or a
+         single soft gradient; no photographic offices, no bookshelves, no blur. Export
+         at 1920 × 1080 as PNG. The everyday cut is the default for client calls, and the
+         webinar cut is only for broadcast.</p></div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════ 15 merchandise ══ -->
+<section class="sec" id="merch">
+  <div class="head">
+    <span class="num">15</span>
+    <h2>Merchandise</h2>
+    <p>The mark alone, never the full lockup, and never a slogan. Merch is worn by
+       people who already know the name; it should read as a quiet signal, not an advert.</p>
+  </div>
+  <div class="body stack-l">
+
+    <div class="merch">
+
+      <figure><div class="art2"><svg viewBox="0 0 120 120" role="img" aria-label="Cap"><title>Cap</title>
+        <path d="M18 70C18 42 32 26 55 26c21 0 33 14 33 44z" fill="#2B3651"/>
+        <circle cx="55" cy="24" r="3.5" fill="#2B3651"/>
+        <path d="M18 70h70v6H18z" fill="#222C43"/>
+        <path d="M88 70c13 0 22 2 23 6 1 3-2 6-7 6H88z" fill="#222C43"/>
+        <path d="M44 42l12 12M56 42L44 54" stroke="#FF3B30" stroke-width="4.2"/></svg></div>
+        <figcaption>Cap · mark embroidered 40&nbsp;mm, red on charcoal</figcaption></figure>
+
+      <figure><div class="art2"><svg viewBox="0 0 120 120" role="img" aria-label="T-shirt"><title>T-shirt</title>
+        <path d="M44 16l-22 9-8 20 13 6 5-8v61c14 3 42 3 56 0V43l5 8 13-6-8-20-22-9c-4 7-8 9-16 9s-12-2-16-9z" fill="#2B3651"/>
+        <path d="M44 16c4 7 8 9 16 9s12-2 16-9" stroke="#1B2437" stroke-width="1.8" fill="none"/>
+        <path d="M40 40l10 10M50 40L40 50" stroke="#FF3B30" stroke-width="3.4"/></svg></div>
+        <figcaption>Tee · mark left chest 55&nbsp;mm, wordmark across the back</figcaption></figure>
+
+      <figure><div class="art2"><svg viewBox="0 0 120 120" role="img" aria-label="Hoodie"><title>Hoodie</title>
+        <path d="M42 20l-24 10-8 22 14 6 4-8v56c16 4 40 4 56 0V50l4 8 14-6-8-22-24-10z" fill="#263048"/>
+        <path d="M42 20c2 10 8 15 18 15s16-5 18-15c-6-3-11-4-18-4s-12 1-18 4z" fill="#33405E"/>
+        <path d="M46 78h28v14H46z" fill="#1F2840"/>
+        <path d="M40 46l10 10M50 46L40 56" stroke="#FF3B30" stroke-width="3.2"/></svg></div>
+        <figcaption>Hoodie · mark left chest, X repeated small on the cuff</figcaption></figure>
+
+      <figure><div class="art2"><svg viewBox="0 0 120 120" role="img" aria-label="Mug"><title>Mug</title>
+        <rect x="24" y="30" width="58" height="62" rx="7" fill="#F8FAFC"/>
+        <path d="M82 46h9a13 13 0 010 26h-9" stroke="#F8FAFC" stroke-width="7" fill="none"/>
+        <path d="M45 52l16 16M61 52L45 68" stroke="#FF3B30" stroke-width="5"/></svg></div>
+        <figcaption>Mug · white gloss, X at 45&nbsp;mm, no wordmark</figcaption></figure>
+
+      <figure><div class="art2"><svg viewBox="0 0 120 120" role="img" aria-label="Laptop stickers"><title>Laptop stickers</title>
+        <rect x="12" y="30" width="42" height="42" rx="10" fill="#0A0E1A" stroke="#94A3B8" stroke-width="1.2"/>
+        <path d="M25 43l16 16M41 43L25 59" stroke="#FF3B30" stroke-width="4.6"/>
+        <rect x="62" y="30" width="46" height="20" rx="10" fill="#F8FAFC"/>
+        <path d="M70 36l8 8M78 36l-8 8" stroke="#FF3B30" stroke-width="3"/>
+        <rect x="62" y="58" width="46" height="46" rx="23" fill="none" stroke="#94A3B8" stroke-width="1.2" stroke-dasharray="3 3"/>
+        <path d="M76 74l16 16M92 74l-16 16" stroke="#FF3B30" stroke-width="4.6"/></svg></div>
+        <figcaption>Stickers · die-cut 50&nbsp;mm, ink tile and knockout</figcaption></figure>
+
+      <figure><div class="art2"><svg viewBox="0 0 120 120" role="img" aria-label="Notebook"><title>Notebook</title>
+        <rect x="26" y="16" width="66" height="88" rx="4" fill="#2B3651"/>
+        <rect x="26" y="16" width="8" height="88" fill="#151D2E"/>
+        <path d="M52 52l14 14M66 52L52 66" stroke="#FF3B30" stroke-width="4.4"/>
+        <path d="M44 88h34" stroke="#94A3B8" stroke-width="1.4" opacity=".5"/></svg></div>
+        <figcaption>Notebook · debossed X, red foil, A5 softcover</figcaption></figure>
+
+    </div>
+
+    <div class="grid2">
+      <div class="panel"><h4>Rules</h4>
+        <p class="note">Mark only. No taglines, no "Transform with AI" on a shirt, no
+           service names. Garments are charcoal, ink, or off-white; never red. The X is
+           the only coloured element on any piece.</p></div>
+      <div class="panel"><h4>Production</h4>
+        <p class="note">Embroidery uses logo-1c-paper.svg or a single red thread, never
+           the two-colour lockup, because the wordmark's counters fill in below
+           55&nbsp;mm. Print uses Pantone 179 C as the nearest match to #FF3B30. Confirm
+           a strike-off before any run over 100 units.</p></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ 16 implementation ══ -->
+<section class="sec" id="build">
+  <div class="head">
+    <span class="num">16</span>
+    <h2>Implementation</h2>
+    <p>The site change is four lines of CSS and one font link. Everything else in the
+       existing system stays exactly as built.</p>
+  </div>
+  <div class="body stack-l">
+
+    <div>
+      <h4>assets/css/bcx.css</h4>
+      <pre><i>/* replace the three font tokens */</i>
+<s>--font-display:"Bricolage Grotesque",system-ui,sans-serif;</s>
+<b>--font-display:"Archivo",system-ui,sans-serif;</b>
+  --font-body:"Inter",system-ui,sans-serif;
+<s>--font-mono:var(--font-display);</s>
+<b>--font-mono:"Geist Mono",ui-monospace,monospace;</b>
+
+<i>/* the width axis is the identity, so it is set globally on display type */</i>
+<b>h1,h2,h3,h4,.logo,.btn,.territory .word,.kicker{
+    font-variation-settings:"wdth" 112;
+  }</b></pre>
+    </div>
+
+    <div>
+      <h4>The font link, on every page</h4>
+      <pre>&lt;link href="https://fonts.googleapis.com/css2?<wbr>family=Archivo:wdth,wght@62..125,400..900&amp;<wbr>family=Inter:wght@400;500;600&amp;<wbr>family=Geist+Mono:wght@400;500&amp;display=swap" rel="stylesheet"&gt;</pre>
+      <p class="note" style="margin-top:12px">Three families, same request count as
+         today. Bricolage Grotesque comes out of the link entirely.</p>
+    </div>
+
+    <div>
+      <h4>Assets delivered</h4>
+      <div class="files">
+        <span>logo-primary.svg</span><span>logo-on-light.svg</span>
+        <span>logo-stacked.svg</span><span>logo-stacked-on-light.svg</span>
+        <span>logo-1c-paper.svg</span><span>logo-1c-ink.svg</span>
+        <span>wordmark.svg</span><span>mark.svg</span>
+        <span>mark-bare.svg</span><span>mark-1c-paper.svg</span>
+        <span>mark-1c-ink.svg</span><span>favicon.svg</span>
+        <span>app-icon-maskable.svg</span><span>logo-animated.svg</span>
+        <span>mark-animated.svg</span><span>mark-animated-loop.svg</span>
+        <span>logo-signal.svg</span><span>logo-forge.svg</span>
+        <span>logo-aperture.svg</span>
+      </div>
+    </div>
+
+    <div class="scroll"><table>
+      <thead><tr><th>Order</th><th>Step</th><th>Why this order</th></tr></thead>
+      <tbody>
+        <tr><td class="m">1</td><td>Swap the font tokens and the link, deploy</td><td>Fixes the reported problem on every page at once</td></tr>
+        <tr><td class="m">2</td><td>Replace the header logo and favicon with the vector files</td><td>The wordmark stops depending on a webfont</td></tr>
+        <tr><td class="m">3</td><td>Restore mono in data positions</td><td>The gap figure, assessment scores, and prices carry the technical signal</td></tr>
+        <tr><td class="m">4</td><td>Rebuild the OG image and the two paper covers</td><td>These are cached by LinkedIn, so change them before promoting</td></tr>
+        <tr><td class="m">5</td><td>Deck masters, then cards and event stock</td><td>Longest lead time, and nothing else depends on them</td></tr>
+      </tbody>
+    </table></div>
+
+    <div class="callout">
+      <h3>What still needs a decision</h3>
+      <p>Two things sit outside this document. The deck sells AI Strategy Workshop,
+         AI Accelerator, and Posture Assessment, while the site sells bcxCompass and the
+         Transform and Defend retainers; those names should converge before the deck
+         masters are built. And the red is specified as FF0000 in the deck and #FF3B30 on
+         the web. This kit standardises on #FF3B30, which holds its hue on screen and
+         clears AA on ink at 5.43:1. Confirm before anything goes to print.</p>
+    </div>
+
+  </div>
+</section>
+</main>
+<script>
+/* The animated lockup plays once on load. Re-fetching the src restarts the SVG's
+   own CSS timeline, which is the only way to replay an animation inside <img>. */
+document.getElementById("replay").addEventListener("click", function () {
+  var img = document.getElementById("m1"), base = "/assets/brand/logo-animated.svg";
+  img.src = base + "?r=" + Date.now();
+});
+</script>
+</body>
+</html>

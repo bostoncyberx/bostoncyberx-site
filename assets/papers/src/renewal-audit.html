@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>The Renewal Audit: Walking Into Your 2026 Cyber Insurance Renewal Ready</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  @page { size: A4; margin: 0; }
+  html, body {
+    font-family: 'Inter', sans-serif;
+    font-size: 10.5pt;
+    line-height: 1.65;
+    color: #0F172A;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    page-break-after: always;
+    padding: 22mm;
+    position: relative;
+    background: #FFFFFF;
+    overflow: hidden;
+  }
+  .page.dark { background: #0A0E1A; color: #F8FAFC; }
+  h1, h2, h3 { font-family: 'Archivo', sans-serif; }
+  h2 {
+    font-size: 21pt;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    margin-bottom: 4mm;
+  }
+  h3 {
+    font-size: 12.5pt;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin-bottom: 2mm;
+  }
+  p { max-width: 65ch; margin-bottom: 3.5mm; }
+  .mono { font-family: 'IBM Plex Mono', monospace; }
+  .kicker {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 7.5pt;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #0FA8C4;
+    margin-bottom: 3mm;
+  }
+  .rule { border: none; border-top: 1px solid #E2E8F0; margin: 6mm 0; }
+  .footer {
+    position: absolute;
+    bottom: 12mm;
+    left: 22mm;
+    right: 22mm;
+    display: flex;
+    justify-content: space-between;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 7pt;
+    letter-spacing: 0.14em;
+    color: #94A3B8;
+    border-top: 1px solid #E2E8F0;
+    padding-top: 3mm;
+  }
+  .pull-stat {
+    background: #F1F5F9;
+    border-left: 3px solid #0FA8C4;
+    padding: 6mm 8mm;
+    margin: 6mm 0;
+    max-width: 65ch;
+  }
+  .pull-stat .big {
+    font-family: 'Archivo', sans-serif;
+    font-size: 34pt;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    color: #0FA8C4;
+    display: block;
+    margin-bottom: 2mm;
+  }
+  .pull-stat .label { font-weight: 600; display: block; margin-bottom: 1.5mm; }
+  .attr {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 7pt;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #64748B;
+  }
+  .control {
+    border-top: 1px solid #E2E8F0;
+    padding-top: 5mm;
+    margin-bottom: 7mm;
+    max-width: 65ch;
+  }
+  .control .num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 8pt;
+    letter-spacing: 0.16em;
+    color: #0FA8C4;
+    display: block;
+    margin-bottom: 1.5mm;
+  }
+  ul.clean { list-style: none; max-width: 65ch; }
+  ul.clean li {
+    padding: 2.5mm 0 2.5mm 7mm;
+    border-bottom: 1px solid #E2E8F0;
+    position: relative;
+  }
+  ul.clean li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 4.6mm;
+    width: 2.6mm;
+    height: 2.6mm;
+    background: #0FA8C4;
+  }
+  .phase {
+    border-left: 3px solid #0FA8C4;
+    padding: 1mm 0 1mm 7mm;
+    margin-bottom: 6mm;
+    max-width: 65ch;
+  }
+  .phase .window {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 7.5pt;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #0FA8C4;
+    display: block;
+    margin-bottom: 1mm;
+  }
+  .cover-brand { display: flex; align-items: center; gap: 5mm; }
+  .cover-wordmark {
+    font-family: 'Archivo', sans-serif;
+    font-weight: 600;
+    font-size: 13pt;
+    letter-spacing: 0.06em;
+    color: #F8FAFC;
+  }
+  .cover-title {
+    font-family: 'Archivo', sans-serif;
+    font-size: 40pt;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    color: #F8FAFC;
+    margin: 10mm 0 6mm;
+  }
+  .cover-sub {
+    font-size: 13pt;
+    line-height: 1.5;
+    color: #94A3B8;
+    max-width: 55ch;
+  }
+  .tagline { font-family: 'Archivo', sans-serif; font-size: 11.5pt; font-weight: 600; letter-spacing: 0.01em; }
+  .t-blue { color: #3B82F6; }
+  .t-cyan { color: #22D3EE; }
+  .t-green { color: #34D399; }
+  .contact-block {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9pt;
+    line-height: 2.1;
+    color: #94A3B8;
+    letter-spacing: 0.04em;
+  }
+  .contact-block strong { color: #F8FAFC; font-weight: 500; }
+</style>
+</head>
+<body>
+
+<!-- PAGE 1 · COVER -->
+<div class="page dark" style="display:flex; flex-direction:column; justify-content:space-between;">
+  <div class="cover-brand">
+    <svg width="46" height="46" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-label="BCX X mark">
+      <line x1="12" y1="12" x2="88" y2="88" stroke="#3B82F6" stroke-width="13" stroke-linecap="round"/>
+      <line x1="88" y1="12" x2="58" y2="42" stroke="#22D3EE" stroke-width="13" stroke-linecap="round"/>
+      <line x1="42" y1="58" x2="12" y2="88" stroke="#34D399" stroke-width="13" stroke-linecap="round"/>
+    </svg>
+    <span class="cover-wordmark">bostoncyberx</span>
+  </div>
+  <div>
+    <div class="mono" style="font-size:8pt; letter-spacing:0.2em; color:#22D3EE; margin-bottom:4mm;">BCX PAPER 02 &middot; AUGUST 2026</div>
+    <h1 class="cover-title">The Renewal<br>Audit</h1>
+    <p class="cover-sub">Walking into your 2026 cyber insurance renewal ready. The application became a technical audit. Here is what underwriters verify now, and the 90-day runway that turns renewal from a fire drill into a routine.</p>
+  </div>
+  <div>
+    <hr style="border:none; border-top:1px solid #1E293B; margin-bottom:6mm;">
+    <div class="tagline"><span class="t-blue">Transform with AI.</span> <span class="t-cyan">Defend with AI.</span> <span class="t-green">Achieve with AI.</span></div>
+  </div>
+</div>
+
+<!-- PAGE 2 · EXECUTIVE SUMMARY -->
+<div class="page">
+  <div class="kicker">Executive Summary</div>
+  <h2>Your cyber insurance renewal is no longer a form. It is an exam.</h2>
+  <p>A few years ago, renewing cyber insurance meant a short questionnaire and a signature. In 2026 it means an application that runs around 40 pages, asks for evidence rather than assertions, and prices your premium on what you can prove. Companies that cannot demonstrate specific security controls are seeing premium increases of 30 to 50 percent, reduced coverage, or outright declined applications.</p>
+  <p>This is not insurers being difficult. It is insurers doing what insurers do: pricing risk with data. Years of ransomware payouts taught carriers exactly which controls separate the companies that survive attacks from the companies that file claims. Now they check for those controls before they write the policy.</p>
+  <p>For a company without a security leader, the renewal lands on the COO or CFO. You get 40 pages of technical questions, a deadline, and no one on staff who can answer with confidence. Most companies handle it as an annual fire drill: scramble, guess, hope. The guesses are dangerous. A misstatement on the application can void your coverage exactly when you need it.</p>
+  <p>There is a better way to run this. Treat the renewal as a scheduled audit with a 90-day runway. This paper shows you what underwriters verify, how to sequence the preparation, and how the same evidence that satisfies your carrier also answers the security questionnaires your customers keep sending.</p>
+  <hr class="rule">
+  <h3>What this paper covers</h3>
+  <ul class="clean">
+    <li><strong>The renewal changed.</strong> Evidence-based applications, and what failing them costs.</li>
+    <li><strong>What underwriters verify now.</strong> The five control areas that decide your premium.</li>
+    <li><strong>The 90-day renewal runway.</strong> A timeline working back from your renewal date.</li>
+    <li><strong>The questionnaire problem.</strong> Why the same gap is costing you deals, not just premium.</li>
+  </ul>
+  <div class="footer"><span>BCX PAPER 02 &middot; THE RENEWAL AUDIT</span><span>PAGE 2</span></div>
+</div>
+
+<!-- PAGE 3 · THE RENEWAL CHANGED -->
+<div class="page">
+  <div class="kicker">Section 01</div>
+  <h2>The renewal changed</h2>
+  <p>The cyber insurance market repriced itself after a decade of losses. Carriers paid out on breaches that basic controls would have prevented, and they responded the way any underwriter responds: more questions, more proof, more price separation between good risks and bad ones.</p>
+  <div class="pull-stat">
+    <span class="big">~40 pages</span>
+    <span class="label">Today's cyber insurance applications run around 40 pages and ask for evidence, not checkboxes. Screenshots, policy documents, and configuration exports are now normal requests.</span>
+    <span class="attr">Source: BCX market research, 2026 renewal cycle</span>
+  </div>
+  <p>The questions changed in kind, not just in count. "Do you have backups?" became "Describe your backup architecture, its immutability controls, its isolation from production credentials, and the date of your last successful restore test." One of those questions can be answered optimistically. The other cannot.</p>
+  <div class="pull-stat">
+    <span class="big">30 to 50%</span>
+    <span class="label">Premium increases seen by companies that cannot demonstrate required controls. Others face reduced coverage, new exclusions, or declined applications.</span>
+    <span class="attr">Source: BCX market research, 2026 renewal cycle</span>
+  </div>
+  <p>The stakes are higher than the premium line. Applications are now warranties. If you attest that multi-factor authentication covers all remote access and a breach investigation finds an exception, the carrier can deny the claim. The most expensive outcome is not a 50 percent premium hike. It is paying for coverage that evaporates during the worst week of your company's life.</p>
+  <p>One more shift matters: your carrier is no longer the only party auditing you. Enterprise customers now send security questionnaires before signing contracts, and they ask for the same evidence. The renewal is simply the version with a fixed annual deadline. Prepare once, properly, and you answer both.</p>
+  <div class="footer"><span>BCX PAPER 02 &middot; THE RENEWAL AUDIT</span><span>PAGE 3</span></div>
+</div>
+
+<!-- PAGE 4 · WHAT UNDERWRITERS VERIFY 1-3 -->
+<div class="page">
+  <div class="kicker">Section 02</div>
+  <h2>What underwriters verify now</h2>
+  <p>Applications differ by carrier, but the substance converges on five control areas. Read them as a checklist. Every "no" or "not sure" is either a premium increase or a claim risk, and every one of them is fixable inside 90 days.</p>
+
+  <div class="control">
+    <span class="num">CONTROL 01</span>
+    <h3>MFA everywhere, and they mean everywhere</h3>
+    <p>Multi-factor authentication on email and VPN is table stakes. Underwriters now ask about every remote access path, all administrator accounts, cloud consoles, and backup systems. The exceptions are what kill claims: the legacy application nobody wanted to touch, the shared service account, the vendor login from 2019. Your job before renewal is to find those exceptions before an attacker or a claims adjuster does.</p>
+  </div>
+
+  <div class="control">
+    <span class="num">CONTROL 02</span>
+    <h3>Detection and response on every endpoint</h3>
+    <p>Antivirus no longer qualifies. Carriers want endpoint detection and response, EDR, deployed on every device, and increasingly they want it monitored around the clock, which is managed detection and response, MDR. The reasoning is simple: attacks unfold at 2am on Saturday, and detection nobody is watching is a smoke alarm in an empty building. If no one on your team can name your EDR product and who watches its alerts, start here.</p>
+  </div>
+
+  <div class="control">
+    <span class="num">CONTROL 03</span>
+    <h3>Backups that ransomware cannot reach</h3>
+    <p>Attackers learned to encrypt backups first, so carriers now ask three pointed questions: Are backups immutable, meaning they cannot be altered or deleted once written? Are they isolated from your production network and credentials? And when did you last actually restore from them? A backup you have never restored is a hope, not a control. Underwriters price hope accordingly.</p>
+  </div>
+  <div class="footer"><span>BCX PAPER 02 &middot; THE RENEWAL AUDIT</span><span>PAGE 4</span></div>
+</div>
+
+<!-- PAGE 5 · WHAT UNDERWRITERS VERIFY 4-5 -->
+<div class="page">
+  <div class="control" style="border-top:none; padding-top:0;">
+    <span class="num">CONTROL 04</span>
+    <h3>An incident response plan you have actually tested</h3>
+    <p>Carriers ask two questions: Do you have a written incident response plan, and when did you last exercise it? The second question exists because untested plans fail on contact. A tabletop exercise, two hours with leadership walking through a realistic scenario such as a ransomware note or a deepfake payment request, satisfies the requirement and teaches you more about your readiness than any document review. Do one before renewal and record the date. It is the cheapest strong answer on the entire application.</p>
+  </div>
+
+  <div class="control">
+    <span class="num">CONTROL 05</span>
+    <h3>Someone accountable for security, by name</h3>
+    <p>Applications increasingly ask who is responsible for your security program. "Our IT provider" is a weak answer, because your MSP keeps systems running; deciding which risks the business accepts is a different job. Carriers want a named individual with authority: a CISO, or for most mid-market companies, a fractional vCISO who owns the program, the evidence, and the renewal itself. This is the control that produces all the others, which is why underwriters weight it.</p>
+  </div>
+
+  <hr class="rule">
+  <h3>The pattern behind the five</h3>
+  <p>Notice what the five controls have in common: none of them is exotic, and every one is verifiable. That is the point. Underwriters stopped asking about intentions and started asking about evidence, because evidence is what predicted their losses.</p>
+  <p>This is good news if you prepare. The company with all five controls documented is no longer negotiating from weakness. Brokers can shop a well-evidenced application across carriers and use it to argue for better terms, higher limits, and fewer exclusions. Preparation does not just avoid the 30 to 50 percent penalty. It moves you into the pool that carriers compete for.</p>
+  <div class="footer"><span>BCX PAPER 02 &middot; THE RENEWAL AUDIT</span><span>PAGE 5</span></div>
+</div>
+
+<!-- PAGE 6 · THE 90-DAY RENEWAL RUNWAY -->
+<div class="page">
+  <div class="kicker">Section 03</div>
+  <h2>The 90-day renewal runway</h2>
+  <p>Renewal preparation fails when it starts at 30 days out, because the fixes that matter, EDR deployment, backup rearchitecture, MFA rollout, take weeks to implement and need time to generate evidence. Work back from your renewal date and start at day 90. Here is the sequence.</p>
+
+  <div class="phase">
+    <span class="window">90 to 61 days out &middot; Assess against the application</span>
+    <p>Get this year's application from your broker early, or use last year's as a proxy, and audit yourself against every question. Score each of the five control areas honestly: pass, partial, or fail. Inventory your evidence: policies, configurations, test dates. The output is a gap list ranked by two things, premium impact and time to fix. This is exactly the kind of fixed-scope assessment a security partner can run in weeks.</p>
+  </div>
+
+  <div class="phase">
+    <span class="window">60 to 31 days out &middot; Close the gaps that move price</span>
+    <p>Fix in priority order. MFA exceptions close first because they are fast and heavily weighted. EDR or MDR deployment starts immediately because it needs runtime before renewal. Backup immutability gets configured and, critically, a restore test gets run and documented. Schedule the tabletop exercise in this window and write down the date and findings. Every fix produces an artifact for the application file.</p>
+  </div>
+
+  <div class="phase">
+    <span class="window">30 to 0 days out &middot; Assemble and submit with your broker</span>
+    <p>Complete the application with evidence attached to every material answer. Review it with your broker before submission and flag anything that improved since last year; brokers can sell your progress to underwriters. Where a control is in flight, say so precisely, with a completion date, rather than rounding up to yes. Precision protects your claim. Then book next year's 90-day start on the calendar, because this is an annual ritual now.</p>
+  </div>
+
+  <p>Run this once and the second year takes half the effort, because the evidence file already exists and only needs updating. That is the difference between a fire drill and a routine.</p>
+  <div class="footer"><span>BCX PAPER 02 &middot; THE RENEWAL AUDIT</span><span>PAGE 6</span></div>
+</div>
+
+<!-- PAGE 7 · THE QUESTIONNAIRE PROBLEM -->
+<div class="page">
+  <div class="kicker">Section 04</div>
+  <h2>The questionnaire problem</h2>
+  <p>The renewal has a twin, and it arrives without a schedule: the customer security questionnaire. Any company selling to enterprises or regulated industries now gets them attached to deals, sometimes hundreds of questions long, covering the same five control areas your carrier verifies.</p>
+  <div class="pull-stat">
+    <span class="big">54%</span>
+    <span class="label">54% of companies report losing deals because they could not complete security questionnaires fast enough.</span>
+    <span class="attr">Source: KillChain</span>
+  </div>
+  <p>Read that number as a revenue problem wearing a security costume. The deal is won, the champion is sold, and then procurement sends a questionnaire that sits for three weeks because nobody can answer question 41 about backup immutability. Meanwhile a competitor with a ready evidence file returns theirs in two days. Slow answers read as weak security, whether or not that is true.</p>
+  <p>Here is the useful connection: the renewal audit and the questionnaire problem are the same problem with the same solution. The evidence file you build on the 90-day runway, the control descriptions, policies, test dates, and configuration proof, is the raw material for every questionnaire you will ever receive. Companies that maintain it turn questionnaires around in days. Companies that do not treat every questionnaire as a new fire drill.</p>
+  <hr class="rule">
+  <h3>The compounding return on readiness</h3>
+  <p>Add up what one preparation effort buys: a defensible insurance application with premium pricing on your side of the table, claims that hold up because your attestations are true, questionnaires answered in days instead of weeks, and deals that close without a security stall. This is why we tell clients that renewal readiness is not a cost center. It is one of the few security investments with a direct line to both the expense side and the revenue side of the ledger.</p>
+  <p>The only input it demands is starting early. Ninety days out, on the calendar, every year.</p>
+  <div class="footer"><span>BCX PAPER 02 &middot; THE RENEWAL AUDIT</span><span>PAGE 7</span></div>
+</div>
+
+<!-- PAGE 8 · CLOSING -->
+<div class="page dark" style="display:flex; flex-direction:column; justify-content:space-between;">
+  <div class="cover-brand">
+    <svg width="38" height="38" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-label="BCX X mark">
+      <line x1="12" y1="12" x2="88" y2="88" stroke="#3B82F6" stroke-width="13" stroke-linecap="round"/>
+      <line x1="88" y1="12" x2="58" y2="42" stroke="#22D3EE" stroke-width="13" stroke-linecap="round"/>
+      <line x1="42" y1="58" x2="12" y2="88" stroke="#34D399" stroke-width="13" stroke-linecap="round"/>
+    </svg>
+    <span class="cover-wordmark" style="font-size:11pt;">bostoncyberx</span>
+  </div>
+  <div>
+    <h2 style="color:#F8FAFC; font-size:26pt; max-width:16em;">Know your renewal score before your carrier does.</h2>
+    <p style="color:#94A3B8; font-size:11.5pt; max-width:55ch;">The free BCX AI &amp; Security Readiness Assessment scores your company across seven pillars, including the identity, detection, and resilience controls underwriters verify. Ten minutes, self-scored, immediate results. It is the fastest honest look at how your next application will read.</p>
+    <p class="mono" style="color:#22D3EE; font-size:10pt; letter-spacing:0.08em;">bostoncyberx.com/assessment</p>
+  </div>
+  <div>
+    <div class="tagline" style="margin-bottom:8mm;"><span class="t-blue">Transform with AI.</span> <span class="t-cyan">Defend with AI.</span> <span class="t-green">Achieve with AI.</span></div>
+    <hr style="border:none; border-top:1px solid #1E293B; margin-bottom:6mm;">
+    <div class="contact-block">
+      <strong>bostoncyberx</strong><br>
+      One Marina Park Drive, Boston, MA 02210<br>
+      617.241.5445 &middot; info@bostoncyberx.com &middot; bostoncyberx.com
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

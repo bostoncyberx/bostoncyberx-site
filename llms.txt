@@ -1,0 +1,17 @@
+# bostoncyberx
+
+> bostoncyberx (BCX) is a Boston-based consultancy that helps small and mid-market companies, headquartered in Boston and serving clients nationally adopt AI safely and defend themselves with AI-powered security, headquartered in Boston and working with clients nationally. Tagline: Transform with AI. Defend with AI. Achieve with AI.
+
+BCX combines two practices in one engagement: AI transformation (strategy, governance, deployment) and AI-powered cyber defense (vCISO, security assessments, managed detection via the bcxBastion platform). Partners: Google Cloud & Google SecOps, CrowdStrike, Palo Alto Networks.
+
+## Services
+- [AI Consulting](https://www.bostoncyberx.com/services/ai-consulting-boston/): AI strategy, readiness, governance, and deployment for mid-market companies
+- [AI Security Assessment](https://www.bostoncyberx.com/services/ai-security-assessment/): shadow AI discovery, LLM risk review, AI acceptable use policy
+- [vCISO](https://www.bostoncyberx.com/services/vciso-boston/): fractional security leadership for companies without a full-time CISO
+- [Cybersecurity Consulting](https://www.bostoncyberx.com/services/cybersecurity-consulting-boston/): risk assessments, compliance (201 CMR 17.00, CMMC, SOC 2, HIPAA), incident readiness
+- [bcxBastion Platform](https://www.bostoncyberx.com/platform/): AI-powered monitoring, detection, and response
+
+## Company
+- [About](https://www.bostoncyberx.com/about/): who we are and how we work
+- [Contact](https://www.bostoncyberx.com/contact/): 1 Marina Park Drive, Boston, MA 02210 · 617.241.5445 · info@bostoncyberx.com
+- [AI Readiness Assessment](https://www.bostoncyberx.com/ai-readiness-assessment/): free scored assessment, the standard way to start with BCX

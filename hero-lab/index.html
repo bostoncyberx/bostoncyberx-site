@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<!--
+HERO LAB — not a shipping page. Three candidate heroes for comparison against the live one.
+Shares the real header, the real tokens, the real typeface. Nothing here is linked from the site
+and nothing here modifies bcx.css, so the live hero is untouched until a candidate is chosen.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hero lab | bostoncyberx</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/svg+xml" href="/assets/img/bcx-mark.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add('no-intro')</script>
+<link rel="stylesheet" href="/assets/css/bcx.css">
+<style>
+  /* Lab furniture. Deliberately not brand grammar, so it never reads as part of a candidate. */
+  .lab-bar{position:sticky;top:0;z-index:40;background:rgba(10,14,26,.92);backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);padding:.7rem 0}
+  .lab-bar .wrap{display:flex;gap:1.2rem;align-items:baseline;flex-wrap:wrap}
+  .lab-bar b{font-weight:700;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--slate)}
+  .lab-bar a{color:var(--slate);font-size:.84rem;text-decoration:none;border-bottom:1px solid transparent}
+  .lab-bar a:hover{color:var(--paper);border-bottom-color:var(--red)}
+  .lab-note{border-top:1px solid var(--line);padding:2.4rem 0 1.4rem}
+  .lab-note h2{font-size:1.05rem;letter-spacing:.14em;text-transform:uppercase;color:var(--slate);font-weight:700}
+  .lab-note p{color:var(--slate);max-width:64ch;margin-top:.7rem;font-size:.95rem}
+  .lab-note .idea{color:var(--paper)}
+
+  /* Candidate frame */
+  .cand{position:relative;min-height:86vh;display:flex;align-items:center;overflow:hidden;
+    border-top:1px solid var(--line)}
+  .cand canvas{position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none}
+  .cand .wrap{position:relative;z-index:2;width:100%}
+  .cand h1{font-size:clamp(2.3rem,3.55vw,3.9rem);text-shadow:0 2px 40px rgba(10,14,26,.85)}
+  .cand h1 .lt{color:var(--blue)}.cand h1 .ld{color:var(--cyan)}.cand h1 .la{color:var(--green)}
+  .cand .lead{margin-top:1.5rem;color:var(--slate);max-width:60ch}
+  .cand .hero-ctas{margin-top:2.2rem}
+
+  /* A — centred in the field */
+  .cand-a .inner{max-width:52rem;margin:0 auto;text-align:center}
+  .cand-a .lead{margin-left:auto;margin-right:auto}
+  .cand-a .hero-ctas{justify-content:center}
+
+  /* B — two column, the mark is the instrument */
+  .cand-b .grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(2rem,5vw,4.5rem);align-items:center}
+  .cand-b .stage{position:relative;aspect-ratio:1/1;min-height:340px}
+  .cand-b .stage canvas{position:absolute;inset:0}
+
+  /* C — copy left, the field resolves across the width */
+  .cand-c .inner{max-width:46rem}
+  .cand-c .legend{margin-top:2.6rem;padding-top:1.2rem;border-top:1px solid var(--line);
+    display:flex;gap:1.8rem;flex-wrap:wrap;font-size:.82rem;color:var(--slate)}
+  .cand-c .legend i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:.5rem}
+
+  /* ?solo=a|b|c — one candidate alone, full viewport, no lab furniture. */
+  body.solo .lab-bar,body.solo .lab-note{display:none}
+  body.solo .cand{display:none;border-top:0}
+  body.solo .cand.solo-on{display:flex;min-height:calc(100vh - 74px)}
+
+  @media (max-width:900px){
+    .cand-b .grid{grid-template-columns:1fr}
+    .cand-b .stage{min-height:280px;order:-1}
+    .cand{min-height:auto;padding:4rem 0}
+  }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#lab">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="/"><img class="logo-img" src="/assets/img/bcx-wordmark-line.svg" alt="bostoncyberx"></a>
+    <nav class="nav" aria-label="Main">
+      <a href="/services/">Services</a>
+      <a href="/platform/">Platform</a>
+      <a href="/industries/">Industries</a>
+      <a href="/about/">About BCX</a>
+    </nav>
+  </div>
+</header>
+
+<div class="lab-bar">
+  <div class="wrap">
+    <b>Hero lab</b>
+    <a href="#a">A · Lattice</a>
+    <a href="#b">B · The x assembles</a>
+    <a href="#c">C · Orchestration</a>
+    <a href="/">Live hero &rarr;</a>
+  </div>
+</div>
+
+<main id="lab">
+
+  <div class="wrap lab-note">
+    <h2>Candidate A</h2>
+    <p class="idea">The lattice. Scattered dust locks into a structured lattice around the message, and re-forms when you disturb it.</p>
+    <p>Closest to the reference: everything floating in the void, no cards or borders. The claim is structure itself. Move your cursor through the field and it yields, then rebuilds. That gesture is the resilience argument, performed rather than stated. Red appears only at lattice nodes, which keeps it as wayfinding punctuation rather than decoration.</p>
+  </div>
+
+  <section class="cand cand-a" id="a">
+    <canvas data-hero="lattice" aria-hidden="true"></canvas>
+    <div class="wrap">
+      <div class="inner">
+        <span class="kicker">The AI-native transformation partner</span>
+        <h1 style="margin-top:1rem"><span class="lt">Transform</span> with AI.<br><span class="ld">Defend</span> with AI.<br><span class="la">Achieve</span> with AI.</h1>
+        <p class="lead">We are an AI-native firm. We run our own company on the technology we recommend, and we help businesses achieve meaningful outcomes through AI transformation, secured by proactive defense and fortified by enterprise resilience.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-primary" href="/discovery/">Schedule a 30-minute discovery call</a>
+          <a class="btn btn-ghost" href="/ai-readiness-assessment/">Take the free AI Assessment</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap lab-note">
+    <h2>Candidate B</h2>
+    <p class="idea">The x assembles. Motes arrive in the three pillar colours, converge into the red x, hold, then release and gather again.</p>
+    <p>The most brand-literal of the three, and the one that says the positioning out loud: many capabilities arriving from everywhere, resolving into one identity that orchestrates them. The glyph is sampled from the real Archivo x, not an approximation, so it is genuinely your letterform. Keeps the two-column structure, so the headline stays at full weight on the left.</p>
+  </div>
+
+  <section class="cand cand-b" id="b">
+    <div class="wrap">
+      <div class="grid">
+        <div>
+          <span class="kicker">The AI-native transformation partner</span>
+          <h1 style="margin-top:1rem"><span class="lt">Transform</span> with AI.<br><span class="ld">Defend</span> with AI.<br><span class="la">Achieve</span> with AI.</h1>
+          <p class="lead">We are an AI-native firm. We run our own company on the technology we recommend, and we help businesses achieve meaningful outcomes through AI transformation, secured by proactive defense and fortified by enterprise resilience.</p>
+          <div class="hero-ctas">
+            <a class="btn btn-primary" href="/discovery/">Schedule a 30-minute discovery call</a>
+            <a class="btn btn-ghost" href="/ai-readiness-assessment/">Take the free AI Assessment</a>
+          </div>
+        </div>
+        <div class="stage">
+          <canvas data-hero="mark" aria-hidden="true"></canvas>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap lab-note">
+    <h2>Candidate C</h2>
+    <p class="idea">Orchestration. An amber swarm meets a red structuring boundary and leaves it in ordered pillar ranks.</p>
+    <p>The narrative one, and the only one that uses your existing colour grammar as argument: threats and noise are amber, the structuring edge is red, and what comes out the far side is ordered in the pillar colours. It reads left to right like a claim. The risk is that it is the busiest of the three, and the boundary sweep is a loop, so it never fully settles.</p>
+  </div>
+
+  <section class="cand cand-c" id="c">
+    <canvas data-hero="ranks" aria-hidden="true"></canvas>
+    <div class="wrap">
+      <div class="inner">
+        <span class="kicker">The AI-native transformation partner</span>
+        <h1 style="margin-top:1rem"><span class="lt">Transform</span> with AI.<br><span class="ld">Defend</span> with AI.<br><span class="la">Achieve</span> with AI.</h1>
+        <p class="lead">We are an AI-native firm. We run our own company on the technology we recommend, and we help businesses achieve meaningful outcomes through AI transformation, secured by proactive defense and fortified by enterprise resilience.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-primary" href="/discovery/">Schedule a 30-minute discovery call</a>
+          <a class="btn btn-ghost" href="/ai-readiness-assessment/">Take the free AI Assessment</a>
+        </div>
+        <div class="legend">
+          <span><i style="background:#FBBF24"></i>Unstructured AI and threat noise</span>
+          <span><i style="background:#FF3B30"></i>bostoncyberx structures it</span>
+          <span><i style="background:#3B82F6"></i>Ordered outcomes</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap lab-note" style="padding-bottom:5rem">
+    <h2>Notes</h2>
+    <p>All three are canvas, roughly 6KB of JavaScript, no video and no image payload, so iterating costs nothing. Each pauses when it scrolls out of view. Under reduced-motion each renders its resolved state once and stops. The live hero is untouched.</p>
+  </div>
+
+</main>
+
+<script>
+(function(){
+  var m = /[?&]solo=([abc])/.exec(location.search);
+  if(!m) return;
+  document.body.classList.add('solo');
+  var el = document.getElementById(m[1]);
+  if(el) el.classList.add('solo-on');
+})();
+</script>
+<script src="/assets/js/hero-lab.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>bostoncyberx | Ledger concept</title>
+<meta name="description" content="The AI-native transformation partner. Transform with AI. Defend with AI. Achieve with AI.">
+<link rel="icon" type="image/svg+xml" href="/assets/img/bcx-mark.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  /* ============ LEDGER: engineering-grid concept ============ */
+  :root{
+    --canvas:#F4F5F6;
+    --cell:#FFFFFF;
+    --cell-alt:#EFF1F3;
+    --line:#DCDFE3;
+    --ink:#101318;
+    --body:#4B5563;
+    --lbl:#5A626C;
+    --red:#E02D22;
+    --red-hover:#C42218;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{background:var(--canvas);}
+  body{
+    font-family:'Archivo',-apple-system,'Helvetica Neue',Arial,sans-serif;
+    font-feature-settings:"tnum" 1;
+    color:var(--body);
+    background:var(--canvas);
+    line-height:1.55;
+    font-size:16px;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+    overflow-x:hidden;
+  }
+  img{max-width:100%;display:block;}
+  a{color:inherit;text-decoration:none;}
+  a:focus-visible,button:focus-visible{outline:2px solid var(--red);outline-offset:2px;}
+  h1,h2,h3{color:var(--ink);letter-spacing:-0.03em;}
+
+  .skip{
+    position:absolute;left:-9999px;top:0;z-index:100;
+    background:var(--red);color:#fff;padding:.75rem 1.25rem;
+    font-weight:600;font-size:.8125rem;text-transform:uppercase;letter-spacing:.08em;
+  }
+  .skip:focus{left:0;}
+
+  /* ---- the frame: one continuous ledger ---- */
+  .frame{
+    max-width:1560px;margin:0 auto;
+    border-left:1px solid var(--line);
+    border-right:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    background:var(--canvas);
+  }
+
+  /* animated horizontal rules between blocks */
+  .rule{
+    height:1px;background:var(--line);
+    transform:scaleX(0);transform-origin:left center;
+    animation:ruleIn .6s cubic-bezier(.22,.61,.36,1) forwards;
+    animation-delay:calc(var(--i,0) * 90ms);
+  }
+  @keyframes ruleIn{to{transform:scaleX(1);}}
+
+  /* ---- shared atoms ---- */
+  .lbl{
+    font-size:12px;font-weight:600;text-transform:uppercase;
+    letter-spacing:.08em;color:var(--lbl);line-height:1.4;
+  }
+  .sq{display:inline-block;width:8px;height:8px;flex:0 0 8px;}
+  .sq-red{background:var(--red);}
+  .btn{
+    display:inline-flex;align-items:center;gap:.75rem;
+    font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;
+    padding:1.05rem 1.6rem;border:1px solid transparent;
+    transition:background-color .18s ease,color .18s ease;
+    cursor:pointer;white-space:nowrap;
+  }
+  .btn-red{background:var(--red);color:#fff;}
+  .btn-red:hover{background:var(--red-hover);}
+  .btn-ghost{border-color:var(--ink);color:var(--ink);background:transparent;}
+  .btn-ghost:hover{background:var(--cell);}
+  .arrow{font-weight:400;}
+
+  /* section header row */
+  .shead{
+    display:flex;justify-content:space-between;align-items:center;gap:1rem;
+    padding:.85rem clamp(1.25rem,3vw,2.5rem);
+    background:var(--cell-alt);
+  }
+  .shead .lbl{color:var(--ink);}
+
+  /* ================= HEADER ================= */
+  .hdr{display:grid;grid-template-columns:auto 1fr auto;background:var(--canvas);}
+  .brand{
+    display:flex;align-items:center;padding:0 clamp(1.25rem,3vw,2rem);min-height:64px;
+  }
+  .brand img{height:20px;width:auto;}
+  .hdr nav{display:flex;justify-content:flex-end;}
+  .hdr nav ul{display:flex;list-style:none;flex-wrap:wrap;}
+  .hdr nav a{
+    display:flex;align-items:center;height:64px;padding:0 1.35rem;
+    font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;
+    color:var(--ink);border-left:1px solid var(--line);
+    transition:background-color .18s ease;
+  }
+  .hdr nav a:hover{background:var(--cell);}
+  .hdr-cta{
+    display:flex;align-items:center;padding:0 1.75rem;
+    background:var(--red);color:#fff;border-left:1px solid var(--line);
+    font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;
+    transition:background-color .18s ease;
+  }
+  .hdr-cta:hover{background:var(--red-hover);}
+
+  /* ================= HERO ================= */
+  .hero{display:grid;grid-template-columns:1.12fr .88fr;}
+  .hero-copy{
+    background:var(--cell);
+    padding:clamp(2.5rem,5vw,5rem) clamp(1.25rem,3vw,2.5rem) clamp(2.5rem,5vw,4.5rem);
+    display:flex;flex-direction:column;justify-content:center;
+  }
+  .hero-tag{
+    display:inline-flex;align-items:center;gap:.6rem;margin-bottom:2.25rem;
+  }
+  .hero-tag .sq{width:7px;height:7px;flex-basis:7px;}
+  h1{
+    font-size:clamp(3rem,4.7vw,6.8rem);
+    font-weight:800;line-height:.98;letter-spacing:-0.03em;
+    margin-bottom:1.75rem;
+  }
+  h1 span{display:block;}
+  .hero-lead{
+    max-width:38rem;font-size:clamp(1rem,1.3vw,1.125rem);
+    margin-bottom:2.5rem;
+  }
+  .hero-ctas{display:flex;flex-wrap:wrap;gap:.75rem;}
+  .hero-fig{
+    position:relative;border-left:1px solid var(--line);
+    background:var(--cell-alt);min-height:560px;overflow:hidden;
+  }
+  .hero-fig canvas{position:absolute;inset:0;width:100%;height:100%;}
+  .fig-note{position:absolute;z-index:2;}
+  .fig-note.tl{top:.85rem;left:1.1rem;}
+  .fig-note.br{bottom:.85rem;right:1.1rem;text-align:right;}
+
+  /* ================= STATS STRIP ================= */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);background:var(--cell);}
+  .stat{
+    padding:clamp(1.5rem,2.5vw,2.5rem) clamp(1.25rem,3vw,2.5rem);
+    border-left:1px solid var(--line);
+  }
+  .stat:first-child{border-left:none;}
+  .stat-n{
+    font-size:clamp(2.4rem,4.2vw,4.2rem);font-weight:800;color:var(--ink);
+    letter-spacing:-0.02em;line-height:1.05;white-space:nowrap;
+  }
+  .stat-n small{font-size:.42em;font-weight:600;letter-spacing:0;color:var(--lbl);}
+  .stat .lbl{margin-top:.6rem;display:block;}
+
+  /* ================= CEO AGENDA ================= */
+  .agrow{
+    position:relative;display:grid;
+    grid-template-columns:88px 1.02fr 1.5fr 88px;
+    align-items:stretch;border-top:1px solid var(--line);
+    background:transparent;transition:background-color .22s ease;
+  }
+  .agrow:first-of-type{border-top:none;}
+  .agrow::before{
+    content:"";position:absolute;left:0;top:0;bottom:0;width:3px;
+    background:var(--red);transform:scaleY(0);transform-origin:center top;
+    transition:transform .3s cubic-bezier(.22,.61,.36,1);
+  }
+  .agrow:hover,.agrow:focus-visible{background:var(--cell);}
+  .agrow:hover::before,.agrow:focus-visible::before{transform:scaleY(1);}
+  .ag-no{
+    display:flex;align-items:center;justify-content:center;
+    padding:1.6rem .5rem;
+  }
+  .ag-need{
+    display:flex;align-items:center;border-left:1px solid var(--line);
+    padding:1.6rem clamp(1.25rem,2.5vw,2rem);
+    font-size:clamp(1.35rem,2.2vw,2rem);font-weight:700;color:var(--ink);
+    letter-spacing:-0.02em;line-height:1.1;
+  }
+  .ag-q{
+    display:flex;flex-direction:column;justify-content:center;gap:.5rem;
+    border-left:1px solid var(--line);
+    padding:1.6rem clamp(1.25rem,2.5vw,2rem);
+  }
+  .ag-q p{font-size:.9375rem;}
+  .ag-link{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--ink);}
+  .ag-arrow{
+    display:flex;align-items:center;justify-content:center;
+    border-left:1px solid var(--line);
+    font-size:1.35rem;color:var(--ink);font-weight:400;
+  }
+
+  /* ================= PILLARS ================= */
+  .pillars{display:grid;grid-template-columns:repeat(3,1fr);background:var(--cell);border-top:1px solid var(--line);}
+  .pillar{
+    border-left:1px solid var(--line);
+    padding:clamp(1.75rem,3vw,2.75rem) clamp(1.25rem,3vw,2.25rem);
+    display:flex;flex-direction:column;
+  }
+  .pillar:first-child{border-left:none;}
+  .pillar-tag{display:flex;align-items:center;gap:.6rem;margin-bottom:1.75rem;}
+  .pillar h3{
+    font-size:clamp(1.7rem,2.4vw,2.3rem);font-weight:800;letter-spacing:-0.03em;
+    line-height:1.02;margin-bottom:.9rem;
+  }
+  .pillar-promise{font-size:.9375rem;margin-bottom:1.75rem;}
+  .pillar-rows{list-style:none;margin-bottom:1.75rem;flex:1;}
+  .pillar-rows li{border-top:1px solid var(--line);padding:.9rem 0;}
+  .pillar-rows b{display:block;color:var(--ink);font-weight:700;font-size:.9375rem;letter-spacing:-0.01em;}
+  .pillar-rows span{font-size:.8125rem;color:var(--lbl);}
+  .pillar-link{
+    display:inline-flex;gap:.6rem;align-items:center;
+    font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--ink);
+    border-top:1px solid var(--line);padding-top:1.1rem;
+  }
+  .pillar-link:hover .arrow{color:var(--red);}
+
+  /* ================= FORGE ================= */
+  .fintro{display:grid;grid-template-columns:1.05fr .95fr;border-top:1px solid var(--line);background:var(--cell);}
+  .fintro-h{padding:clamp(1.75rem,3vw,3rem) clamp(1.25rem,3vw,2.5rem);}
+  .fintro-h h2{
+    font-size:clamp(2rem,3.6vw,3.4rem);font-weight:800;line-height:1.0;letter-spacing:-0.03em;
+  }
+  .fintro-t{
+    border-left:1px solid var(--line);
+    padding:clamp(1.75rem,3vw,3rem) clamp(1.25rem,3vw,2.5rem);
+    display:flex;align-items:center;
+  }
+  .fintro-t p{font-size:.9375rem;max-width:34rem;}
+  .fband{display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid var(--line);background:var(--cell);}
+  .fcell{
+    border-left:1px solid var(--line);
+    padding:clamp(1.5rem,2.5vw,2.5rem) clamp(1.1rem,2vw,1.75rem);
+  }
+  .fcell:first-child{border-left:none;}
+  .fcell-letter{
+    font-size:clamp(4rem,6.5vw,6.5rem);font-weight:800;color:var(--ink);
+    line-height:.9;letter-spacing:-0.03em;display:block;margin-bottom:1.1rem;
+  }
+  .fcell-name{display:block;font-weight:700;color:var(--ink);font-size:1rem;letter-spacing:-0.01em;margin-bottom:.3rem;}
+  .fcell-q{font-size:.8125rem;color:var(--lbl);}
+  .ffoot{
+    border-top:1px solid var(--line);background:var(--cell-alt);
+    display:flex;gap:1.25rem;align-items:baseline;flex-wrap:wrap;
+    padding:1rem clamp(1.25rem,3vw,2.5rem);
+  }
+  .ffoot p{font-size:.8125rem;color:var(--lbl);}
+
+  /* ================= BASTION ================= */
+  .bastion{display:grid;grid-template-columns:.95fr 1.05fr;border-top:1px solid var(--line);}
+  .bastion-copy{
+    padding:clamp(1.75rem,3vw,3rem) clamp(1.25rem,3vw,2.5rem);
+    display:flex;flex-direction:column;justify-content:center;gap:1.1rem;
+  }
+  .bastion-copy h2{font-size:clamp(2rem,3.4vw,3.2rem);font-weight:800;line-height:1.0;}
+  .bastion-copy p{font-size:.9375rem;max-width:30rem;}
+  .bastion-copy .btn{align-self:flex-start;margin-top:.5rem;}
+  .bastion-spec{border-left:1px solid var(--line);background:var(--cell);display:flex;flex-direction:column;}
+  .spec-row{
+    display:grid;grid-template-columns:minmax(120px,.8fr) 1.2fr;align-items:center;
+    border-top:1px solid var(--line);flex:1;
+    padding:1.15rem clamp(1.25rem,2.5vw,2rem);gap:1rem;
+  }
+  .spec-row:first-child{border-top:none;}
+  .spec-lbl{display:flex;align-items:center;gap:.6rem;}
+  .spec-val{
+    font-size:clamp(1.2rem,2vw,1.75rem);font-weight:700;color:var(--ink);letter-spacing:-0.02em;
+    line-height:1.15;
+  }
+  .spec-val.big{font-size:clamp(1.6rem,2.6vw,2.4rem);font-weight:800;}
+  .blink{animation:blink 1.3s step-end infinite;}
+  @keyframes blink{0%,100%{opacity:1}50%{opacity:.12}}
+  .bench{
+    display:grid;grid-template-columns:auto repeat(3,1fr);
+    border-top:1px solid var(--line);background:var(--canvas);align-items:stretch;
+  }
+  .bench-lbl{display:flex;align-items:center;padding:1rem clamp(1.25rem,3vw,2.5rem);}
+  .bench-mark{
+    display:flex;align-items:center;justify-content:center;
+    border-left:1px solid var(--line);padding:1rem .75rem;color:#7A828C;text-align:center;
+  }
+  .bm-1{font-weight:700;font-size:1rem;letter-spacing:-0.01em;}
+  .bm-2{font-weight:800;font-size:1rem;letter-spacing:.01em;}
+  .bm-3{font-weight:600;font-size:.8125rem;text-transform:uppercase;letter-spacing:.14em;}
+
+  /* ================= CLOSING ================= */
+  .closing{
+    background:var(--cell);
+    padding:clamp(3.5rem,7vw,7rem) clamp(1.25rem,3vw,2.5rem);
+  }
+  .closing h2{
+    font-size:clamp(2.6rem,5.8vw,5.4rem);font-weight:800;line-height:.98;
+    max-width:18ch;margin-bottom:1.5rem;
+  }
+  .closing p{max-width:44rem;font-size:clamp(1rem,1.3vw,1.125rem);margin-bottom:2.25rem;}
+  .closing .hero-ctas{gap:.75rem;}
+
+  /* ================= FOOTER ================= */
+  .ft-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr 1.1fr;background:var(--canvas);}
+  .ft-cell{border-left:1px solid var(--line);padding:clamp(1.5rem,3vw,2.5rem) clamp(1.25rem,2.5vw,2rem);}
+  .ft-cell:first-child{border-left:none;}
+  .ft-brand img{height:18px;width:auto;margin-bottom:1.1rem;}
+  .ft-brand p{font-size:.8125rem;color:var(--lbl);max-width:22rem;}
+  .ft-cell .lbl{display:block;margin-bottom:1rem;color:var(--ink);}
+  .ft-cell ul{list-style:none;}
+  .ft-cell ul li{border-top:1px solid var(--line);}
+  .ft-cell ul li:first-child{border-top:none;}
+  .ft-cell ul a{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:.55rem 0;font-size:.875rem;color:var(--body);
+    transition:color .18s ease;
+  }
+  .ft-cell ul a:hover{color:var(--ink);}
+  .ft-cell address{font-style:normal;font-size:.875rem;line-height:1.8;}
+  .ft-cell address a:hover{color:var(--ink);}
+  .legal{
+    display:flex;flex-wrap:wrap;gap:.5rem 2rem;justify-content:space-between;align-items:center;
+    background:var(--cell-alt);border-top:1px solid var(--line);
+    padding:.9rem clamp(1.25rem,3vw,2.5rem);
+  }
+  .legal p,.legal a{font-size:12px;color:var(--lbl);letter-spacing:.02em;}
+  .legal a:hover{color:var(--ink);}
+
+  /* ================= RESPONSIVE ================= */
+  @media (max-width:1100px){
+    .agrow{grid-template-columns:64px 1fr 1.3fr 64px;}
+  }
+  @media (max-width:920px){
+    .hdr{grid-template-columns:1fr auto;}
+    .hdr nav{grid-column:1 / -1;grid-row:2;border-top:1px solid var(--line);justify-content:flex-start;}
+    .hdr nav a{height:52px;border-left:1px solid var(--line);}
+    .hdr nav li:first-child a{border-left:none;}
+    .hero{grid-template-columns:1fr;}
+    .hero-fig{border-left:none;border-top:1px solid var(--line);min-height:360px;}
+    .stats{grid-template-columns:1fr 1fr;}
+    .stat:nth-child(odd){border-left:none;}
+    .stat:nth-child(n+3){border-top:1px solid var(--line);}
+    .pillars{grid-template-columns:1fr;}
+    .pillar{border-left:none;border-top:1px solid var(--line);}
+    .pillar:first-child{border-top:none;}
+    .fintro{grid-template-columns:1fr;}
+    .fintro-t{border-left:none;border-top:1px solid var(--line);}
+    .fband{grid-template-columns:1fr;}
+    .fcell{border-left:none;border-top:1px solid var(--line);display:grid;grid-template-columns:96px 1fr;column-gap:1.25rem;align-items:center;}
+    .fcell:first-child{border-top:none;}
+    .fcell-letter{margin-bottom:0;font-size:3.4rem;}
+    .bastion{grid-template-columns:1fr;}
+    .bastion-spec{border-left:none;border-top:1px solid var(--line);}
+    .bench{grid-template-columns:1fr;}
+    .bench-lbl{border-bottom:1px solid var(--line);}
+    .bench-mark{border-left:none;border-top:1px solid var(--line);justify-content:flex-start;padding:1rem clamp(1.25rem,3vw,2.5rem);}
+    .bench-mark:first-of-type{border-top:none;}
+    .ft-grid{grid-template-columns:1fr 1fr;}
+    .ft-brand{grid-column:1 / -1;}
+    .ft-cell:nth-child(2){border-left:none;}
+    .ft-cell:nth-child(n+2){border-top:1px solid var(--line);}
+  }
+  @media (max-width:700px){
+    .agrow{grid-template-columns:48px 1fr 48px;}
+    .ag-no{grid-column:1;grid-row:1;padding:1.25rem .25rem;align-items:flex-start;padding-top:1.55rem;}
+    .ag-need{grid-column:2;grid-row:1;padding:1.25rem 1.1rem;}
+    .ag-arrow{grid-column:3;grid-row:1;}
+    .ag-q{grid-column:2 / 4;grid-row:2;border-top:1px solid var(--line);padding:1rem 1.1rem 1.25rem;}
+    .hero-ctas .btn{width:100%;justify-content:space-between;white-space:normal;text-align:left;}
+    h1{font-size:clamp(2rem,8.6vw,3rem);}
+    .ft-grid{grid-template-columns:1fr;}
+    .ft-cell{border-left:none;}
+    .legal{justify-content:flex-start;}
+  }
+  @media (max-width:420px){
+    .stat-n{font-size:2rem;}
+    .hdr nav a{padding:0 .9rem;font-size:11px;}
+  }
+
+  /* ================= REDUCED MOTION ================= */
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;}
+    .rule{animation:none;transform:none;}
+    .blink{animation:none;}
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="frame">
+  <div class="rule" style="--i:0" aria-hidden="true"></div>
+
+  <header class="hdr">
+    <div class="brand">
+      <a href="/" aria-label="bostoncyberx home">
+        <img src="/assets/img/bcx-wordmark-line-ink.svg" alt="bostoncyberx" width="180" height="20">
+      </a>
+    </div>
+    <nav aria-label="Primary">
+      <ul>
+        <li><a href="/services/">Services</a></li>
+        <li><a href="/platform/">Platform</a></li>
+        <li><a href="/industries/">Industries</a></li>
+        <li><a href="/insights/">Insights</a></li>
+        <li><a href="/about/">About</a></li>
+      </ul>
+    </nav>
+    <a class="hdr-cta" href="/discovery/">Book discovery</a>
+  </header>
+
+  <div class="rule" style="--i:1" aria-hidden="true"></div>
+
+  <main id="main">
+
+    <!-- ============ HERO ============ -->
+    <section class="hero" aria-label="Introduction">
+      <div class="hero-copy">
+        <p class="hero-tag lbl"><span class="sq sq-red" aria-hidden="true"></span>Operating since 2026 &middot; Boston &middot; The AI-native transformation partner</p>
+        <h1><span>Transform with AI.</span><span>Defend with AI.</span><span>Achieve with AI.</span></h1>
+        <p class="hero-lead">We are an AI-native firm. We run our own company on the technology we recommend, and we help businesses achieve meaningful outcomes through AI transformation, secured by proactive defense and fortified by enterprise resilience.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-red" href="/discovery/">Schedule a 30-minute discovery call <span class="arrow" aria-hidden="true">&rarr;</span></a>
+          <a class="btn btn-ghost" href="/ai-readiness-assessment/">Take the free AI Assessment <span class="arrow" aria-hidden="true">&rarr;</span></a>
+        </div>
+      </div>
+      <div class="hero-fig" role="img" aria-label="The BCX X mark rendered as two crossing strings of matte spheres, slowly rotating">
+        <span class="fig-note tl lbl">Fig. 01 &middot; The mark</span>
+        <span class="fig-note br lbl">Rotation continuous &middot; Axis Y</span>
+        <canvas id="xcanvas" aria-hidden="true"></canvas>
+      </div>
+    </section>
+
+    <div class="rule" style="--i:2" aria-hidden="true"></div>
+
+    <!-- ============ STATS STRIP ============ -->
+    <section class="stats" aria-label="Key figures">
+      <div class="stat">
+        <p class="stat-n"><span class="num" data-count="25">25</span> <small>to</small> <span class="num" data-count="1000" data-comma>1,000</span></p>
+        <span class="lbl">Employees &middot; the companies we serve</span>
+      </div>
+      <div class="stat">
+        <p class="stat-n"><span class="num" data-count="3">3</span> <small>wk</small></p>
+        <span class="lbl">bcxCompass baseline assessment</span>
+      </div>
+      <div class="stat">
+        <p class="stat-n"><span class="num" data-count="90">90</span> <small>day</small></p>
+        <span class="lbl">Roadmap, ranked by return</span>
+      </div>
+      <div class="stat">
+        <p class="stat-n"><span class="num" data-count="9">9</span> <small>to</small> <span class="num" data-count="12">12</span> <small>mo</small></p>
+        <span class="lbl">Full FORGE journey</span>
+      </div>
+    </section>
+
+    <div class="rule" style="--i:3" aria-hidden="true"></div>
+
+    <!-- ============ CEO AGENDA ============ -->
+    <section aria-labelledby="agenda-h">
+      <div class="shead">
+        <h2 id="agenda-h" class="lbl">Table 01 &middot; The CEO agenda</h2>
+        <span class="lbl">05 needs &middot; manual index</span>
+      </div>
+
+      <a class="agrow" href="/industries/">
+        <span class="ag-no lbl">01</span>
+        <span class="ag-need">I need to grow.</span>
+        <span class="ag-q"><p>How do I grow revenue, improve profitability, and create new business opportunities?</p><span class="ag-link">See the AI use cases in your industry</span></span>
+        <span class="ag-arrow" aria-hidden="true">&rarr;</span>
+      </a>
+      <a class="agrow" href="/platform/">
+        <span class="ag-no lbl">02</span>
+        <span class="ag-need">I need to reduce risk.</span>
+        <span class="ag-q"><p>How do I protect my business, customers, reputation, and operations while enabling growth?</p><span class="ag-link">See how bcxBastion holds the line</span></span>
+        <span class="ag-arrow" aria-hidden="true">&rarr;</span>
+      </a>
+      <a class="agrow" href="/services/">
+        <span class="ag-no lbl">03</span>
+        <span class="ag-need">I need to become more productive.</span>
+        <span class="ag-q"><p>How do I help my people accomplish more while improving quality and reducing costs?</p><span class="ag-link">See the working playbook</span></span>
+        <span class="ag-arrow" aria-hidden="true">&rarr;</span>
+      </a>
+      <a class="agrow" href="/services/">
+        <span class="ag-no lbl">04</span>
+        <span class="ag-need">I need to transform my business.</span>
+        <span class="ag-q"><p>How do I modernize my business, operating model, and technology without disrupting what already works?</p><span class="ag-link">See how FORGE stages the change</span></span>
+        <span class="ag-arrow" aria-hidden="true">&rarr;</span>
+      </a>
+      <a class="agrow" href="/ai-readiness-assessment/">
+        <span class="ag-no lbl">05</span>
+        <span class="ag-need">I need to prepare for what's next.</span>
+        <span class="ag-q"><p>How do I harness AI and emerging technologies responsibly while positioning my organization for the future?</p><span class="ag-link">Take the free AI Assessment</span></span>
+        <span class="ag-arrow" aria-hidden="true">&rarr;</span>
+      </a>
+    </section>
+
+    <div class="rule" style="--i:4" aria-hidden="true"></div>
+
+    <!-- ============ PILLARS ============ -->
+    <section aria-labelledby="pillars-h">
+      <div class="shead">
+        <h2 id="pillars-h" class="lbl">Table 02 &middot; Three territories</h2>
+        <span class="lbl">Transform &middot; Defend &middot; Achieve</span>
+      </div>
+      <div class="pillars">
+        <article class="pillar">
+          <p class="pillar-tag lbl"><span class="sq" style="background:#3D6BFF" aria-hidden="true"></span>Territory 01 &middot; Transform</p>
+          <h3>Put AI to work.</h3>
+          <p class="pillar-promise">Strategy, governance, and deployment from a fractional AI office. The use cases that pay, the policies that protect, the rollout your people actually adopt.</p>
+          <ul class="pillar-rows">
+            <li><b>An AI roadmap your board can read</b><span>Use cases ranked by return, owners and dates attached</span></li>
+            <li><b>Governance that speeds you up</b><span>Clear rules end the quiet chaos of unapproved tools</span></li>
+            <li><b>Adoption, not shelfware</b><span>Training and guardrails so the rollout sticks</span></li>
+          </ul>
+          <a class="pillar-link" href="/services/ai-consulting-boston/">Explore AI consulting <span class="arrow" aria-hidden="true">&rarr;</span></a>
+        </article>
+        <article class="pillar">
+          <p class="pillar-tag lbl"><span class="sq" style="background:#E02D22" aria-hidden="true"></span>Territory 02 &middot; Defend</p>
+          <h3>Hold the line.</h3>
+          <p class="pillar-promise">Security leadership on retainer and AI-powered operations that never clock out. The same intelligence attackers use, working for you.</p>
+          <ul class="pillar-rows">
+            <li><b>A CISO in the seat</b><span>Fractional leadership without the $250K hire</span></li>
+            <li><b>Insurance renewals without drama</b><span>Evidence ready before the underwriter asks</span></li>
+            <li><b>Watched around the clock</b><span>bcxBastion detection and response, 24/7</span></li>
+          </ul>
+          <a class="pillar-link" href="/services/vciso-boston/">Explore security leadership <span class="arrow" aria-hidden="true">&rarr;</span></a>
+        </article>
+        <article class="pillar">
+          <p class="pillar-tag lbl"><span class="sq" style="background:#1FA268" aria-hidden="true"></span>Territory 03 &middot; Achieve</p>
+          <h3>Show the board.</h3>
+          <p class="pillar-promise">Outcomes in writing, every month. Measured productivity from AI, measured risk reduction, deadlines met with room to spare.</p>
+          <ul class="pillar-rows">
+            <li><b>Fixed scopes, published ranges</b><span>You know the price before you commit</span></li>
+            <li><b>Deliverables in writing</b><span>What you get each month, named in advance</span></li>
+            <li><b>Board-ready reporting</b><span>One page that answers the questions directors ask</span></li>
+          </ul>
+          <a class="pillar-link" href="/about/">How we stay accountable <span class="arrow" aria-hidden="true">&rarr;</span></a>
+        </article>
+      </div>
+    </section>
+
+    <div class="rule" style="--i:5" aria-hidden="true"></div>
+
+    <!-- ============ FORGE ============ -->
+    <section aria-labelledby="forge-h">
+      <div class="shead">
+        <h2 id="forge-h" class="lbl">Table 03 &middot; The FORGE framework</h2>
+        <span class="lbl">05 stages &middot; one journey</span>
+      </div>
+      <div class="fintro">
+        <div class="fintro-h">
+          <h2>One framework runs through everything. FORGE.</h2>
+        </div>
+        <div class="fintro-t">
+          <p>You cannot adopt trustworthy AI without cybersecurity, and you cannot defend your organization from disruption without AI. FORGE is the one framework we run across both, from first readiness check to enterprise-grade scale.</p>
+        </div>
+      </div>
+      <div class="fband">
+        <div class="fcell">
+          <span class="fcell-letter" aria-hidden="true">F</span>
+          <div><span class="fcell-name">Foundations</span><span class="fcell-q">Are we ready?</span></div>
+        </div>
+        <div class="fcell">
+          <span class="fcell-letter" aria-hidden="true">O</span>
+          <div><span class="fcell-name">Objectives</span><span class="fcell-q">What are we solving for?</span></div>
+        </div>
+        <div class="fcell">
+          <span class="fcell-letter" aria-hidden="true">R</span>
+          <div><span class="fcell-name">Rapid Pilots</span><span class="fcell-q">Can we prove it fast?</span></div>
+        </div>
+        <div class="fcell">
+          <span class="fcell-letter" aria-hidden="true">G</span>
+          <div><span class="fcell-name">Growth</span><span class="fcell-q">How do we scale it?</span></div>
+        </div>
+        <div class="fcell">
+          <span class="fcell-letter" aria-hidden="true">E</span>
+          <div><span class="fcell-name">Enterprise-Grade</span><span class="fcell-q">Is it safe long-term?</span></div>
+        </div>
+      </div>
+      <div class="ffoot">
+        <span class="lbl">Footnote</span>
+        <p>Raw material gets shaped, tempered, and hardened. Each stage adds strength, and a typical mid-sized company runs the full journey in nine to twelve months.</p>
+      </div>
+    </section>
+
+    <div class="rule" style="--i:6" aria-hidden="true"></div>
+
+    <!-- ============ BASTION ============ -->
+    <section aria-labelledby="bastion-h">
+      <div class="shead">
+        <h2 id="bastion-h" class="lbl">Table 04 &middot; bcxBastion specification</h2>
+        <span class="lbl">Status &middot; live</span>
+      </div>
+      <div class="bastion">
+        <div class="bastion-copy">
+          <h2>bcxBastion never closes.</h2>
+          <p>Everything watched in one place, AI-assisted triage, and a 24/7 response path. Senior analysts, not a ticket queue.</p>
+          <a class="btn btn-ghost" href="/platform/">Explore the platform <span class="arrow" aria-hidden="true">&rarr;</span></a>
+        </div>
+        <div class="bastion-spec">
+          <div class="spec-row">
+            <span class="spec-lbl lbl"><span class="sq sq-red blink" aria-hidden="true"></span>Monitoring</span>
+            <span class="spec-val big">24/7/365</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-lbl lbl">Telemetry</span>
+            <span class="spec-val">One console</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-lbl lbl">Triage</span>
+            <span class="spec-val">AI-assisted, human-decided</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-lbl lbl">Reporting</span>
+            <span class="spec-val">Monthly, board-ready</span>
+          </div>
+        </div>
+      </div>
+      <div class="bench">
+        <span class="bench-lbl lbl">Partner bench</span>
+        <span class="bench-mark bm-1">Google SecOps</span>
+        <span class="bench-mark bm-2">CROWDSTRIKE</span>
+        <span class="bench-mark bm-3">Palo Alto Networks</span>
+      </div>
+    </section>
+
+    <div class="rule" style="--i:7" aria-hidden="true"></div>
+
+    <!-- ============ CLOSING ============ -->
+    <section class="closing" aria-labelledby="closing-h">
+      <h2 id="closing-h">Your next move is a conversation.</h2>
+      <p>Thirty minutes with a senior practitioner, no pitch deck, no obligation. Or start on your own: fourteen questions, ten minutes, and the free AI Assessment shows where you stand across seven pillars.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-red" href="/discovery/">Schedule a 30-minute discovery call <span class="arrow" aria-hidden="true">&rarr;</span></a>
+        <a class="btn btn-ghost" href="/ai-readiness-assessment/">Take the free AI Assessment <span class="arrow" aria-hidden="true">&rarr;</span></a>
+      </div>
+    </section>
+
+  </main>
+
+  <div class="rule" style="--i:8" aria-hidden="true"></div>
+
+  <!-- ============ FOOTER ============ -->
+  <footer>
+    <div class="ft-grid">
+      <div class="ft-cell ft-brand">
+        <img src="/assets/img/bcx-wordmark-line-ink.svg" alt="bostoncyberx" width="162" height="18">
+        <p>Transform with AI. Defend with AI. Achieve with AI.</p>
+      </div>
+      <nav class="ft-cell" aria-label="Explore">
+        <span class="lbl">Explore</span>
+        <ul>
+          <li><a href="/services/">Services <span aria-hidden="true">&rarr;</span></a></li>
+          <li><a href="/platform/">Platform <span aria-hidden="true">&rarr;</span></a></li>
+          <li><a href="/industries/">Industries <span aria-hidden="true">&rarr;</span></a></li>
+          <li><a href="/resources/">Resources <span aria-hidden="true">&rarr;</span></a></li>
+        </ul>
+      </nav>
+      <nav class="ft-cell" aria-label="Company">
+        <span class="lbl">Company</span>
+        <ul>
+          <li><a href="/insights/">Insights <span aria-hidden="true">&rarr;</span></a></li>
+          <li><a href="/about/">About <span aria-hidden="true">&rarr;</span></a></li>
+          <li><a href="/discovery/">Discovery call <span aria-hidden="true">&rarr;</span></a></li>
+          <li><a href="/ai-readiness-assessment/">AI Assessment <span aria-hidden="true">&rarr;</span></a></li>
+        </ul>
+      </nav>
+      <div class="ft-cell">
+        <span class="lbl">Contact</span>
+        <address>
+          One Marina Park Drive<br>
+          Boston, MA 02210<br>
+          <a href="tel:+16172415445">617.241.5445</a><br>
+          <a href="mailto:info@bostoncyberx.com">info@bostoncyberx.com</a>
+        </address>
+      </div>
+    </div>
+    <div class="legal">
+      <p>&copy; 2026 bostoncyberx. All rights reserved.</p>
+      <p>Boston &middot; New York &middot; Los Angeles &middot; Jacksonville</p>
+      <a href="/concepts/">All concepts</a>
+    </div>
+  </footer>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+  var reduced = mq.matches;
+
+  /* ---------- count-up numerals ---------- */
+  function fmt(n, comma){ return comma ? n.toLocaleString("en-US") : String(n); }
+  function countUp(el){
+    var target = parseInt(el.getAttribute("data-count"), 10);
+    var comma = el.hasAttribute("data-comma");
+    var dur = 1100, start = performance.now(), done = false;
+    function step(){
+      if (done) return;
+      var p = Math.min(1, (performance.now() - start) / dur);
+      var e = 1 - Math.pow(1 - p, 3);
+      el.textContent = fmt(Math.round(target * e), comma);
+      if (p < 1){ requestAnimationFrame(step); } else { done = true; }
+    }
+    requestAnimationFrame(step);
+    setTimeout(function(){
+      if (!done){ done = true; el.textContent = fmt(target, comma); }
+    }, dur + 200);
+  }
+  var nums = document.querySelectorAll(".num");
+  if (!reduced && "IntersectionObserver" in window && nums.length){
+    var seen = false;
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting && !seen){
+          seen = true;
+          nums.forEach(countUp);
+          io.disconnect();
+        }
+      });
+    }, { threshold: 0.35 });
+    io.observe(document.querySelector(".stats"));
+  }
+
+  /* ---------- the bead X ---------- */
+  var cv = document.getElementById("xcanvas");
+  if (!cv) return;
+  var ctx = cv.getContext("2d");
+  var N = 13, ZOFF = 0.17, SLOPE = 0.94, RB = 0.165, F = 3.4, TILT = -0.13;
+  var beads = [];
+  for (var s = 0; s < 2; s++){
+    for (var i = 0; i < N; i++){
+      var t = -1 + 2 * i / (N - 1);
+      beads.push({ x: t, y: (s ? t : -t) * SLOPE, z: s ? -ZOFF : ZOFF });
+    }
+  }
+  var W = 0, H = 0, dpr = 1;
+  function resize(){
+    var r = cv.parentElement.getBoundingClientRect();
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    W = r.width; H = r.height;
+    cv.width = Math.round(W * dpr);
+    cv.height = Math.round(H * dpr);
+  }
+  function mix(a, b, t){ return a + (b - a) * t; }
+  function col(c1, c2, t){
+    return "rgb(" + Math.round(mix(c1[0], c2[0], t)) + "," +
+                    Math.round(mix(c1[1], c2[1], t)) + "," +
+                    Math.round(mix(c1[2], c2[2], t)) + ")";
+  }
+  var FOG = [229, 231, 234];      /* fades far beads toward the cell tone */
+  var HI  = [206, 210, 215];      /* soft top-left highlight */
+  var MID = [104, 109, 116];
+  var DK  = [ 34,  37,  42];
+  var EDGE= [ 13,  15,  18];
+  var cosT = Math.cos(TILT), sinT = Math.sin(TILT);
+  function draw(theta){
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, W, H);
+    var base = Math.min(W, H) * 0.4;
+    var cx = W / 2, cy = H / 2;
+    var ct = Math.cos(theta), st = Math.sin(theta);
+    var P = [];
+    for (var k = 0; k < beads.length; k++){
+      var b = beads[k];
+      var x = b.x * ct + b.z * st;
+      var z = -b.x * st + b.z * ct;
+      var y = b.y * cosT - z * sinT;
+      z = b.y * sinT + z * cosT;
+      var sc = F / (F - z);
+      P.push({ px: cx + x * base * sc, py: cy + y * base * sc, pr: RB * base * sc, z: z });
+    }
+    P.sort(function(a, b){ return a.z - b.z; });
+    for (var j = 0; j < P.length; j++){
+      var p = P[j];
+      var near = Math.max(0, Math.min(1, (p.z + 1) / 2));
+      var fog = (1 - near) * 0.42;
+      var g = ctx.createRadialGradient(
+        p.px - p.pr * 0.38, p.py - p.pr * 0.42, p.pr * 0.08,
+        p.px, p.py, p.pr
+      );
+      g.addColorStop(0,    col(HI,   FOG, fog));
+      g.addColorStop(0.38, col(MID,  FOG, fog));
+      g.addColorStop(0.78, col(DK,   FOG, fog));
+      g.addColorStop(1,    col(EDGE, FOG, fog));
+      ctx.fillStyle = g;
+      ctx.beginPath();
+      ctx.arc(p.px, p.py, p.pr, 0, 6.28319);
+      ctx.fill();
+    }
+  }
+  resize();
+  window.addEventListener("resize", function(){
+    resize();
+    if (reduced) draw(0.5);
+  });
+  if (reduced){
+    draw(0.5);
+  } else {
+    var t0 = null, visible = true, running = false;
+    function loop(ts){
+      if (!visible){ running = false; return; }
+      if (t0 === null) t0 = ts;
+      draw(0.5 + (ts - t0) * 0.00028);
+      requestAnimationFrame(loop);
+    }
+    function start(){
+      if (!running){ running = true; requestAnimationFrame(loop); }
+    }
+    if ("IntersectionObserver" in window){
+      new IntersectionObserver(function(entries){
+        visible = entries[0].isIntersecting;
+        if (visible) start();
+      }, { threshold: 0 }).observe(cv.parentElement);
+    }
+    start();
+  }
+  mq.addEventListener && mq.addEventListener("change", function(e){
+    reduced = e.matches;
+    if (reduced) draw(0.5);
+  });
+})();
+</script>
+</body>
+</html>

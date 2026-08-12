@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>bostoncyberx | Void concept</title>
+<link rel="icon" type="image/svg+xml" href="/assets/img/bcx-mark.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  /* ============ VOID · constellation on black velvet ============ */
+  :root{
+    --red:#FF3B30;
+    --red-action:#E02D22;
+    --amber:#FBBF24;
+    --blue:#3B82F6;
+    --cyan:#22D3EE;
+    --green:#34D399;
+    --white:#FFFFFF;
+    --body:#c9c9c9;
+    --ash:#9a9a9a;
+    --ghost:rgba(255,255,255,0.32);
+    --void-gap:clamp(120px,20vh,240px);
+    --ease:cubic-bezier(0.22,0.61,0.36,1);
+  }
+  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  html,body{background:#000000;}
+  body{
+    font-family:'Archivo',Arial,sans-serif;
+    font-weight:200;
+    font-size:18px;
+    line-height:1.65;
+    color:var(--body);
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+    overflow-x:hidden;
+  }
+  img{max-width:100%;display:block;}
+  a{color:inherit;text-decoration:none;}
+  button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;}
+
+  ::selection{background:rgba(255,59,48,0.35);color:#fff;}
+
+  :focus{outline:none;}
+  :focus-visible{outline:2px solid var(--red);outline-offset:6px;border-radius:2px;}
+
+  /* ---------- skip link ---------- */
+  .skip{
+    position:fixed;top:16px;left:16px;z-index:100;
+    background:var(--red-action);color:#fff;font-weight:600;font-size:13px;
+    letter-spacing:0.12em;text-transform:uppercase;
+    padding:12px 22px;border-radius:999px;
+    transform:translateY(-200%);transition:transform 0.3s var(--ease);
+  }
+  .skip:focus{transform:translateY(0);}
+
+  /* ---------- shared type ---------- */
+  .label{
+    font-weight:600;font-size:13px;letter-spacing:0.12em;
+    text-transform:uppercase;color:var(--ash);
+  }
+  .measure{max-width:34rem;}
+  .amber{color:var(--amber);}
+  .wrap{width:min(1240px,calc(100% - clamp(40px,8vw,128px)));margin:0 auto;}
+
+  h1,h2{font-weight:300;color:var(--white);letter-spacing:-0.04em;line-height:0.95;}
+  h2{font-size:clamp(2.4rem,5.5vw,4.6rem);}
+
+  /* ---------- CTAs: the only two shapes allowed ---------- */
+  .pill{
+    display:inline-block;
+    background:var(--red-action);color:#fff;
+    font-weight:500;font-size:16px;letter-spacing:0.01em;
+    padding:18px 38px;border-radius:999px;
+    transition:background 0.35s var(--ease),transform 0.35s var(--ease);
+  }
+  .pill:hover{background:#c9241a;transform:translateY(-2px);}
+  .ghost{
+    display:inline-block;position:relative;
+    color:var(--white);font-weight:300;font-size:16px;
+    padding-bottom:4px;
+  }
+  .ghost::after{
+    content:"";position:absolute;left:0;bottom:0;height:1px;width:100%;
+    background:currentColor;
+    transform:scaleX(0);transform-origin:left;
+    transition:transform 0.35s var(--ease);
+  }
+  .ghost:hover::after,.ghost:focus-visible::after{transform:scaleX(1);}
+  .ghost .arr{display:inline-block;margin-left:0.4em;transition:transform 0.35s var(--ease);}
+  .ghost:hover .arr{transform:translateX(5px);}
+  .ghost-quiet{color:var(--ash);font-size:14px;}
+  @media(max-width:430px){
+    .pill{padding:16px 26px;font-size:14.5px;}
+  }
+
+  /* ---------- nav ---------- */
+  .nav{
+    position:absolute;top:0;left:0;right:0;z-index:20;
+    display:flex;align-items:center;justify-content:space-between;
+    width:min(1400px,calc(100% - clamp(40px,6vw,96px)));
+    margin:0 auto;padding:clamp(28px,4vh,44px) 0;
+  }
+  .nav-mark img{height:22px;width:auto;}
+  .nav-links{display:flex;align-items:center;gap:clamp(20px,3vw,44px);list-style:none;}
+  .nav-links .ghost{font-size:14px;font-weight:300;color:var(--body);}
+  .nav-links .ghost:hover{color:#fff;}
+  @media(max-width:768px){
+    .nav-links li:nth-child(n+3){display:none;}
+  }
+
+  /* ---------- hero + constellation ---------- */
+  #constellation{
+    position:fixed;inset:0;width:100vw;height:100vh;
+    z-index:0;pointer-events:none;display:block;
+  }
+  .hero{
+    position:relative;z-index:1;
+    min-height:100vh;min-height:100svh;
+    display:flex;flex-direction:column;justify-content:center;
+    padding:clamp(120px,16vh,160px) 0 clamp(80px,12vh,140px);
+  }
+  .hero .kicker{margin-bottom:clamp(28px,4vh,44px);}
+  .hero h1{
+    font-size:clamp(3.2rem,9vw,8.5rem);
+    letter-spacing:-0.04em;line-height:0.95;font-weight:300;
+  }
+  .hero h1 span{display:block;}
+  .hero .lead{
+    margin-top:clamp(36px,5vh,56px);
+    font-size:18px;font-weight:200;color:var(--body);
+  }
+  .hero .cta-row{
+    margin-top:clamp(40px,6vh,64px);
+    display:flex;align-items:center;gap:clamp(24px,4vw,48px);flex-wrap:wrap;
+  }
+  .scroll-hint{
+    position:absolute;bottom:clamp(24px,5vh,48px);left:50%;transform:translateX(-50%);
+    color:var(--ash);font-weight:600;font-size:11px;letter-spacing:0.24em;text-transform:uppercase;
+    animation:hint 3.2s var(--ease) infinite;
+  }
+  @keyframes hint{
+    0%,100%{opacity:0.35;transform:translate(-50%,0);}
+    50%{opacity:0.9;transform:translate(-50%,8px);}
+  }
+
+  /* everything after the hero floats above the (dispersing) canvas */
+  main{position:relative;z-index:1;}
+  section{padding:var(--void-gap) 0 0;}
+  section:last-of-type{padding-bottom:var(--void-gap);}
+
+  .sec-head{margin-bottom:clamp(56px,9vh,110px);}
+  .sec-head .label{display:block;margin-bottom:clamp(20px,3vh,32px);}
+
+  /* ---------- CEO agenda ---------- */
+  .agenda-list{list-style:none;}
+  .agenda-row{margin:0;}
+  .agenda-btn{
+    display:block;width:100%;text-align:left;
+    padding:clamp(20px,3.4vh,34px) 0;
+  }
+  .agenda-title{
+    display:flex;align-items:baseline;gap:clamp(16px,2.5vw,32px);
+    font-size:clamp(1.6rem,4vw,3rem);
+    font-weight:300;letter-spacing:-0.03em;line-height:1.05;
+    color:var(--ghost);
+    transition:color 0.5s var(--ease);
+  }
+  .agenda-num{
+    font-size:13px;font-weight:600;letter-spacing:0.12em;
+    color:var(--amber);flex:none;transform:translateY(-0.5em);
+    opacity:0.5;transition:opacity 0.5s var(--ease);
+  }
+  .agenda-row.active .agenda-title{color:var(--white);}
+  .agenda-row.active .agenda-num{opacity:1;}
+  .agenda-row:not(.active) .agenda-btn:hover .agenda-title{color:rgba(255,255,255,0.6);}
+  .agenda-reveal{
+    display:grid;grid-template-rows:0fr;
+    transition:grid-template-rows 0.6s var(--ease);
+  }
+  .agenda-row.active .agenda-reveal{grid-template-rows:1fr;}
+  .agenda-reveal-inner{overflow:hidden;}
+  .agenda-q{
+    padding:6px 0 clamp(20px,3vh,30px) clamp(30px,4.2vw,64px);
+    max-width:40rem;
+    opacity:0;transform:translateY(10px);
+    transition:opacity 0.6s var(--ease) 0.15s,transform 0.6s var(--ease) 0.15s;
+  }
+  .agenda-row.active .agenda-q{opacity:1;transform:none;}
+  .agenda-q p{font-weight:200;color:var(--ash);font-size:17px;}
+  .agenda-q .ghost{margin-top:16px;font-size:15px;}
+  /* the ONE permitted line on the page */
+  .agenda-hairline{
+    height:1px;width:100%;background:var(--red);
+    transform:scaleX(0);transform-origin:left;
+    opacity:0;transition:opacity 0.4s var(--ease);
+  }
+  .agenda-row.active .agenda-hairline{opacity:1;}
+
+  /* ---------- pillars ---------- */
+  .pillar{
+    min-height:100vh;min-height:100svh;
+    display:flex;flex-direction:column;justify-content:center;
+    padding:clamp(80px,12vh,140px) 0;
+  }
+  .pillar-word{
+    font-size:clamp(4rem,12vw,11rem);
+    font-weight:300;letter-spacing:-0.04em;line-height:0.95;
+  }
+  .pillar-transform .pillar-word{color:var(--blue);}
+  .pillar-defend .pillar-word{color:var(--cyan);}
+  .pillar-achieve .pillar-word{color:var(--green);}
+  .pillar-promise{
+    margin-top:clamp(24px,4vh,40px);
+    font-size:clamp(1.3rem,2.4vw,1.75rem);
+    font-weight:300;color:var(--white);letter-spacing:-0.02em;
+  }
+  .pillar-desc{margin-top:18px;font-weight:200;color:var(--ash);}
+  .pillar-cols{
+    margin-top:clamp(48px,8vh,88px);
+    display:grid;grid-template-columns:repeat(3,1fr);
+    gap:clamp(28px,4vw,56px);
+  }
+  .pillar-cols h3{
+    font-weight:300;font-size:19px;color:var(--white);
+    letter-spacing:-0.01em;line-height:1.3;margin-bottom:10px;
+  }
+  .pillar-cols p{font-weight:200;font-size:15.5px;color:var(--ash);line-height:1.6;}
+  .pillar .ghost{margin-top:clamp(40px,7vh,72px);align-self:flex-start;}
+  @media(max-width:820px){
+    .pillar{min-height:0;padding:var(--void-gap) 0 0;}
+    .pillar-cols{grid-template-columns:1fr;gap:32px;}
+  }
+
+  /* ---------- FORGE ---------- */
+  .forge-thesis{max-width:38rem;margin-top:clamp(24px,4vh,40px);}
+  .forge-line{
+    display:flex;justify-content:space-between;align-items:baseline;
+    margin-top:clamp(64px,10vh,120px);
+    list-style:none;gap:clamp(8px,2vw,24px);
+  }
+  .forge-letter-btn{
+    font-size:clamp(3rem,7vw,7rem);
+    font-weight:300;letter-spacing:-0.02em;line-height:1;
+    color:var(--ghost);
+    transition:color 0.45s var(--ease),transform 0.45s var(--ease);
+    padding:0.1em 0.15em;
+  }
+  .forge-item.active .forge-letter-btn{color:var(--white);transform:translateY(-6px);}
+  .forge-item:not(.active) .forge-letter-btn:hover{color:rgba(255,255,255,0.6);}
+  .forge-panel{
+    margin-top:clamp(40px,7vh,72px);
+    min-height:7.5em;
+  }
+  .forge-stage{
+    font-size:clamp(1.5rem,3vw,2.4rem);
+    font-weight:300;color:var(--white);letter-spacing:-0.03em;line-height:1.1;
+  }
+  .forge-stage .amber{margin-right:0.35em;}
+  .forge-question{margin-top:14px;font-weight:200;color:var(--ash);max-width:34rem;}
+  .forge-panel.swap .forge-stage,
+  .forge-panel.swap .forge-question{opacity:0;transform:translateY(8px);}
+  .forge-stage,.forge-question{transition:opacity 0.3s var(--ease),transform 0.3s var(--ease);}
+  .forge-foot{margin-top:clamp(48px,8vh,80px);color:var(--ash);font-size:15.5px;max-width:36rem;}
+  .forge-mobile{display:none;list-style:none;}
+  @media(max-width:768px){
+    .forge-line,.forge-panel{display:none;}
+    .forge-mobile{display:block;margin-top:clamp(48px,8vh,72px);}
+    .forge-mobile li{margin-bottom:44px;}
+    .forge-m-letter{
+      font-size:clamp(3rem,14vw,4.5rem);font-weight:300;line-height:1;
+      color:var(--white);letter-spacing:-0.02em;
+    }
+    .forge-m-stage{
+      margin-top:8px;font-size:1.35rem;font-weight:300;color:var(--white);
+      letter-spacing:-0.02em;
+    }
+    .forge-m-q{margin-top:6px;color:var(--ash);font-weight:200;font-size:16px;}
+  }
+
+  /* ---------- bastion ---------- */
+  .bastion-rows{list-style:none;margin-top:clamp(56px,9vh,100px);}
+  .bastion-row{
+    display:flex;flex-wrap:wrap;align-items:baseline;
+    gap:clamp(12px,3vw,48px);
+    padding:clamp(18px,3vh,30px) 0;
+  }
+  .bastion-label{
+    flex:0 0 clamp(140px,22vw,280px);
+    font-weight:200;color:var(--ash);
+    font-size:clamp(1.1rem,2vw,1.5rem);letter-spacing:-0.01em;
+  }
+  .bastion-value{
+    font-weight:300;color:var(--white);
+    font-size:clamp(1.7rem,4.5vw,3.4rem);letter-spacing:-0.03em;line-height:1.05;
+  }
+  .pulse{
+    display:inline-block;width:9px;height:9px;border-radius:50%;
+    background:var(--red);vertical-align:middle;
+    margin-left:0.45em;transform:translateY(-0.35em);
+    animation:pulse 2.4s ease-in-out infinite;
+  }
+  @keyframes pulse{
+    0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(255,59,48,0.45);}
+    50%{opacity:0.55;box-shadow:0 0 0 9px rgba(255,59,48,0);}
+  }
+  .bastion .ghost{margin-top:clamp(40px,7vh,64px);display:inline-block;}
+
+  /* ---------- closing ---------- */
+  .closing h2{font-size:clamp(2.8rem,7.5vw,6.5rem);max-width:14em;}
+  .closing .measure{margin-top:clamp(32px,5vh,48px);}
+  .closing .cta-row{
+    margin-top:clamp(44px,7vh,72px);
+    display:flex;align-items:center;gap:clamp(24px,4vw,48px);flex-wrap:wrap;
+  }
+
+  /* ---------- footer ---------- */
+  footer{
+    position:relative;z-index:1;
+    padding:var(--void-gap) 0 clamp(48px,8vh,80px);
+  }
+  .foot-mark img{height:26px;width:auto;}
+  .foot-verbs{margin-top:28px;color:var(--ash);font-size:15px;font-weight:200;}
+  .foot-meta{margin-top:clamp(40px,6vh,64px);color:var(--ash);font-size:13.5px;font-weight:200;line-height:2;}
+  .foot-meta a{transition:color 0.35s var(--ease);}
+  .foot-meta a:hover{color:#fff;}
+  .foot-bottom{
+    margin-top:clamp(32px,5vh,48px);
+    display:flex;justify-content:space-between;align-items:center;
+    flex-wrap:wrap;gap:16px;
+    color:#6f6f6f;font-size:12.5px;
+  }
+  .foot-bottom .ghost-quiet{font-size:12.5px;color:#6f6f6f;}
+  .foot-bottom .ghost-quiet:hover{color:#fff;}
+
+  /* ---------- reveal on scroll ---------- */
+  .reveal{
+    opacity:0;transform:translateY(24px);
+    transition:opacity 0.8s var(--ease),transform 0.8s var(--ease);
+  }
+  .reveal.in{opacity:1;transform:none;}
+
+  /* ---------- reduced motion ---------- */
+  @media(prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    *,*::before,*::after{animation:none !important;transition:none !important;}
+    .reveal{opacity:1;transform:none;}
+    .scroll-hint{animation:none;}
+    .pulse{animation:none;}
+    .agenda-hairline{transform:scaleX(1) !important;}
+  }
+</style>
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<canvas id="constellation" aria-hidden="true"></canvas>
+
+<header class="nav">
+  <a class="nav-mark" href="/" aria-label="bostoncyberx home">
+    <img src="/assets/img/bcx-wordmark-line.svg" alt="bostoncyberx" width="180" height="22">
+  </a>
+  <nav aria-label="Primary">
+    <ul class="nav-links">
+      <li><a class="ghost" href="/services/">Services</a></li>
+      <li><a class="ghost" href="/platform/">Platform</a></li>
+      <li><a class="ghost" href="/industries/">Industries</a></li>
+      <li><a class="ghost" href="/about/">About</a></li>
+      <li><a class="ghost" href="/discovery/">Book a call<span class="arr">&rarr;</span></a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="main">
+
+  <!-- ================= HERO ================= -->
+  <section class="hero wrap" aria-labelledby="hero-h1">
+    <p class="label kicker">The AI-native transformation partner</p>
+    <h1 id="hero-h1">
+      <span>Transform with AI.</span>
+      <span>Defend with AI.</span>
+      <span><em class="amber" style="font-style:normal;">Achieve</em> with AI.</span>
+    </h1>
+    <p class="lead measure">We are an AI-native firm. We run our own company on the technology we recommend, and we help businesses achieve meaningful outcomes through AI transformation, secured by proactive defense and fortified by enterprise resilience.</p>
+    <div class="cta-row">
+      <a class="pill" href="/discovery/">Schedule a 30-minute discovery call</a>
+      <a class="ghost" href="/ai-readiness-assessment/">Take the free AI Assessment<span class="arr">&rarr;</span></a>
+    </div>
+    <p class="scroll-hint" aria-hidden="true">Scroll</p>
+  </section>
+
+  <!-- ================= CEO AGENDA ================= -->
+  <section class="wrap" aria-labelledby="agenda-label">
+    <div class="sec-head reveal">
+      <p class="label" id="agenda-label">The CEO agenda</p>
+    </div>
+    <ul class="agenda-list reveal" id="agenda">
+
+      <li class="agenda-row active" data-i="0">
+        <button class="agenda-btn" aria-expanded="true">
+          <span class="agenda-title"><span class="agenda-num">01</span>I need to grow.</span>
+        </button>
+        <div class="agenda-reveal"><div class="agenda-reveal-inner">
+          <div class="agenda-q">
+            <p>How do I grow revenue, improve profitability, and create new business opportunities?</p>
+            <a class="ghost" href="/industries/">See the AI use cases in your industry<span class="arr">&rarr;</span></a>
+          </div>
+        </div></div>
+        <div class="agenda-hairline" aria-hidden="true"></div>
+      </li>
+
+      <li class="agenda-row" data-i="1">
+        <button class="agenda-btn" aria-expanded="false">
+          <span class="agenda-title"><span class="agenda-num">02</span>I need to reduce risk.</span>
+        </button>
+        <div class="agenda-reveal"><div class="agenda-reveal-inner">
+          <div class="agenda-q">
+            <p>How do I protect my business, customers, reputation, and operations while enabling growth?</p>
+            <a class="ghost" href="/platform/">See how bcxBastion holds the line<span class="arr">&rarr;</span></a>
+          </div>
+        </div></div>
+        <div class="agenda-hairline" aria-hidden="true"></div>
+      </li>
+
+      <li class="agenda-row" data-i="2">
+        <button class="agenda-btn" aria-expanded="false">
+          <span class="agenda-title"><span class="agenda-num">03</span>I need to become more productive.</span>
+        </button>
+        <div class="agenda-reveal"><div class="agenda-reveal-inner">
+          <div class="agenda-q">
+            <p>How do I help my people accomplish more while improving quality and reducing costs?</p>
+            <a class="ghost" href="/services/">See the working playbook<span class="arr">&rarr;</span></a>
+          </div>
+        </div></div>
+        <div class="agenda-hairline" aria-hidden="true"></div>
+      </li>
+
+      <li class="agenda-row" data-i="3">
+        <button class="agenda-btn" aria-expanded="false">
+          <span class="agenda-title"><span class="agenda-num">04</span>I need to transform my business.</span>
+        </button>
+        <div class="agenda-reveal"><div class="agenda-reveal-inner">
+          <div class="agenda-q">
+            <p>How do I modernize my business, operating model, and technology without disrupting what already works?</p>
+            <a class="ghost" href="/services/">See how FORGE stages the change<span class="arr">&rarr;</span></a>
+          </div>
+        </div></div>
+        <div class="agenda-hairline" aria-hidden="true"></div>
+      </li>
+
+      <li class="agenda-row" data-i="4">
+        <button class="agenda-btn" aria-expanded="false">
+          <span class="agenda-title"><span class="agenda-num">05</span>I need to prepare for what's next.</span>
+        </button>
+        <div class="agenda-reveal"><div class="agenda-reveal-inner">
+          <div class="agenda-q">
+            <p>How do I harness AI and emerging technologies responsibly while positioning my organization for the future?</p>
+            <a class="ghost" href="/ai-readiness-assessment/">Take the free AI Assessment<span class="arr">&rarr;</span></a>
+          </div>
+        </div></div>
+        <div class="agenda-hairline" aria-hidden="true"></div>
+      </li>
+
+    </ul>
+  </section>
+
+  <!-- ================= PILLAR 1 · TRANSFORM ================= -->
+  <section class="pillar pillar-transform wrap" aria-labelledby="p1">
+    <p class="label reveal">Pillar 01</p>
+    <h2 class="pillar-word reveal" id="p1" style="margin-top:clamp(20px,3vh,32px);">Transform</h2>
+    <p class="pillar-promise reveal">Put AI to work.</p>
+    <p class="pillar-desc measure reveal">Strategy, governance, and deployment from a fractional AI office. The use cases that pay, the policies that protect, the rollout your people actually adopt.</p>
+    <div class="pillar-cols reveal">
+      <div>
+        <h3>An AI roadmap your board can read</h3>
+        <p>Use cases ranked by return, owners and dates attached.</p>
+      </div>
+      <div>
+        <h3>Governance that speeds you up</h3>
+        <p>Clear rules end the quiet chaos of unapproved tools.</p>
+      </div>
+      <div>
+        <h3>Adoption, not shelfware</h3>
+        <p>Training and guardrails so the rollout sticks.</p>
+      </div>
+    </div>
+    <a class="ghost reveal" href="/services/ai-consulting-boston/">Explore AI consulting<span class="arr">&rarr;</span></a>
+  </section>
+
+  <!-- ================= PILLAR 2 · DEFEND ================= -->
+  <section class="pillar pillar-defend wrap" aria-labelledby="p2">
+    <p class="label reveal">Pillar 02</p>
+    <h2 class="pillar-word reveal" id="p2" style="margin-top:clamp(20px,3vh,32px);">Defend</h2>
+    <p class="pillar-promise reveal">Hold the line.</p>
+    <p class="pillar-desc measure reveal">Security leadership on retainer and AI-powered operations that never clock out. The same intelligence attackers use, working for you.</p>
+    <div class="pillar-cols reveal">
+      <div>
+        <h3>A CISO in the seat</h3>
+        <p>Fractional leadership without the $250K hire.</p>
+      </div>
+      <div>
+        <h3>Insurance renewals without drama</h3>
+        <p>Evidence ready before the underwriter asks.</p>
+      </div>
+      <div>
+        <h3>Watched around the clock</h3>
+        <p>bcxBastion detection and response, 24/7.</p>
+      </div>
+    </div>
+    <a class="ghost reveal" href="/services/vciso-boston/">Explore security leadership<span class="arr">&rarr;</span></a>
+  </section>
+
+  <!-- ================= PILLAR 3 · ACHIEVE ================= -->
+  <section class="pillar pillar-achieve wrap" aria-labelledby="p3">
+    <p class="label reveal">Pillar 03</p>
+    <h2 class="pillar-word reveal" id="p3" style="margin-top:clamp(20px,3vh,32px);">Achieve</h2>
+    <p class="pillar-promise reveal">Show the board.</p>
+    <p class="pillar-desc measure reveal">Outcomes in writing, every month. Measured productivity from AI, measured risk reduction, deadlines met with room to spare.</p>
+    <div class="pillar-cols reveal">
+      <div>
+        <h3>Fixed scopes, published ranges</h3>
+        <p>You know the price before you commit.</p>
+      </div>
+      <div>
+        <h3>Deliverables in writing</h3>
+        <p>What you get each month, named in advance.</p>
+      </div>
+      <div>
+        <h3>Board-ready reporting</h3>
+        <p>One page that answers the questions directors ask.</p>
+      </div>
+    </div>
+    <a class="ghost reveal" href="/about/">How we stay accountable<span class="arr">&rarr;</span></a>
+  </section>
+
+  <!-- ================= FORGE ================= -->
+  <section class="wrap" aria-labelledby="forge-h">
+    <div class="sec-head reveal" style="margin-bottom:0;">
+      <p class="label">The framework</p>
+      <h2 id="forge-h" style="margin-top:clamp(20px,3vh,32px);">One framework runs through <span class="amber">everything</span>. FORGE.</h2>
+      <p class="forge-thesis">You cannot adopt trustworthy AI without cybersecurity, and you cannot defend your organization from disruption without AI. FORGE is the one framework we run across both, from first readiness check to enterprise-grade scale.</p>
+    </div>
+
+    <ul class="forge-line reveal" id="forge-line" aria-label="FORGE stages">
+      <li class="forge-item active" data-stage="Foundations" data-q="Are we ready?">
+        <button class="forge-letter-btn" aria-expanded="true">F</button>
+      </li>
+      <li class="forge-item" data-stage="Objectives" data-q="What are we solving for?">
+        <button class="forge-letter-btn" aria-expanded="false">O</button>
+      </li>
+      <li class="forge-item" data-stage="Rapid Pilots" data-q="Can we prove it fast?">
+        <button class="forge-letter-btn" aria-expanded="false">R</button>
+      </li>
+      <li class="forge-item" data-stage="Growth" data-q="How do we scale it?">
+        <button class="forge-letter-btn" aria-expanded="false">G</button>
+      </li>
+      <li class="forge-item" data-stage="Enterprise-Grade" data-q="Is it safe long-term?">
+        <button class="forge-letter-btn" aria-expanded="false">E</button>
+      </li>
+    </ul>
+
+    <div class="forge-panel reveal" id="forge-panel" aria-live="polite">
+      <p class="forge-stage"><span class="amber" id="forge-panel-letter">F</span><span id="forge-panel-stage">Foundations</span></p>
+      <p class="forge-question" id="forge-panel-q">Are we ready?</p>
+    </div>
+
+    <ul class="forge-mobile reveal">
+      <li>
+        <p class="forge-m-letter"><span class="amber">F</span></p>
+        <p class="forge-m-stage">Foundations</p>
+        <p class="forge-m-q">Are we ready?</p>
+      </li>
+      <li>
+        <p class="forge-m-letter"><span class="amber">O</span></p>
+        <p class="forge-m-stage">Objectives</p>
+        <p class="forge-m-q">What are we solving for?</p>
+      </li>
+      <li>
+        <p class="forge-m-letter"><span class="amber">R</span></p>
+        <p class="forge-m-stage">Rapid Pilots</p>
+        <p class="forge-m-q">Can we prove it fast?</p>
+      </li>
+      <li>
+        <p class="forge-m-letter"><span class="amber">G</span></p>
+        <p class="forge-m-stage">Growth</p>
+        <p class="forge-m-q">How do we scale it?</p>
+      </li>
+      <li>
+        <p class="forge-m-letter"><span class="amber">E</span></p>
+        <p class="forge-m-stage">Enterprise-Grade</p>
+        <p class="forge-m-q">Is it safe long-term?</p>
+      </li>
+    </ul>
+
+    <p class="forge-foot reveal">Raw material gets shaped, tempered, and hardened. Each stage adds strength, and a typical mid-sized company runs the full journey in nine to twelve months.</p>
+  </section>
+
+  <!-- ================= BASTION ================= -->
+  <section class="bastion wrap" aria-labelledby="bastion-h">
+    <div class="sec-head reveal" style="margin-bottom:0;">
+      <p class="label">The platform</p>
+      <h2 id="bastion-h" style="margin-top:clamp(20px,3vh,32px);">bcxBastion <span class="amber">never</span> closes.</h2>
+      <p class="measure" style="margin-top:clamp(24px,4vh,40px);">Everything watched in one place, AI-assisted triage, and a 24/7 response path. Senior analysts, not a ticket queue.</p>
+    </div>
+    <ul class="bastion-rows">
+      <li class="bastion-row reveal">
+        <span class="bastion-label">Monitoring</span>
+        <span class="bastion-value">24/7/365<span class="pulse" aria-hidden="true"></span></span>
+      </li>
+      <li class="bastion-row reveal">
+        <span class="bastion-label">Telemetry</span>
+        <span class="bastion-value">One console</span>
+      </li>
+      <li class="bastion-row reveal">
+        <span class="bastion-label">Triage</span>
+        <span class="bastion-value">AI-assisted, human-decided</span>
+      </li>
+      <li class="bastion-row reveal">
+        <span class="bastion-label">Reporting</span>
+        <span class="bastion-value">Monthly, board-ready</span>
+      </li>
+    </ul>
+    <a class="ghost reveal" href="/platform/">Explore the platform<span class="arr">&rarr;</span></a>
+  </section>
+
+  <!-- ================= CLOSING ================= -->
+  <section class="closing wrap" aria-labelledby="closing-h">
+    <h2 id="closing-h" class="reveal">Your next move is a <span class="amber">conversation</span>.</h2>
+    <p class="measure reveal">Thirty minutes with a senior practitioner, no pitch deck, no obligation. Or start on your own: fourteen questions, ten minutes, and the free AI Assessment shows where you stand across seven pillars.</p>
+    <div class="cta-row reveal">
+      <a class="pill" href="/discovery/">Schedule a 30-minute discovery call</a>
+      <a class="ghost" href="/ai-readiness-assessment/">Take the free AI Assessment<span class="arr">&rarr;</span></a>
+    </div>
+  </section>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="wrap">
+    <a class="foot-mark" href="/" aria-label="bostoncyberx home">
+      <img src="/assets/img/bcx-wordmark-line.svg" alt="bostoncyberx" width="212" height="26">
+    </a>
+    <p class="foot-verbs">Transform with AI. Defend with AI. Achieve with AI.</p>
+    <p class="foot-meta">
+      One Marina Park Drive, Boston, MA 02210<br>
+      <a href="tel:+16172415445">617.241.5445</a> &middot; <a href="mailto:info@bostoncyberx.com">info@bostoncyberx.com</a><br>
+      Boston &middot; New York &middot; Los Angeles &middot; Jacksonville
+    </p>
+    <div class="foot-bottom">
+      <p>&copy; 2026 bostoncyberx. All rights reserved.</p>
+      <a class="ghost ghost-quiet" href="/concepts/">All concepts</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* =====================================================
+     CONSTELLATION · ~2,600 particles forming the red X
+     ===================================================== */
+  var canvas = document.getElementById("constellation");
+  if (canvas && canvas.getContext) {
+    var ctx = canvas.getContext("2d");
+    var DPR = Math.min(window.devicePixelRatio || 1, 2);
+    var W = 0, H = 0;
+    var particles = [];
+    var pointer = { x: 0, y: 0, tx: 0, ty: 0 };
+    var disperse = 0;
+    var clearedOut = false;
+    var SPARKS = ["#FBBF24", "#3B82F6", "#22D3EE", "#34D399"];
+
+    function sampleX() {
+      // Render a bold X glyph offscreen and sample its filled pixels.
+      var S = 340;
+      var off = document.createElement("canvas");
+      off.width = S; off.height = S;
+      var octx = off.getContext("2d");
+      if (!octx) return [];
+      octx.clearRect(0, 0, S, S);
+      octx.fillStyle = "#fff";
+      octx.font = "900 " + Math.round(S * 0.98) + "px Archivo, 'Arial Black', Arial, sans-serif";
+      octx.textAlign = "center";
+      octx.textBaseline = "middle";
+      octx.fillText("X", S / 2, S / 2 + S * 0.04);
+      var data;
+      try { data = octx.getImageData(0, 0, S, S).data; }
+      catch (e) { return []; }
+      var pts = [], step = 2;
+      for (var y = 0; y < S; y += step) {
+        for (var x = 0; x < S; x += step) {
+          if (data[(y * S + x) * 4 + 3] > 128) {
+            pts.push([x / S - 0.5, y / S - 0.5]);
+          }
+        }
+      }
+      return pts;
+    }
+
+    function particleCount() {
+      if (W < 560) return 1200;
+      if (W < 900) return 1800;
+      return 2600;
+    }
+
+    function buildParticles(keepPositions) {
+      var pts = sampleX();
+      if (!pts.length) return;
+      var count = particleCount();
+      var wide = W >= 1100;
+      var scale = wide ? Math.min(W * 0.46, H * 0.88) : Math.min(W * 0.78, H * 0.82);
+      var cx = wide ? W * 0.74 : W / 2, cy = H * 0.52;
+      var old = keepPositions ? particles : null;
+      var next = [];
+      for (var i = 0; i < count; i++) {
+        var pt = pts[(Math.random() * pts.length) | 0];
+        var jitter = 2.4;
+        var hx = cx + pt[0] * scale + (Math.random() - 0.5) * jitter;
+        var hy = cy + pt[1] * scale + (Math.random() - 0.5) * jitter;
+        var spark = Math.random() < 1 / 12;
+        var ang = Math.random() * Math.PI * 2;
+        var prev = old && old[i];
+        next.push({
+          hx: hx, hy: hy,
+          x: prev ? prev.x : hx + (Math.random() - 0.5) * W * 0.8,
+          y: prev ? prev.y : hy + (Math.random() - 0.5) * H * 0.8,
+          vx: prev ? prev.vx : 0,
+          vy: prev ? prev.vy : 0,
+          size: 1 + Math.random() * 1.2,
+          col: spark ? SPARKS[(Math.random() * SPARKS.length) | 0] : "#FF3B30",
+          baseA: spark ? 0.6 + Math.random() * 0.4 : 0.42 + Math.random() * 0.58,
+          tw: 0.4 + Math.random() * 1.4,
+          twp: Math.random() * Math.PI * 2,
+          f1: 0.14 + Math.random() * 0.22,
+          p1: Math.random() * Math.PI * 2,
+          f2: 0.05 + Math.random() * 0.1,
+          p2: Math.random() * Math.PI * 2,
+          amp1: 4 + Math.random() * 6,
+          amp2: 2 + Math.random() * 4,
+          depth: 0.25 + Math.random() * 0.75,
+          ddx: Math.cos(ang),
+          ddy: Math.sin(ang) * 0.85 - 0.25,
+          dd: 120 + Math.random() * 420
+        });
+      }
+      particles = next;
+    }
+
+    function resize() {
+      W = window.innerWidth;
+      H = window.innerHeight;
+      DPR = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = Math.round(W * DPR);
+      canvas.height = Math.round(H * DPR);
+      canvas.style.width = W + "px";
+      canvas.style.height = H + "px";
+      ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+      buildParticles(particles.length > 0);
+      if (reduced) drawStatic();
+    }
+
+    function easeInOut(t) { return t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2; }
+
+    function drawStatic() {
+      // Reduced motion: the formed X as a single still frame.
+      ctx.clearRect(0, 0, W, H);
+      for (var i = 0; i < particles.length; i++) {
+        var p = particles[i];
+        ctx.globalAlpha = p.baseA * 0.85;
+        ctx.fillStyle = p.col;
+        ctx.fillRect(p.hx, p.hy, p.size, p.size);
+      }
+      ctx.globalAlpha = 1;
+    }
+
+    function frame(now) {
+      requestAnimationFrame(frame);
+      var t = now * 0.001;
+      var d = easeInOut(disperse);
+      if (d >= 0.999) {
+        if (!clearedOut) { ctx.clearRect(0, 0, W, H); clearedOut = true; }
+        return;
+      }
+      clearedOut = false;
+      pointer.x += (pointer.tx - pointer.x) * 0.045;
+      pointer.y += (pointer.ty - pointer.y) * 0.045;
+      ctx.clearRect(0, 0, W, H);
+      var fade = 1 - d;
+      for (var i = 0; i < particles.length; i++) {
+        var p = particles[i];
+        var hx = p.hx + p.ddx * p.dd * d;
+        var hy = p.hy + p.ddy * p.dd * d;
+        var tx = hx + Math.sin(t * p.f1 + p.p1) * p.amp1 + Math.sin(t * p.f2 + p.p2) * p.amp2 + pointer.x * p.depth;
+        var ty = hy + Math.cos(t * p.f1 * 0.9 + p.p2) * p.amp1 * 0.8 + Math.cos(t * p.f2 + p.p1) * p.amp2 + pointer.y * p.depth;
+        p.vx = (p.vx + (tx - p.x) * 0.014) * 0.92;
+        p.vy = (p.vy + (ty - p.y) * 0.014) * 0.92;
+        p.x += p.vx;
+        p.y += p.vy;
+        var a = p.baseA * (0.55 + 0.45 * Math.sin(t * p.tw + p.twp)) * fade;
+        if (a < 0.02) continue;
+        ctx.globalAlpha = a;
+        ctx.fillStyle = p.col;
+        ctx.fillRect(p.x, p.y, p.size, p.size);
+      }
+      ctx.globalAlpha = 1;
+    }
+
+    resize();
+
+    var resizeTimer = null;
+    window.addEventListener("resize", function () {
+      if (resizeTimer) clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(resize, 180);
+    });
+
+    // Re-sample once Archivo is actually loaded so the glyph is on-brand.
+    if (document.fonts && document.fonts.ready && document.fonts.ready.then) {
+      document.fonts.ready.then(function () {
+        buildParticles(true);
+        if (reduced) drawStatic();
+      }).catch(function () {});
+    }
+
+    if (!reduced) {
+      window.addEventListener("pointermove", function (e) {
+        pointer.tx = (e.clientX - W / 2) * 0.035;
+        pointer.ty = (e.clientY - H / 2) * 0.035;
+      }, { passive: true });
+
+      window.addEventListener("scroll", function () {
+        var y = window.scrollY || window.pageYOffset || 0;
+        disperse = Math.min(1, Math.max(0, y / (H * 0.85)));
+      }, { passive: true });
+
+      requestAnimationFrame(frame);
+    }
+  }
+
+  /* =====================================================
+     CEO AGENDA · auto-advance, hover pause, click select
+     ===================================================== */
+  var agenda = document.getElementById("agenda");
+  if (agenda) {
+    var rows = Array.prototype.slice.call(agenda.querySelectorAll(".agenda-row"));
+    var idx = 0, prog = 0, paused = false, visible = true, lastT = null;
+    var DURATION = 6000;
+
+    function activate(i) {
+      idx = i;
+      prog = 0;
+      rows.forEach(function (row, j) {
+        var on = j === i;
+        row.classList.toggle("active", on);
+        var btn = row.querySelector(".agenda-btn");
+        if (btn) btn.setAttribute("aria-expanded", on ? "true" : "false");
+        var hl = row.querySelector(".agenda-hairline");
+        if (hl && !on) hl.style.transform = "scaleX(0)";
+      });
+    }
+
+    rows.forEach(function (row, i) {
+      var btn = row.querySelector(".agenda-btn");
+      if (btn) btn.addEventListener("click", function () { activate(i); });
+    });
+
+    agenda.addEventListener("mouseenter", function () { paused = true; });
+    agenda.addEventListener("mouseleave", function () { paused = false; });
+    agenda.addEventListener("focusin", function () { paused = true; });
+    agenda.addEventListener("focusout", function () { paused = false; });
+
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(function (entries) {
+        visible = entries[0].isIntersecting;
+      }, { threshold: 0.15 }).observe(agenda);
+    }
+
+    if (!reduced) {
+      (function tick(now) {
+        requestAnimationFrame(tick);
+        if (lastT === null) { lastT = now; return; }
+        var dt = now - lastT;
+        lastT = now;
+        if (paused || !visible || document.hidden) return;
+        prog += dt / DURATION;
+        if (prog >= 1) {
+          activate((idx + 1) % rows.length);
+          return;
+        }
+        var hl = rows[idx].querySelector(".agenda-hairline");
+        if (hl) hl.style.transform = "scaleX(" + prog + ")";
+      })(performance.now());
+    }
+  }
+
+  /* =====================================================
+     FORGE · letter focus reveals stage + question
+     ===================================================== */
+  var forgeLine = document.getElementById("forge-line");
+  var forgePanel = document.getElementById("forge-panel");
+  if (forgeLine && forgePanel) {
+    var items = Array.prototype.slice.call(forgeLine.querySelectorAll(".forge-item"));
+    var pLetter = document.getElementById("forge-panel-letter");
+    var pStage = document.getElementById("forge-panel-stage");
+    var pQ = document.getElementById("forge-panel-q");
+    var swapTimer = null;
+
+    function setForge(item) {
+      if (!item || item.classList.contains("active")) return;
+      items.forEach(function (it) {
+        var on = it === item;
+        it.classList.toggle("active", on);
+        var b = it.querySelector(".forge-letter-btn");
+        if (b) b.setAttribute("aria-expanded", on ? "true" : "false");
+      });
+      var write = function () {
+        var btn = item.querySelector(".forge-letter-btn");
+        if (pLetter && btn) pLetter.textContent = btn.textContent;
+        if (pStage) pStage.textContent = item.getAttribute("data-stage") || "";
+        if (pQ) pQ.textContent = item.getAttribute("data-q") || "";
+        forgePanel.classList.remove("swap");
+      };
+      if (reduced) { write(); return; }
+      forgePanel.classList.add("swap");
+      if (swapTimer) clearTimeout(swapTimer);
+      swapTimer = setTimeout(write, 300);
+    }
+
+    items.forEach(function (item) {
+      var btn = item.querySelector(".forge-letter-btn");
+      if (!btn) return;
+      btn.addEventListener("mouseenter", function () { setForge(item); });
+      btn.addEventListener("focus", function () { setForge(item); });
+      btn.addEventListener("click", function () { setForge(item); });
+    });
+  }
+
+  /* =====================================================
+     SCROLL REVEALS · opacity + 24px translateY only
+     ===================================================== */
+  var reveals = Array.prototype.slice.call(document.querySelectorAll(".reveal"));
+  if (reduced || !("IntersectionObserver" in window)) {
+    reveals.forEach(function (el) { el.classList.add("in"); });
+  } else {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("in");
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
+    reveals.forEach(function (el) { io.observe(el); });
+  }
+})();
+</script>
+
+</body>
+</html>

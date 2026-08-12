@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>bostoncyberx | Lens concept</title>
+<link rel="icon" type="image/svg+xml" href="/assets/img/bcx-mark.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@100..900&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   LENS — chromatic aperture on black velvet
+   ============================================================ */
+:root{
+  --bg:#030304;
+  --ink:#eef1f6;
+  --body:#b6bcc6;
+  --mute:#9aa1ac;
+  --hair:rgba(255,255,255,.14);
+  --hair-soft:rgba(255,255,255,.08);
+  --red:#FF3B30;
+  --red-action:#E02D22;
+  --blue:#8db4ff;
+  --cyan:#5fd8e8;
+  --green:#6fdc9a;
+  --track:.18em;
+  --track-wide:.3em;
+  --maxw:1360px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+html,body{background:var(--bg)}
+body{
+  font-family:"Archivo",system-ui,sans-serif;
+  font-weight:300;
+  color:var(--body);
+  font-size:1rem;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+ul,ol{list-style:none}
+
+::selection{background:rgba(255,59,48,.35);color:#fff}
+
+/* skip link */
+.skip{
+  position:absolute;left:1rem;top:-4rem;z-index:100;
+  padding:.6rem 1.2rem;background:#0c0d10;border:1px solid var(--hair);
+  color:var(--ink);font-size:.75rem;letter-spacing:var(--track);text-transform:uppercase;
+  transition:top .2s ease;
+}
+.skip:focus{top:1rem}
+
+a:focus-visible,button:focus-visible,input:focus-visible{
+  outline:1px solid rgba(255,255,255,.7);
+  outline-offset:3px;
+}
+
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 clamp(1.25rem,4vw,4rem)}
+
+/* ---------- type system ---------- */
+.microlabel{
+  font-size:.75rem;font-weight:500;letter-spacing:var(--track-wide);
+  text-transform:uppercase;color:var(--mute);
+}
+.sec-head{
+  font-size:clamp(1rem,1.6vw,1.3rem);
+  font-weight:300;
+  letter-spacing:var(--track);
+  text-transform:uppercase;
+  color:var(--ink);
+  text-shadow:0 0 24px rgba(150,180,255,.25);
+}
+.caps-link{
+  display:inline-flex;align-items:center;gap:.65rem;
+  font-size:.72rem;font-weight:500;letter-spacing:var(--track);
+  text-transform:uppercase;color:var(--mute);
+  transition:color .3s ease;
+}
+.caps-link:hover{color:var(--ink)}
+.caps-link .arr{font-weight:300;transition:transform .3s ease}
+.caps-link:hover .arr{transform:translateX(4px)}
+.caps-link.red-sq::before{
+  content:"";width:6px;height:6px;background:var(--red);flex:none;
+}
+
+.glass-btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:.8rem;
+  padding:1rem 2.2rem;
+  font-size:.72rem;font-weight:500;letter-spacing:var(--track);text-transform:uppercase;
+  color:var(--ink);
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.18);
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+  transition:background .3s ease,border-color .3s ease;
+  white-space:nowrap;
+}
+.glass-btn:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.34)}
+
+.hairline{border:0;border-top:1px solid var(--hair)}
+
+/* ---------- reveals ---------- */
+.rv{opacity:0;filter:blur(4px);transform:translateY(14px);
+  transition:opacity .9s ease,filter .9s ease,transform .9s ease}
+.rv.in{opacity:1;filter:blur(0);transform:none}
+.rv.d1{transition-delay:.1s}.rv.d2{transition-delay:.2s}.rv.d3{transition-delay:.3s}
+
+/* ============================================================
+   THE LENS
+   ============================================================ */
+.lens{
+  position:relative;
+  width:var(--lz,560px);
+  aspect-ratio:1/1;
+  flex:none;
+  --flare:0;
+}
+.lens .rotor{
+  position:absolute;inset:0;
+  animation:lensspin 120s linear infinite;
+  will-change:transform;
+}
+@keyframes lensspin{to{transform:rotate(360deg)}}
+
+.lens .rotor>i,.lens>i{position:absolute;border-radius:50%;display:block}
+
+/* outer atmospheric blooms */
+.l-bloom-cold{
+  inset:-14%;
+  background:radial-gradient(circle at 27% 24%,rgba(150,195,255,.5) 0%,rgba(110,160,255,.16) 32%,transparent 58%);
+  filter:blur(34px);
+  opacity:calc(.62 + var(--flare)*.38);
+  transition:opacity .5s ease;
+}
+.l-bloom-warm{
+  inset:-14%;
+  background:radial-gradient(circle at 75% 79%,rgba(255,155,70,.44) 0%,rgba(255,110,45,.14) 30%,transparent 55%);
+  filter:blur(38px);
+  opacity:calc(.55 + var(--flare)*.45);
+  transition:opacity .5s ease;
+}
+/* soft wide iris ring */
+.l-ring-soft{
+  inset:2%;
+  background:conic-gradient(from 200deg,
+    rgba(205,228,255,0) 0deg,
+    rgba(160,200,255,.35) 68deg,
+    rgba(210,232,255,.95) 115deg,
+    rgba(160,200,255,.5) 148deg,
+    rgba(150,110,235,.16) 182deg,
+    rgba(0,0,0,0) 214deg,
+    rgba(255,170,95,.3) 252deg,
+    rgba(255,110,40,.95) 295deg,
+    rgba(255,145,60,.7) 322deg,
+    rgba(255,205,150,.2) 342deg,
+    rgba(205,228,255,0) 360deg);
+  -webkit-mask:radial-gradient(closest-side,transparent 55%,#000 66%,#000 82%,transparent 92%);
+  mask:radial-gradient(closest-side,transparent 55%,#000 66%,#000 82%,transparent 92%);
+  filter:blur(9px);
+  opacity:calc(.85 + var(--flare)*.15);
+}
+/* crisper refracted arc pass */
+.l-ring-sharp{
+  inset:2%;
+  background:conic-gradient(from 200deg,
+    rgba(225,240,255,0) 62deg,
+    rgba(235,245,255,.9) 112deg,
+    rgba(170,210,255,.45) 150deg,
+    rgba(0,0,0,0) 190deg,
+    rgba(0,0,0,0) 246deg,
+    rgba(255,175,110,.55) 272deg,
+    rgba(255,140,60,.85) 294deg,
+    rgba(0,0,0,0) 336deg);
+  -webkit-mask:radial-gradient(closest-side,transparent 65%,#000 71%,#000 78%,transparent 84%);
+  mask:radial-gradient(closest-side,transparent 65%,#000 71%,#000 78%,transparent 84%);
+  filter:blur(1.5px);
+  opacity:calc(.75 + var(--flare)*.25);
+}
+/* iris blade suggestion */
+.l-blades{
+  inset:10%;
+  background:repeating-conic-gradient(from 8deg,
+    rgba(255,255,255,.055) 0deg 1.4deg,
+    rgba(255,255,255,0) 1.4deg 22.5deg);
+  -webkit-mask:radial-gradient(closest-side,transparent 44%,#000 56%,#000 86%,transparent 94%);
+  mask:radial-gradient(closest-side,transparent 44%,#000 56%,#000 86%,transparent 94%);
+  opacity:.7;
+}
+/* chromatic fringes: hue-shifted 1px rings, offset in opposite directions */
+.l-fringe-cyan{
+  inset:8.5%;
+  border:1px solid rgba(95,216,232,.5);
+  transform:translate(-1.5px,-1px);
+  filter:blur(.4px);
+}
+.l-fringe-violet{
+  inset:8.5%;
+  border:1px solid rgba(168,120,255,.42);
+  transform:translate(1.5px,1.2px);
+  filter:blur(.4px);
+}
+/* faint secondary chroma pair further out */
+.l-fringe-cyan2{
+  inset:3.5%;
+  border:1px solid rgba(95,216,232,.22);
+  transform:translate(-2px,-1.4px);
+  filter:blur(.8px);
+}
+.l-fringe-violet2{
+  inset:3.5%;
+  border:1px solid rgba(168,120,255,.18);
+  transform:translate(2px,1.6px);
+  filter:blur(.8px);
+}
+/* NON-rotating: dark glass core + crisp edge + pupil */
+.l-core{
+  inset:15%;
+  background:
+    radial-gradient(circle at 36% 30%,rgba(130,165,225,.26) 0%,rgba(70,95,150,.1) 26%,transparent 46%),
+    radial-gradient(circle at 68% 74%,rgba(255,150,80,.1) 0%,transparent 38%),
+    radial-gradient(circle at 50% 50%,rgba(14,17,24,.92) 30%,rgba(4,4,6,.99) 72%);
+  box-shadow:
+    inset 0 0 60px rgba(90,130,210,.14),
+    inset 0 2px 18px rgba(255,255,255,.05);
+}
+.l-edge{
+  inset:15%;
+  border:1px solid rgba(255,255,255,.24);
+  box-shadow:
+    0 0 22px rgba(140,175,255,.18),
+    inset 0 0 10px rgba(255,255,255,.06);
+}
+.l-glint{
+  inset:15%;
+  background:radial-gradient(circle at 30% 22%,rgba(255,255,255,.4) 0%,transparent 7%);
+  filter:blur(1px);
+  opacity:calc(.6 + var(--flare)*.4);
+}
+.l-pupil{
+  left:50%;top:50%;
+  width:3px;height:15%;
+  transform:translate(-50%,-50%);
+  border-radius:2px;
+  background:linear-gradient(180deg,rgba(255,59,48,0) 0%,var(--red) 22%,var(--red) 78%,rgba(255,59,48,0) 100%);
+  box-shadow:
+    0 0 10px rgba(255,59,48,calc(.75 + var(--flare)*.25)),
+    0 0 34px rgba(255,59,48,calc(.3 + var(--flare)*.3));
+  transition:box-shadow .5s ease;
+}
+
+/* satellite lenses */
+.lens--sm{--lz:160px}
+.lens--sm .l-fringe-cyan,.lens--sm .l-fringe-violet{transform:translate(-1px,-.6px)}
+.lens--sm .l-fringe-violet{transform:translate(1px,.7px)}
+.lens--sm .l-fringe-cyan2,.lens--sm .l-fringe-violet2{display:none}
+.lens--sm .l-pupil{width:2px}
+/* satellites: monochromatic tint in the pillar hue */
+.lens--sm{filter:grayscale(1) sepia(1) hue-rotate(182deg) saturate(2.6) brightness(.96)}
+.lens--sm.hue-cyan{filter:grayscale(1) sepia(1) hue-rotate(148deg) saturate(2.4) brightness(.96)}
+.lens--sm.hue-green{filter:grayscale(1) sepia(1) hue-rotate(100deg) saturate(2.1) brightness(.96)}
+
+/* horizontal lens streak */
+.streak{
+  position:absolute;pointer-events:none;
+  left:50%;top:50%;transform:translate(-50%,-50%);
+  width:190%;height:110px;
+}
+.streak::before{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(90deg,transparent 0%,rgba(150,190,255,.12) 26%,rgba(230,240,255,.2) 50%,rgba(255,160,90,.1) 74%,transparent 100%);
+  filter:blur(26px);
+}
+.streak::after{
+  content:"";position:absolute;left:4%;right:4%;top:50%;height:2px;transform:translateY(-50%);
+  background:linear-gradient(90deg,transparent 0%,rgba(190,215,255,.4) 30%,rgba(255,255,255,.55) 50%,rgba(255,180,120,.32) 72%,transparent 100%);
+  filter:blur(1px);
+}
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+.top{
+  position:absolute;inset:0 0 auto 0;z-index:20;
+}
+.top-in{
+  display:flex;align-items:center;justify-content:space-between;gap:2rem;
+  padding-top:clamp(1.2rem,2.5vw,2.2rem);
+}
+.brand img{height:20px;width:auto}
+.top-nav{display:flex;gap:clamp(1.2rem,2.4vw,2.6rem)}
+.top-nav a{
+  font-size:.68rem;font-weight:500;letter-spacing:var(--track);text-transform:uppercase;
+  color:var(--mute);transition:color .3s ease;
+}
+.top-nav a:hover{color:var(--ink)}
+.top-cta{
+  font-size:.68rem;font-weight:500;letter-spacing:var(--track);text-transform:uppercase;
+  color:var(--ink);
+  padding:.6rem 1.1rem;border:1px solid var(--hair);
+  transition:border-color .3s ease;
+  white-space:nowrap;
+}
+.top-cta:hover{border-color:rgba(255,255,255,.4)}
+@media(max-width:900px){.top-nav{display:none}}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero{
+  position:relative;
+  min-height:100svh;
+  display:flex;align-items:center;
+  overflow:hidden;
+  padding:clamp(6rem,10vh,8rem) 0 clamp(3rem,6vh,5rem);
+}
+.hero-grid{
+  display:grid;
+  grid-template-columns:minmax(0,44%) minmax(0,1fr);
+  align-items:center;
+  gap:clamp(2rem,5vw,6rem);
+  width:100%;
+}
+.hero-optic{
+  position:relative;
+  display:flex;justify-content:center;
+  margin-left:clamp(-14rem,-12vw,-4rem);
+}
+.hero-optic .lens{--lz:clamp(380px,42vw,620px)}
+.hero-copy{position:relative;z-index:2;max-width:40rem}
+.hero-copy .microlabel{margin-bottom:1.6rem;display:block}
+h1{
+  font-size:clamp(2.4rem,5vw,4.6rem);
+  font-weight:200;
+  line-height:1.14;
+  letter-spacing:-.005em;
+  color:var(--ink);
+  margin-bottom:1.6rem;
+}
+h1 .v{font-style:normal;font-weight:500}
+.lead{max-width:34rem;font-weight:300;color:var(--body);margin-bottom:2.6rem}
+
+.capture{max-width:34rem}
+.capture-row{display:flex;gap:1rem;align-items:stretch}
+.capture input{
+  flex:1;min-width:0;
+  background:transparent;border:0;border-bottom:1px solid var(--hair);
+  color:var(--ink);font-family:inherit;font-weight:300;font-size:.95rem;
+  padding:.9rem .1rem;
+  transition:border-color .3s ease;
+}
+.capture input::placeholder{color:var(--mute);font-weight:300}
+.capture input:focus{border-color:rgba(255,255,255,.45);outline:none}
+.capture input:focus-visible{outline:none}
+.hero-links{display:flex;flex-direction:column;gap:.9rem;margin-top:1.8rem;align-items:flex-start}
+
+@media(max-width:900px){
+  .hero{min-height:0;padding-top:6.5rem}
+  .hero-grid{grid-template-columns:1fr;gap:1rem;justify-items:center}
+  .hero-optic{margin-left:0}
+  .hero-optic .lens{--lz:min(72vw,340px)}
+  .hero-copy{text-align:left;justify-self:stretch}
+  .capture-row{flex-direction:column;gap:1.2rem}
+  .glass-btn{width:100%}
+}
+
+/* ============================================================
+   SECTION SHELL
+   ============================================================ */
+.sec{padding:clamp(4.5rem,9vw,8.5rem) 0;position:relative}
+.sec-top{
+  display:flex;align-items:baseline;justify-content:space-between;gap:2rem;
+  border-top:1px solid var(--hair);
+  padding-top:1.4rem;margin-bottom:clamp(2.5rem,5vw,4.5rem);
+}
+.sec-top .idx{font-size:.72rem;font-weight:500;letter-spacing:var(--track);color:var(--mute)}
+
+/* ============================================================
+   CEO AGENDA — APERTURES
+   ============================================================ */
+.ap-list{border-bottom:1px solid var(--hair)}
+.ap{position:relative;border-top:1px solid var(--hair)}
+.ap-dot{
+  position:absolute;top:-3px;left:0;width:6px;height:6px;border-radius:50%;
+  background:radial-gradient(circle,#fff 0%,rgba(190,215,255,.9) 40%,transparent 70%);
+  box-shadow:0 0 10px rgba(190,215,255,.9),0 0 26px rgba(150,190,255,.5);
+  opacity:0;pointer-events:none;
+}
+.ap.on .ap-dot{animation:aptravel 6s linear forwards}
+@keyframes aptravel{
+  0%{left:0;opacity:0}
+  4%{opacity:1}
+  92%{opacity:1}
+  100%{left:calc(100% - 6px);opacity:0}
+}
+.ap-head{
+  width:100%;display:flex;align-items:baseline;gap:clamp(1.2rem,3vw,2.6rem);
+  padding:1.5rem 0 1.4rem;text-align:left;
+}
+.ap-num{
+  font-size:.72rem;font-weight:500;letter-spacing:var(--track);color:var(--mute);
+  flex:none;transition:color .4s ease;
+}
+.ap-need{
+  font-size:clamp(1rem,2.2vw,1.45rem);
+  font-weight:300;letter-spacing:var(--track);text-transform:uppercase;
+  color:var(--mute);
+  transition:color .4s ease,text-shadow .4s ease;
+}
+.ap.on .ap-need{color:var(--ink);text-shadow:0 0 26px rgba(160,195,255,.4)}
+.ap.on .ap-num{color:var(--ink)}
+.ap-body{
+  display:grid;grid-template-rows:0fr;
+  transition:grid-template-rows .6s ease;
+}
+.ap.on .ap-body{grid-template-rows:1fr}
+.ap-body-in{overflow:hidden;min-height:0}
+.ap-q{
+  max-width:44rem;color:var(--body);font-weight:300;
+  opacity:0;filter:blur(4px);transition:opacity .7s ease .15s,filter .7s ease .15s;
+  padding-left:calc(1.05rem + clamp(1.2rem,3vw,2.6rem));
+}
+.ap.on .ap-q{opacity:1;filter:blur(0)}
+.ap-q .caps-link{margin:1.1rem 0 1.7rem}
+@media(max-width:600px){.ap-q{padding-left:0}}
+
+/* ============================================================
+   PILLARS — THREE ACTS
+   ============================================================ */
+.act{
+  border-top:1px solid var(--hair);
+  padding:clamp(3.5rem,7vw,6rem) 0;
+}
+.act-grid{
+  display:grid;grid-template-columns:minmax(200px,300px) minmax(0,1fr);
+  gap:clamp(2rem,6vw,7rem);align-items:start;
+}
+.act-side{display:flex;flex-direction:column;align-items:flex-start;gap:2rem;position:sticky;top:6rem}
+.act-title{
+  font-size:.8rem;font-weight:300;letter-spacing:var(--track-wide);text-transform:uppercase;
+  color:var(--mute);display:flex;align-items:center;gap:1rem;
+}
+.act-title .n{font-weight:500}
+.act-stmt{
+  font-size:clamp(2.1rem,4vw,3.4rem);
+  font-weight:200;line-height:1.12;color:var(--ink);
+  margin-bottom:1.2rem;
+}
+.act-stmt .p{font-weight:300}
+.act--transform .act-stmt .p{color:var(--blue)}
+.act--defend .act-stmt .p{color:var(--cyan)}
+.act--achieve .act-stmt .p{color:var(--green)}
+.act-promise{max-width:36rem;margin-bottom:2.6rem}
+.act-rows{border-bottom:1px solid var(--hair-soft);margin-bottom:2.2rem}
+.act-row{
+  display:grid;grid-template-columns:minmax(140px,220px) 1fr;gap:1rem 2.5rem;
+  border-top:1px solid var(--hair-soft);
+  padding:1.1rem 0;
+}
+.act-row b{font-weight:500;color:var(--ink);font-size:.95rem}
+.act-row span{font-weight:300;color:var(--mute);font-size:.92rem}
+@media(max-width:900px){
+  .act-grid{grid-template-columns:1fr;gap:2.4rem}
+  .act-side{position:static;flex-direction:row;align-items:center;gap:1.6rem}
+  .act-side .lens--sm{--lz:110px}
+  .act-row{grid-template-columns:1fr;gap:.15rem}
+}
+
+/* ============================================================
+   FORGE — FIVE PANES
+   ============================================================ */
+.forge-band{
+  display:grid;grid-template-columns:repeat(5,1fr);
+  border:1px solid var(--hair);
+  position:relative;overflow:hidden;
+}
+.forge-band::after{ /* light passing across glass */
+  content:"";position:absolute;inset:-40% -30%;pointer-events:none;
+  background:linear-gradient(105deg,transparent 42%,rgba(190,215,255,.07) 48%,rgba(255,255,255,.11) 50%,rgba(255,175,110,.06) 53%,transparent 58%);
+  animation:sweep 11s ease-in-out infinite;
+}
+@keyframes sweep{
+  0%{transform:translateX(-55%)}
+  55%{transform:translateX(55%)}
+  100%{transform:translateX(55%)}
+}
+.pane{
+  padding:clamp(1.6rem,2.6vw,2.6rem) clamp(1.1rem,2vw,1.8rem) clamp(2rem,3vw,3rem);
+  border-left:1px solid var(--hair);
+  transition:background .5s ease;
+  position:relative;
+}
+.pane:first-child{border-left:0}
+.pane:hover,.pane.lit{background:rgba(190,215,255,.045)}
+.pane-letter{
+  font-size:clamp(3.6rem,6vw,6rem);
+  font-weight:100;line-height:1;color:var(--ink);
+  opacity:.5;transition:opacity .5s ease,text-shadow .5s ease;
+  margin-bottom:1.6rem;
+}
+.pane:hover .pane-letter,.pane.lit .pane-letter{opacity:1;text-shadow:0 0 34px rgba(170,200,255,.45)}
+.pane-stage{
+  font-size:.7rem;font-weight:500;letter-spacing:var(--track);text-transform:uppercase;
+  color:var(--ink);margin-bottom:.7rem;
+}
+.pane-q{font-size:.86rem;font-weight:300;color:var(--mute)}
+.forge-thesis{max-width:46rem;margin-bottom:clamp(2.5rem,5vw,4rem)}
+.forge-foot{font-size:.85rem;color:var(--mute);max-width:44rem;margin-top:2rem}
+@media(max-width:900px){
+  .forge-band{grid-template-columns:1fr}
+  .pane{border-left:0;border-top:1px solid var(--hair);display:grid;
+    grid-template-columns:auto 1fr;gap:.2rem 1.6rem;align-items:center;
+    padding:1.4rem 1.4rem}
+  .pane:first-child{border-top:0}
+  .pane-letter{grid-row:1/3;font-size:3.2rem;margin-bottom:0;width:3.4rem}
+  .pane-stage{margin-bottom:.2rem}
+}
+
+/* ============================================================
+   BASTION — OPTICS BENCH
+   ============================================================ */
+.bench{
+  display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);
+  gap:clamp(2.5rem,6vw,7rem);align-items:start;
+}
+.live{
+  display:inline-flex;align-items:center;gap:.7rem;
+  font-size:.68rem;font-weight:500;letter-spacing:var(--track);text-transform:uppercase;color:var(--mute);
+  margin-bottom:1.4rem;
+}
+.live i{
+  width:7px;height:7px;border-radius:50%;background:var(--red);flex:none;
+  box-shadow:0 0 10px rgba(255,59,48,.9);
+  animation:pulse 2.4s ease-in-out infinite;
+}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+.bench h2.sec-head{font-size:clamp(1.3rem,2.6vw,2rem);margin-bottom:1.4rem}
+.bench-lead{max-width:32rem;margin-bottom:2.2rem}
+.bench-rows{border-bottom:1px solid var(--hair)}
+.bench-row{
+  display:flex;justify-content:space-between;align-items:baseline;gap:2rem;
+  border-top:1px solid var(--hair);
+  padding:1.25rem 0;
+}
+.bench-row .k{
+  font-size:.7rem;font-weight:500;letter-spacing:var(--track);text-transform:uppercase;color:var(--mute);
+}
+.bench-row .val{font-weight:500;color:var(--ink);font-size:.95rem;text-align:right}
+@media(max-width:900px){.bench{grid-template-columns:1fr}}
+
+/* ============================================================
+   CLOSING
+   ============================================================ */
+.closing{
+  position:relative;overflow:hidden;
+  padding:clamp(7rem,14vw,12rem) 0 clamp(11rem,20vw,16rem);
+  text-align:center;
+}
+.closing-lens{
+  position:absolute;left:50%;bottom:0;
+  transform:translate(-50%,62%);
+  pointer-events:none;
+}
+.closing-lens .lens{--lz:clamp(560px,72vw,1050px)}
+.closing-in{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center}
+.closing h2{
+  font-size:clamp(2.2rem,5vw,4.2rem);
+  font-weight:200;line-height:1.14;color:var(--ink);
+  max-width:22ch;margin-bottom:1.6rem;
+}
+.closing-lead{max-width:38rem;margin:0 auto 2.8rem}
+.closing-ctas{display:flex;gap:1.2rem;flex-wrap:wrap;justify-content:center}
+@media(max-width:600px){
+  .closing-ctas{flex-direction:column;width:100%}
+  .closing-ctas .glass-btn{width:100%}
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer{border-top:1px solid var(--hair);padding:clamp(3rem,6vw,4.5rem) 0 3rem;position:relative;z-index:3;background:var(--bg)}
+.foot-grid{
+  display:flex;justify-content:space-between;gap:2.5rem;flex-wrap:wrap;align-items:flex-start;
+  margin-bottom:3rem;
+}
+.foot-brand img{height:22px;width:auto;margin-bottom:1.1rem}
+.foot-tri{font-size:.82rem;color:var(--mute);font-weight:300}
+.foot-meta{
+  display:flex;flex-direction:column;gap:.45rem;
+  font-size:.82rem;color:var(--mute);font-weight:300;
+  text-align:right;
+}
+.foot-meta a:hover{color:var(--ink)}
+.foot-base{
+  display:flex;justify-content:space-between;gap:1.5rem;flex-wrap:wrap;
+  border-top:1px solid var(--hair-soft);padding-top:1.6rem;
+  font-size:.72rem;color:var(--mute);
+}
+.foot-base .caps-link{font-size:.65rem}
+@media(max-width:700px){.foot-meta{text-align:left}}
+
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .lens .rotor{animation:none}
+  .forge-band::after{animation:none;opacity:0}
+  .live i{animation:none}
+  .ap.on .ap-dot{animation:none;opacity:0}
+  .rv{opacity:1;filter:none;transform:none;transition:none}
+  .ap-body,.ap-q,.pane,.pane-letter{transition:none}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="top">
+  <div class="wrap top-in">
+    <a class="brand" href="/" aria-label="bostoncyberx home">
+      <img src="/assets/img/bcx-wordmark-line.svg" alt="bostoncyberx" width="180" height="20">
+    </a>
+    <nav class="top-nav" aria-label="Primary">
+      <a href="/services/">Services</a>
+      <a href="/platform/">Platform</a>
+      <a href="/industries/">Industries</a>
+      <a href="/insights/">Insights</a>
+      <a href="/about/">About</a>
+    </nav>
+    <a class="top-cta" href="/discovery/">Discovery call</a>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ================= HERO ================= -->
+  <section class="hero" aria-label="Introduction">
+    <div class="wrap hero-grid">
+      <div class="hero-optic">
+        <div class="streak" aria-hidden="true"></div>
+        <div class="lens" id="heroLens" aria-hidden="true">
+          <div class="rotor">
+            <i class="l-bloom-cold"></i>
+            <i class="l-bloom-warm"></i>
+            <i class="l-ring-soft"></i>
+            <i class="l-ring-sharp"></i>
+            <i class="l-blades"></i>
+            <i class="l-fringe-cyan2"></i>
+            <i class="l-fringe-violet2"></i>
+            <i class="l-fringe-cyan"></i>
+            <i class="l-fringe-violet"></i>
+          </div>
+          <i class="l-core"></i>
+          <i class="l-edge"></i>
+          <i class="l-glint"></i>
+          <i class="l-pupil"></i>
+        </div>
+      </div>
+      <div class="hero-copy">
+        <span class="microlabel rv">[&nbsp;The AI-native firm&nbsp;]</span>
+        <h1 class="rv d1"><span class="v">Transform</span> with AI. <span class="v">Defend</span> with AI. <span class="v">Achieve</span> with AI.</h1>
+        <p class="lead rv d2">We are an AI-native firm. We run our own company on the technology we recommend, and we help businesses achieve meaningful outcomes through AI transformation, secured by proactive defense and fortified by enterprise resilience.</p>
+        <div class="capture rv d3">
+          <form class="capture-row" id="briefForm" novalidate>
+            <input type="email" name="email" placeholder="Work email" aria-label="Work email" autocomplete="email">
+            <button class="glass-btn" type="submit">Request the briefing</button>
+          </form>
+          <div class="hero-links">
+            <a class="caps-link red-sq" href="/discovery/">Schedule a discovery call <span class="arr">&rarr;</span></a>
+            <a class="caps-link" href="/ai-readiness-assessment/">I'd rather self-assess <span class="arr">&rarr;</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CEO AGENDA ================= -->
+  <section class="sec" aria-labelledby="agenda-h">
+    <div class="wrap">
+      <div class="sec-top rv">
+        <h2 class="sec-head" id="agenda-h">What is on your agenda</h2>
+        <span class="idx">[ 01 &middot; five apertures ]</span>
+      </div>
+      <ol class="ap-list rv d1" id="apList">
+        <li class="ap">
+          <span class="ap-dot" aria-hidden="true"></span>
+          <button class="ap-head" type="button" aria-expanded="false">
+            <span class="ap-num">[ 01 ]</span>
+            <span class="ap-need">I need to grow.</span>
+          </button>
+          <div class="ap-body"><div class="ap-body-in"><div class="ap-q">
+            <p>How do I grow revenue, improve profitability, and create new business opportunities?</p>
+            <a class="caps-link" href="/industries/">See the AI use cases in your industry <span class="arr">&rarr;</span></a>
+          </div></div></div>
+        </li>
+        <li class="ap">
+          <span class="ap-dot" aria-hidden="true"></span>
+          <button class="ap-head" type="button" aria-expanded="false">
+            <span class="ap-num">[ 02 ]</span>
+            <span class="ap-need">I need to reduce risk.</span>
+          </button>
+          <div class="ap-body"><div class="ap-body-in"><div class="ap-q">
+            <p>How do I protect my business, customers, reputation, and operations while enabling growth?</p>
+            <a class="caps-link" href="/platform/">See how bcxBastion holds the line <span class="arr">&rarr;</span></a>
+          </div></div></div>
+        </li>
+        <li class="ap">
+          <span class="ap-dot" aria-hidden="true"></span>
+          <button class="ap-head" type="button" aria-expanded="false">
+            <span class="ap-num">[ 03 ]</span>
+            <span class="ap-need">I need to become more productive.</span>
+          </button>
+          <div class="ap-body"><div class="ap-body-in"><div class="ap-q">
+            <p>How do I help my people accomplish more while improving quality and reducing costs?</p>
+            <a class="caps-link" href="/services/">See the working playbook <span class="arr">&rarr;</span></a>
+          </div></div></div>
+        </li>
+        <li class="ap">
+          <span class="ap-dot" aria-hidden="true"></span>
+          <button class="ap-head" type="button" aria-expanded="false">
+            <span class="ap-num">[ 04 ]</span>
+            <span class="ap-need">I need to transform my business.</span>
+          </button>
+          <div class="ap-body"><div class="ap-body-in"><div class="ap-q">
+            <p>How do I modernize my business, operating model, and technology without disrupting what already works?</p>
+            <a class="caps-link" href="/services/">See how FORGE stages the change <span class="arr">&rarr;</span></a>
+          </div></div></div>
+        </li>
+        <li class="ap">
+          <span class="ap-dot" aria-hidden="true"></span>
+          <button class="ap-head" type="button" aria-expanded="false">
+            <span class="ap-num">[ 05 ]</span>
+            <span class="ap-need">I need to prepare for what's next.</span>
+          </button>
+          <div class="ap-body"><div class="ap-body-in"><div class="ap-q">
+            <p>How do I harness AI and emerging technologies responsibly while positioning my organization for the future?</p>
+            <a class="caps-link" href="/ai-readiness-assessment/">Take the free AI Assessment <span class="arr">&rarr;</span></a>
+          </div></div></div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ================= PILLARS ================= -->
+  <section class="sec" aria-labelledby="pillars-h" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-top rv">
+        <h2 class="sec-head" id="pillars-h">Three disciplines, one firm</h2>
+        <span class="idx">[ 02 &middot; three acts ]</span>
+      </div>
+
+      <article class="act act--transform rv">
+        <div class="act-grid">
+          <div class="act-side">
+            <div class="lens lens--sm" aria-hidden="true">
+              <div class="rotor">
+                <i class="l-bloom-cold"></i><i class="l-bloom-warm"></i>
+                <i class="l-ring-soft"></i><i class="l-ring-sharp"></i>
+                <i class="l-blades"></i>
+                <i class="l-fringe-cyan"></i><i class="l-fringe-violet"></i>
+              </div>
+              <i class="l-core"></i><i class="l-edge"></i><i class="l-glint"></i><i class="l-pupil"></i>
+            </div>
+            <span class="act-title"><span class="n">01</span> Transform</span>
+          </div>
+          <div>
+            <h3 class="act-stmt">Put AI to work<span class="p">.</span></h3>
+            <p class="act-promise">Strategy, governance, and deployment from a fractional AI office. The use cases that pay, the policies that protect, the rollout your people actually adopt.</p>
+            <div class="act-rows">
+              <div class="act-row"><b>An AI roadmap your board can read</b><span>Use cases ranked by return, owners and dates attached</span></div>
+              <div class="act-row"><b>Governance that speeds you up</b><span>Clear rules end the quiet chaos of unapproved tools</span></div>
+              <div class="act-row"><b>Adoption, not shelfware</b><span>Training and guardrails so the rollout sticks</span></div>
+            </div>
+            <a class="caps-link" href="/services/ai-consulting-boston/">Explore AI consulting <span class="arr">&rarr;</span></a>
+          </div>
+        </div>
+      </article>
+
+      <article class="act act--defend rv">
+        <div class="act-grid">
+          <div class="act-side">
+            <div class="lens lens--sm hue-cyan" aria-hidden="true">
+              <div class="rotor">
+                <i class="l-bloom-cold"></i><i class="l-bloom-warm"></i>
+                <i class="l-ring-soft"></i><i class="l-ring-sharp"></i>
+                <i class="l-blades"></i>
+                <i class="l-fringe-cyan"></i><i class="l-fringe-violet"></i>
+              </div>
+              <i class="l-core"></i><i class="l-edge"></i><i class="l-glint"></i><i class="l-pupil"></i>
+            </div>
+            <span class="act-title"><span class="n">02</span> Defend</span>
+          </div>
+          <div>
+            <h3 class="act-stmt">Hold the line<span class="p">.</span></h3>
+            <p class="act-promise">Security leadership on retainer and AI-powered operations that never clock out. The same intelligence attackers use, working for you.</p>
+            <div class="act-rows">
+              <div class="act-row"><b>A CISO in the seat</b><span>Fractional leadership without the $250K hire</span></div>
+              <div class="act-row"><b>Insurance renewals without drama</b><span>Evidence ready before the underwriter asks</span></div>
+              <div class="act-row"><b>Watched around the clock</b><span>bcxBastion detection and response, 24/7</span></div>
+            </div>
+            <a class="caps-link" href="/services/vciso-boston/">Explore security leadership <span class="arr">&rarr;</span></a>
+          </div>
+        </div>
+      </article>
+
+      <article class="act act--achieve rv">
+        <div class="act-grid">
+          <div class="act-side">
+            <div class="lens lens--sm hue-green" aria-hidden="true">
+              <div class="rotor">
+                <i class="l-bloom-cold"></i><i class="l-bloom-warm"></i>
+                <i class="l-ring-soft"></i><i class="l-ring-sharp"></i>
+                <i class="l-blades"></i>
+                <i class="l-fringe-cyan"></i><i class="l-fringe-violet"></i>
+              </div>
+              <i class="l-core"></i><i class="l-edge"></i><i class="l-glint"></i><i class="l-pupil"></i>
+            </div>
+            <span class="act-title"><span class="n">03</span> Achieve</span>
+          </div>
+          <div>
+            <h3 class="act-stmt">Show the board<span class="p">.</span></h3>
+            <p class="act-promise">Outcomes in writing, every month. Measured productivity from AI, measured risk reduction, deadlines met with room to spare.</p>
+            <div class="act-rows">
+              <div class="act-row"><b>Fixed scopes, published ranges</b><span>You know the price before you commit</span></div>
+              <div class="act-row"><b>Deliverables in writing</b><span>What you get each month, named in advance</span></div>
+              <div class="act-row"><b>Board-ready reporting</b><span>One page that answers the questions directors ask</span></div>
+            </div>
+            <a class="caps-link" href="/about/">How we stay accountable <span class="arr">&rarr;</span></a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ================= FORGE ================= -->
+  <section class="sec" aria-labelledby="forge-h" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-top rv">
+        <h2 class="sec-head" id="forge-h">One framework runs through everything. FORGE.</h2>
+        <span class="idx">[ 03 &middot; five stages ]</span>
+      </div>
+      <p class="forge-thesis rv d1">You cannot adopt trustworthy AI without cybersecurity, and you cannot defend your organization from disruption without AI. FORGE is the one framework we run across both, from first readiness check to enterprise-grade scale.</p>
+      <div class="forge-band rv d2" id="forgeBand">
+        <div class="pane">
+          <span class="pane-letter" aria-hidden="true">F</span>
+          <h3 class="pane-stage">Foundations</h3>
+          <p class="pane-q">Are we ready?</p>
+        </div>
+        <div class="pane">
+          <span class="pane-letter" aria-hidden="true">O</span>
+          <h3 class="pane-stage">Objectives</h3>
+          <p class="pane-q">What are we solving for?</p>
+        </div>
+        <div class="pane">
+          <span class="pane-letter" aria-hidden="true">R</span>
+          <h3 class="pane-stage">Rapid Pilots</h3>
+          <p class="pane-q">Can we prove it fast?</p>
+        </div>
+        <div class="pane">
+          <span class="pane-letter" aria-hidden="true">G</span>
+          <h3 class="pane-stage">Growth</h3>
+          <p class="pane-q">How do we scale it?</p>
+        </div>
+        <div class="pane">
+          <span class="pane-letter" aria-hidden="true">E</span>
+          <h3 class="pane-stage">Enterprise-Grade</h3>
+          <p class="pane-q">Is it safe long-term?</p>
+        </div>
+      </div>
+      <p class="forge-foot rv d3">Raw material gets shaped, tempered, and hardened. Each stage adds strength, and a typical mid-sized company runs the full journey in nine to twelve months.</p>
+    </div>
+  </section>
+
+  <!-- ================= BASTION ================= -->
+  <section class="sec" aria-labelledby="bastion-h" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-top rv">
+        <span class="microlabel">[ Optics bench ]</span>
+        <span class="idx">[ 04 &middot; always on ]</span>
+      </div>
+      <div class="bench">
+        <div class="rv">
+          <span class="live"><i aria-hidden="true"></i> Live</span>
+          <h2 class="sec-head" id="bastion-h" style="font-size:clamp(1.3rem,2.6vw,2rem);margin-bottom:1.4rem">bcxBastion never closes</h2>
+          <p class="bench-lead">Everything watched in one place, AI-assisted triage, and a 24/7 response path. Senior analysts, not a ticket queue.</p>
+          <a class="caps-link" href="/platform/">Explore the platform <span class="arr">&rarr;</span></a>
+        </div>
+        <div class="bench-rows rv d1">
+          <div class="bench-row"><span class="k">Monitoring</span><span class="val">24/7/365</span></div>
+          <div class="bench-row"><span class="k">Telemetry</span><span class="val">One console</span></div>
+          <div class="bench-row"><span class="k">Triage</span><span class="val">AI-assisted, human-decided</span></div>
+          <div class="bench-row"><span class="k">Reporting</span><span class="val">Monthly, board-ready</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CLOSING ================= -->
+  <section class="closing" aria-labelledby="closing-h">
+    <div class="closing-lens" aria-hidden="true">
+      <div class="lens" id="closeLens">
+        <div class="rotor">
+          <i class="l-bloom-cold"></i><i class="l-bloom-warm"></i>
+          <i class="l-ring-soft"></i><i class="l-ring-sharp"></i>
+          <i class="l-blades"></i>
+          <i class="l-fringe-cyan2"></i><i class="l-fringe-violet2"></i>
+          <i class="l-fringe-cyan"></i><i class="l-fringe-violet"></i>
+        </div>
+        <i class="l-core"></i><i class="l-edge"></i><i class="l-glint"></i><i class="l-pupil"></i>
+      </div>
+    </div>
+    <div class="wrap closing-in">
+      <h2 id="closing-h" class="rv">Your next move is a conversation.</h2>
+      <p class="closing-lead rv d1">Thirty minutes with a senior practitioner, no pitch deck, no obligation. Or start on your own: fourteen questions, ten minutes, and the free AI Assessment shows where you stand across seven pillars.</p>
+      <div class="closing-ctas rv d2">
+        <a class="glass-btn" href="/discovery/">Schedule a discovery call</a>
+        <a class="glass-btn" href="/ai-readiness-assessment/">Take the free AI Assessment</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <img src="/assets/img/bcx-wordmark-line.svg" alt="bostoncyberx" width="200" height="22">
+        <p class="foot-tri">Transform with AI. Defend with AI. Achieve with AI.</p>
+      </div>
+      <div class="foot-meta">
+        <span>One Marina Park Drive, Boston, MA 02210</span>
+        <a href="tel:+16172415445">617.241.5445</a>
+        <a href="mailto:info@bostoncyberx.com">info@bostoncyberx.com</a>
+        <span>Boston &middot; New York &middot; Los Angeles &middot; Jacksonville</span>
+      </div>
+    </div>
+    <div class="foot-base">
+      <span>&copy; 2026 bostoncyberx. All rights reserved.</span>
+      <a class="caps-link" href="/concepts/">All concepts</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- reveals ---------- */
+  var rvs = document.querySelectorAll('.rv');
+  if(reduced || !('IntersectionObserver' in window)){
+    rvs.forEach(function(el){el.classList.add('in')});
+  }else{
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}
+      });
+    },{threshold:.12,rootMargin:'0px 0px -6% 0px'});
+    rvs.forEach(function(el){io.observe(el)});
+  }
+
+  /* ---------- lens flare on pointer proximity ---------- */
+  var hero = document.getElementById('heroLens');
+  if(hero && !reduced && window.matchMedia('(pointer:fine)').matches){
+    var raf = null;
+    window.addEventListener('pointermove', function(e){
+      if(raf) return;
+      raf = requestAnimationFrame(function(){
+        raf = null;
+        var r = hero.getBoundingClientRect();
+        var cx = r.left + r.width/2, cy = r.top + r.height/2;
+        var d = Math.hypot(e.clientX - cx, e.clientY - cy);
+        var reach = Math.max(r.width*1.4, 520);
+        var f = Math.max(0, Math.min(1, 1 - d/reach));
+        hero.style.setProperty('--flare', f.toFixed(3));
+      });
+    }, {passive:true});
+  }
+
+  /* ---------- CEO agenda apertures ---------- */
+  var rows = Array.prototype.slice.call(document.querySelectorAll('#apList .ap'));
+  var current = -1, timer = null, held = false;
+
+  function setRow(i){
+    if(i === current) return;
+    rows.forEach(function(r, j){
+      var on = j === i;
+      r.classList.toggle('on', on);
+      r.querySelector('.ap-head').setAttribute('aria-expanded', on ? 'true' : 'false');
+      if(on){
+        /* restart dot travel */
+        var dot = r.querySelector('.ap-dot');
+        dot.style.animation = 'none';
+        void dot.offsetWidth;
+        dot.style.animation = '';
+      }
+    });
+    current = i;
+  }
+  function next(){ setRow((current + 1) % rows.length); }
+  function startAuto(){
+    if(reduced) return;
+    stopAuto();
+    timer = setInterval(function(){ if(!held) next(); }, 6000);
+  }
+  function stopAuto(){ if(timer){clearInterval(timer); timer=null;} }
+
+  rows.forEach(function(r, i){
+    r.addEventListener('mouseenter', function(){ held = true; setRow(i); });
+    r.addEventListener('mouseleave', function(){ held = false; });
+    r.querySelector('.ap-head').addEventListener('click', function(){
+      setRow(i); startAuto();
+    });
+    r.querySelector('.ap-head').addEventListener('focus', function(){ held = true; setRow(i); });
+    r.querySelector('.ap-head').addEventListener('blur', function(){ held = false; });
+  });
+  setRow(0);
+  startAuto();
+
+  /* ---------- FORGE ambient focus (touch / no-hover devices) ---------- */
+  var band = document.getElementById('forgeBand');
+  if(band && !reduced && !window.matchMedia('(hover:hover)').matches){
+    var panes = band.querySelectorAll('.pane');
+    var pio = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        en.target.classList.toggle('lit', en.intersectionRatio > .85);
+      });
+    },{threshold:[.85]});
+    panes.forEach(function(p){ pio.observe(p); });
+  }
+
+  /* ---------- email capture: no post, route to discovery ---------- */
+  var form = document.getElementById('briefForm');
+  if(form){
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      window.location.href = '/discovery/';
+    });
+  }
+})();
+</script>
+</body>
+</html>

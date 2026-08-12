@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" fill="none" role="img" aria-label="bostoncyberx"><title>bostoncyberx mark, looping</title>
+<style>
+  .s{stroke:#FF3B30;stroke-width:7.0;fill:none;stroke-dasharray:38.18;stroke-dashoffset:38.18}
+  .a{animation:cyc 4.4s cubic-bezier(.65,0,.35,1) infinite}
+  .b{animation:cyc 4.4s cubic-bezier(.65,0,.35,1) .5s infinite}
+  @keyframes cyc{0%{stroke-dashoffset:38.18}19%,78%{stroke-dashoffset:0}
+    97%,100%{stroke-dashoffset:-38.18}}
+  @media(prefers-reduced-motion:reduce){.s{stroke-dashoffset:0;animation:none}}
+</style><rect width="64" height="64" rx="14" fill="#0A0E1A"/><path class="s a" d="M18.5 18.5L45.5 45.5"/><path class="s b" d="M45.5 18.5L18.5 45.5"/></svg>

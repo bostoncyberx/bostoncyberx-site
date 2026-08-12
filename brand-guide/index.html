@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Brand Guidelines v2.0 | bostoncyberx internal</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="bostoncyberx brand guidelines: logo, color, typography, motion, applications.">
+<link rel="canonical" href="https://www.bostoncyberx.com/brand-guide/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0A0E1A;--panel:#151D2E;--paper:#F8FAFC;--slate:#94A3B8;--line:rgba(148,163,184,.16);
+--red:#FF3B30;--blue:#3B82F6;--cyan:#22D3EE;--green:#34D399;--amber:#FBBF24;--f:'Archivo',sans-serif}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--ink);color:var(--paper);font-family:var(--f);line-height:1.6}
+.wrap{max-width:1120px;margin:0 auto;padding:0 28px}
+section{padding:72px 0;border-bottom:1px solid var(--line)}
+h1{font-weight:700;font-size:clamp(2.4rem,5vw,4rem);letter-spacing:-.028em;line-height:1.05}
+h2{font-weight:700;font-size:2rem;letter-spacing:-.02em;margin-bottom:.5rem}
+h3{font-weight:600;font-size:1.15rem;margin-bottom:.4rem}
+.k{font-weight:700;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--slate);display:block;margin-bottom:.9rem}
+p.l{color:var(--slate);max-width:46rem}
+.board{background:#060910;border:1px solid var(--line);border-radius:14px;padding:3rem;display:grid;place-items:center;margin:1.6rem 0}
+.board.light{background:#F3F5F9}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:1.4rem}
+.cell{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:1.4rem}
+.cell img{width:100%;border-radius:8px;border:1px solid var(--line)}
+.cell .cap{color:var(--slate);font-size:.85rem;margin-top:.7rem}
+.sw{border-radius:14px;padding:1.2rem;min-height:130px;display:flex;flex-direction:column;justify-content:flex-end;border:1px solid var(--line)}
+.sw b{font-size:1rem}.sw span{font-size:.78rem;opacity:.85}
+.dont{border-left:none;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:1rem 1.2rem;font-size:.92rem;color:var(--slate)}
+.dont b{color:var(--red)}
+.spec{display:flex;flex-direction:column;gap:.6rem;margin-top:1.4rem}
+.spec div{border-bottom:1px solid var(--line);padding-bottom:.6rem}
+table{width:100%;border-collapse:collapse;font-size:.9rem;margin-top:1rem}
+th{text-align:left;font-weight:600;padding:.6rem .8rem;border-bottom:1px solid var(--slate)}
+td{padding:.6rem .8rem;border-bottom:1px solid var(--line);color:var(--slate)}
+td:first-child{color:var(--paper)}
+@media(max-width:860px){.g2,.g3,.g4{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.g2,.g3,.g4{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<section>
+  <span class="k">bostoncyberx · Brand Guidelines v2.0 · August 2026 · Internal</span>
+  <div style="max-width:680px;margin:2rem 0">
+    <object type="image/svg+xml" data="a/bcx-motion.svg" style="width:100%" aria-label="bostoncyberx animated wordmark"></object>
+  </div>
+  <h1>Engineered, not decorated.</h1>
+  <p class="l" style="margin-top:1rem">One typeface, one dark world, one red letter. This system follows the discipline of the brands we sit beside: Anthropic, OpenAI, Apple, Palo Alto Networks, and CrowdStrike all run restrained engineered sans-serif systems with a single signature accent. Nothing curly, nothing decorative, nothing that needs explaining.</p>
+</section>
+
+<section>
+  <span class="k">01 · Logo</span>
+  <h2>The wordmark is the logo.</h2>
+  <p class="l">Primary lockup: lowercase wordmark, Archivo SemiBold 640, tracking minus 12, the final x in Brand Red, with the signal line drawn beneath. The line passes behind the descender of the y, never in front of it. No accompanying symbol. The standalone red x on an ink tile is the monogram for avatars, favicons, and app icons.</p>
+  <div class="g2">
+    <div><div class="board"><img src="a/bcx-wordmark-line-dark.svg" alt="line lockup on dark" style="width:88%"></div><p class="l" style="font-size:.85rem">Primary · the line lockup on Ink</p></div>
+    <div><div class="board light"><img src="a/bcx-wordmark-line-light.svg" alt="line lockup on light" style="width:88%"></div><p class="l" style="font-size:.85rem">The line lockup on light surfaces</p></div>
+  </div>
+  <div class="g2" style="margin-top:1rem">
+    <div><div class="board"><img src="a/bcx-wordmark-dark.svg" alt="plain wordmark on dark" style="width:88%"></div><p class="l" style="font-size:.85rem">Plain wordmark · for tight spaces where the line cannot breathe</p></div>
+    <div><div class="board light"><img src="a/bcx-wordmark-light.svg" alt="plain wordmark on light" style="width:88%"></div><p class="l" style="font-size:.85rem">On light surfaces the red deepens to #E02D22</p></div>
+  </div>
+  <p class="l" style="font-size:.9rem;margin-top:.8rem">Always place the lockup as artwork (SVG or PNG from the kit). Never rebuild it in type with a rule drawn separately; the line's weight and position are part of the drawing.</p>
+  <div class="g3">
+    <div class="cell"><img src="a/bcx-monogram-tile.svg" alt="monogram tile"><div class="cap">Monogram tile: avatars, favicon, app icon</div></div>
+    <div class="cell" style="display:grid;place-items:center"><img src="a/bcx-x-red.svg" alt="red x" style="width:38%;border:0"><div class="cap">Naked x: watermarks and pattern use only, 8 to 14% opacity</div></div>
+    <div class="cell"><div style="font-size:.9rem;color:var(--slate);line-height:1.7"><b style="color:var(--paper)">Clearspace:</b> the height of the x on all sides.<br><b style="color:var(--paper)">Minimum width:</b> 120px digital, 32mm print.<br><b style="color:var(--paper)">Files:</b> true vector SVG, outlined. No font needed.</div></div>
+  </div>
+  <h3 style="margin-top:2.2rem">Never</h3>
+  <div class="g3" style="margin-top:.8rem">
+    <div class="dont"><b>Never</b> pair the wordmark with a separate X symbol. One red x per lockup.</div>
+    <div class="dont"><b>Never</b> capitalize any letter, in the logo or in prose. BCX (the short form) is the only exception.</div>
+    <div class="dont"><b>Never</b> recolor the x to anything but Brand Red, or apply red to any other letter.</div>
+    <div class="dont"><b>Never</b> outline, shadow, gradient, or rotate the wordmark.</div>
+    <div class="dont"><b>Never</b> set the wordmark in another typeface, weight, or tracking.</div>
+    <div class="dont"><b>Never</b> place it on photography without an ink scrim of at least 70%.</div>
+  </div>
+</section>
+
+<section>
+  <span class="k">02 · Color</span>
+  <h2>Ink world. Red signature. Pillar accents.</h2>
+  <p class="l">Surfaces are ink, text is paper, and red belongs to the identity alone. The three pillar colors are functional: they mark Transform, Defend, and Achieve content, and never appear together except in the pillar story.</p>
+  <div class="g4" style="margin-top:1.4rem">
+    <div class="sw" style="background:#0A0E1A"><b>Ink</b><span>#0A0E1A · R10 G14 B26 · C88 M78 Y52 K68</span></div>
+    <div class="sw" style="background:#F8FAFC;color:#0A0E1A"><b>Paper</b><span>#F8FAFC · C2 M1 Y0 K0</span></div>
+    <div class="sw" style="background:#FF3B30"><b>Brand Red</b><span>#FF3B30 · C0 M88 Y84 K0 · print #E02D22</span></div>
+    <div class="sw" style="background:#94A3B8;color:#0A0E1A"><b>Slate</b><span>#94A3B8 · secondary text</span></div>
+    <div class="sw" style="background:#3B82F6"><b>Signal Blue</b><span>#3B82F6 · Transform</span></div>
+    <div class="sw" style="background:#22D3EE;color:#0A0E1A"><b>Electric Cyan</b><span>#22D3EE · Defend</span></div>
+    <div class="sw" style="background:#34D399;color:#06281c"><b>Guard Green</b><span>#34D399 · Achieve</span></div>
+    <div class="sw" style="background:#FBBF24;color:#0A0E1A"><b>Alert Amber</b><span>#FBBF24 · risk callouts only</span></div>
+  </div>
+  <table>
+    <tr><th>Rule</th><th>Detail</th></tr>
+    <tr><td>Red budget</td><td>Red is the signature and the emphasis: the x, the monogram, one watermark, emphasized headline words, and the defense beam. Never a button, chart color, or section wash.</td></tr>
+    <tr><td>Surface ratio</td><td>Roughly 80% ink, 15% paper text, 5% accent. Dark-first everywhere; light surfaces are for print and documents.</td></tr>
+    <tr><td>One accent per section</td><td>A given section or slide uses one pillar color at most. All three appear only in the pillar story itself: the orb's spectrum and the signal line. Buttons are always Signal Blue.</td></tr>
+  </table>
+</section>
+
+<section>
+  <span class="k">03 · Typography</span>
+  <h2>Archivo. One family, every surface.</h2>
+  <p class="l">A grotesque built on the American gothic tradition: flat terminals, engineered curves, made for headlines and data. One family across web, decks, print, and product keeps every surface unmistakably ours, the same discipline as Apple with SF or Google with Google Sans. Weights 400 and 500 carry text, 600 carries the wordmark and labels, 700 carries headlines.</p>
+  <div class="spec">
+    <div style="font-weight:700;font-size:3rem;letter-spacing:-.028em;line-height:1.1">Display 700 · minus 28 tracking</div>
+    <div style="font-weight:600;font-size:1.6rem;letter-spacing:-.02em">Subhead 600 · minus 20 tracking</div>
+    <div style="font-weight:700;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--slate)">Label 700 caps · plus 160 tracking · slate</div>
+    <div style="font-weight:400;font-size:1rem;max-width:46rem">Body 400 at 16px minimum, 1.6 line height, 70 characters maximum measure. Numerals are set in 700 when they carry an argument.</div>
+  </div>
+  <p class="l" style="margin-top:1.2rem;font-size:.88rem">Google Fonts: Archivo 400/500/600/700/800. Desktop files: Archivo variable TTF in the kit. Fallback stack: system-ui, sans-serif. No second typeface exists in this system.</p>
+</section>
+
+<section>
+  <span class="k">04 · Graphic language & iconography</span>
+  <h2>The instrument panel, not the poster.</h2>
+  <div class="g3">
+    <div class="cell"><h3>Blueprint grid</h3><div class="cap">64px hairline grid at 35% opacity on ink surfaces. It signals engineering; never let it compete with text.</div></div>
+    <div class="cell"><h3>The constellation & dome</h3><div class="cap">Wireframe lattice renders in pillar spectrum. Generated backdrops are right-weighted, mostly dark, under an ink scrim.</div></div>
+    <div class="cell"><h3>Icons</h3><div class="cap">1.5px stroke, squared joins, 24px grid, slate by default, one accent when active. No filled icons, no emoji in brand surfaces.</div></div>
+  </div>
+</section>
+
+<section>
+  <span class="k">05 · Motion</span>
+  <h2>Rise, draw, snap.</h2>
+  <table>
+    <tr><th>Principle</th><th>Spec</th></tr>
+    <tr><td>Entrances rise</td><td>22px rise + fade, 700ms, cubic-bezier(.16,1,.3,1), staggered 120 to 140ms</td></tr>
+    <tr><td>Lines draw</td><td>Signal paths draw with scroll or over 600ms; never fade a line in</td></tr>
+    <tr><td>The x snaps</td><td>Logo motion: letters cascade, the red x scales from 1.6 to 1 with a two-frame flicker, then a red rule scans out. 2.0s total, plays once.</td></tr>
+    <tr><td>Restraint</td><td>One orchestrated moment per surface. Everything else is state feedback under 200ms. Reduced motion: all entrances off, content visible.</td></tr>
+  </table>
+</section>
+
+<section>
+  <span class="k">06 · Applications</span>
+  <h2>Shipped surfaces</h2>
+  <div class="g2">
+    <div class="cell"><img src="a/linkedin-banner.png" alt="LinkedIn banner"><div class="cap">LinkedIn banner 1584×396</div></div>
+    <div class="cell"><img src="a/og-default.png" alt="OG image"><div class="cap">Link preview 1200×630</div></div>
+    <div class="cell"><img src="a/post-quote.png" alt="quote post"><div class="cap">Social quote card 1200×1200</div></div>
+    <div class="cell"><img src="a/post-stat.png" alt="stat post"><div class="cap">Social stat card 1200×627</div></div>
+    <div class="cell"><img src="a/zoom-ink.png" alt="zoom background"><div class="cap">Zoom background · ink</div></div>
+    <div class="cell"><img src="a/zoom-horizon.png" alt="zoom background horizon"><div class="cap">Zoom background · horizon</div></div>
+    <div class="cell"><img src="a/slide-title.png" alt="deck title"><div class="cap">Deck · title frame</div></div>
+    <div class="cell"><img src="a/slide-content.png" alt="deck content"><div class="cap">Deck · content frame</div></div>
+    <div class="cell"><img src="a/slide-divider.png" alt="deck divider"><div class="cap">Deck · section divider</div></div>
+    <div class="cell"><img src="a/avatar.png" alt="avatar"><div class="cap">Avatar 800×800</div></div>
+    <div class="cell"><img src="a/merch-cap.jpg" alt="cap mockup"><div class="cap">Merchandise · embroidered cap</div></div>
+    <div class="cell"><img src="a/merch-mug.jpg" alt="mug mockup"><div class="cap">Merchandise · mug</div></div>
+  </div>
+  <table>
+    <tr><th>File</th><th>Location in repo</th></tr>
+    <tr><td>Vector logos + motion</td><td>brand/logo/ (SVG, outlined; motion SVG + HTML)</td></tr>
+    <tr><td>Social kit</td><td>brand/social/ (banner, avatar, OG, quote, stat)</td></tr>
+    <tr><td>Print</td><td>brand/print/ (business card, letterhead, 18×24 event poster; print-ready PDF)</td></tr>
+    <tr><td>Zoom backgrounds</td><td>brand/zoom/</td></tr>
+    <tr><td>Deck frames</td><td>brand/deck/ (1920×1080 masters for any deck tool)</td></tr>
+    <tr><td>Merchandise mockups</td><td>brand/merch/ (cap, tee, mug, hoodie)</td></tr>
+    <tr><td>Font</td><td>brand/src/Archivo.ttf (variable, OFL licensed)</td></tr>
+  </table>
+</section>
+
+<section style="border-bottom:0">
+  <span class="k">07 · Voice, one card</span>
+  <p class="l" style="font-size:1.1rem">Plainspoken expert. Calm under threat. Numbers over adjectives. Second person. Never em or en dashes. Never: cutting-edge, world-class, tailored solutions, industry leading, unlock, leverage as a verb. The name is always lowercase bostoncyberx; BCX is the short form; the x is always red.</p>
+</section>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>bostoncyberx | Halo concept</title>
+<link rel="icon" type="image/svg+xml" href="/assets/img/bcx-mark.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#060708;
+    --panel:#0A0C0E;
+    --paper:#F2F3F5;
+    --body:#B9BDC4;
+    --ghost:rgba(255,255,255,.13);
+    --rule:rgba(255,255,255,.12);
+    --rule-soft:rgba(255,255,255,.07);
+    --red:#FF3B30;
+    --track:.22em;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} }
+  body{
+    background:var(--bg);
+    color:var(--body);
+    font-family:"Archivo",system-ui,sans-serif;
+    font-weight:300;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  img{max-width:100%;display:block}
+  a{color:inherit}
+  ::selection{background:var(--red);color:#fff}
+
+  a:focus-visible, button:focus-visible{
+    outline:1px solid #fff;
+    outline-offset:4px;
+    border-radius:2px;
+  }
+
+  .visually-hidden{
+    position:absolute!important;width:1px;height:1px;overflow:hidden;
+    clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;
+  }
+  .skip-link{
+    position:fixed;top:-100px;left:16px;z-index:200;
+    background:#fff;color:#060708;padding:.6rem 1rem;
+    font-weight:500;text-transform:uppercase;letter-spacing:.12em;font-size:.75rem;
+    text-decoration:none;transition:top .2s ease;
+  }
+  .skip-link:focus{top:16px}
+
+  /* ---------- film grain ---------- */
+  .grain{
+    position:fixed;inset:-50%;z-index:120;pointer-events:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:240px 240px;
+    opacity:.04;
+  }
+
+  /* ---------- header ---------- */
+  .top{
+    position:absolute;top:0;left:0;right:0;z-index:40;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:1.4rem clamp(1.25rem,4vw,3.5rem);
+  }
+  .top .mark img{height:15px;width:auto;opacity:.92}
+  .top-right{display:flex;align-items:center;gap:1.75rem}
+  .status{
+    display:flex;align-items:center;gap:.55rem;
+    font-size:.62rem;font-weight:500;letter-spacing:var(--track);text-transform:uppercase;
+    color:var(--body);
+  }
+  .status-dot{
+    width:6px;height:6px;border-radius:50%;background:var(--red);
+    box-shadow:0 0 8px rgba(255,59,48,.8);
+    animation:pulse 2.4s ease-in-out infinite;
+  }
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+  .top-link{
+    font-size:.62rem;font-weight:500;letter-spacing:var(--track);text-transform:uppercase;
+    color:var(--paper);text-decoration:none;
+    border-bottom:1px solid rgba(255,255,255,.25);padding-bottom:2px;
+  }
+  .top-link:hover{border-bottom-color:#fff}
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;min-height:100svh;
+    display:flex;flex-direction:column;
+    overflow:hidden;
+  }
+  .halo-wrap{
+    position:absolute;left:50%;top:calc(-1 * min(14vmin, 130px));
+    transform:translateX(-50%);
+    width:min(94vmin,1020px);aspect-ratio:1;
+    pointer-events:none;
+  }
+  .halo{
+    position:absolute;inset:0;border-radius:50%;
+    background:
+      radial-gradient(closest-side,
+        transparent 60%,
+        rgba(255,255,255,.02) 65%,
+        rgba(255,255,255,.16) 68.4%,
+        rgba(255,255,255,.72) 69.6%,
+        rgba(255,255,255,.16) 70.8%,
+        rgba(255,255,255,.02) 74%,
+        transparent 80%);
+    box-shadow:0 0 140px rgba(255,255,255,.05), inset 0 0 140px rgba(255,255,255,.04);
+    animation:breathe 8s ease-in-out infinite;
+  }
+  .halo::after{
+    content:"";position:absolute;inset:24%;border-radius:50%;
+    background:radial-gradient(closest-side, rgba(255,255,255,.05), transparent 72%);
+  }
+  @keyframes breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.015)}}
+  .halo-scene{
+    position:absolute;inset:0;border-radius:50%;overflow:hidden;
+  }
+  .halo-scene img{
+    position:absolute;left:50%;bottom:4%;transform:translateX(-50%);
+    width:82%;height:58%;object-fit:cover;object-position:center 68%;
+    filter:grayscale(1) brightness(.62) contrast(1.08);
+    -webkit-mask-image:radial-gradient(90% 100% at 50% 62%, #000 34%, transparent 74%);
+    mask-image:radial-gradient(90% 100% at 50% 62%, #000 34%, transparent 74%);
+    opacity:.85;
+  }
+  .hero-inner{
+    position:relative;z-index:5;flex:1;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    padding:6.5rem clamp(1.25rem,4vw,3.5rem) 3rem;
+    width:100%;
+  }
+  .hero-label{
+    font-size:.66rem;font-weight:500;letter-spacing:var(--track);text-transform:uppercase;
+    color:var(--body);text-align:center;
+    margin-bottom:clamp(1.5rem,4vh,3rem);
+  }
+  .matrix{width:100%;max-width:1120px;display:block}
+  .matrix canvas{display:block;margin:0 auto;max-width:100%}
+  .hero-foot{
+    position:relative;z-index:5;
+    display:flex;align-items:flex-end;justify-content:space-between;gap:2rem;
+    padding:0 clamp(1.25rem,4vw,3.5rem) clamp(2rem,5vh,3.5rem);
+  }
+  .lead{max-width:30rem;font-size:1rem;color:var(--body)}
+
+  /* ---------- CTA chip ---------- */
+  .chip{
+    display:inline-flex;align-items:stretch;text-decoration:none;
+    background:#101214;border:1px solid rgba(255,255,255,.14);
+    color:var(--paper);
+    transition:border-color .25s ease, background .25s ease;
+    flex-shrink:0;
+  }
+  .chip:hover{border-color:rgba(255,255,255,.4);background:#14171A}
+  .chip-tile{
+    width:46px;display:flex;align-items:center;justify-content:center;
+    background:var(--red);color:#fff;flex-shrink:0;
+    transition:background .25s ease;
+  }
+  .chip:hover .chip-tile{background:#E02D22}
+  .chip-tile svg{width:15px;height:15px}
+  .chip-label{
+    display:flex;align-items:center;
+    padding:.95rem 1.35rem;
+    font-size:.72rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;
+    white-space:nowrap;
+  }
+  @media (max-width:560px){ .chip-label{white-space:normal;line-height:1.4} }
+
+  /* sticky CTA */
+  .chip-sticky{
+    position:fixed;right:clamp(1rem,3vw,2rem);bottom:clamp(1rem,3vw,2rem);z-index:110;
+    opacity:0;transform:translateY(18px);pointer-events:none;
+    transition:opacity .4s ease, transform .4s ease;
+    box-shadow:0 14px 44px rgba(0,0,0,.55);
+  }
+  .chip-sticky.show{opacity:1;transform:none;pointer-events:auto}
+  .chip-sticky .chip-label{padding:.8rem 1.1rem;font-size:.64rem}
+  .chip-sticky .chip-tile{width:40px}
+
+  /* ---------- chapters ---------- */
+  .chapter{
+    position:relative;
+    padding:clamp(3.5rem,8vh,6.5rem) clamp(1.25rem,4vw,3.5rem) clamp(4rem,10vh,8rem);
+    max-width:1360px;margin:0 auto;
+  }
+  .ch-head{
+    display:flex;align-items:baseline;justify-content:space-between;gap:1rem;
+    border-top:1px solid var(--rule);
+    padding-top:1.1rem;margin-bottom:clamp(2.5rem,6vh,4.5rem);
+    font-size:.66rem;font-weight:500;letter-spacing:var(--track);text-transform:uppercase;
+    color:var(--body);
+  }
+  .ch-left{display:flex;gap:1.1rem;align-items:baseline}
+  .ch-num{color:rgba(255,255,255,.4);transition:color .5s ease,text-shadow .5s ease}
+  section.live .ch-num{color:var(--red);text-shadow:0 0 12px rgba(255,59,48,.5)}
+  .ch-title{text-align:right}
+
+  [data-rise]{opacity:0;transform:translateY(16px);transition:opacity .7s ease,transform .7s ease}
+  [data-rise].in{opacity:1;transform:none}
+
+  /* ---------- 01 agenda ---------- */
+  .agenda-rows{list-style:none}
+  .agenda-row{border-bottom:1px solid var(--rule-soft)}
+  .agenda-btn{
+    display:block;width:100%;text-align:left;background:none;border:0;cursor:pointer;
+    font-family:inherit;
+    padding:1.3rem 0 1.2rem;position:relative;
+  }
+  .agenda-need{
+    font-size:clamp(1.7rem,4.6vw,3.6rem);
+    font-weight:800;line-height:1.06;letter-spacing:-.01em;
+    color:var(--ghost);
+    transition:color .5s ease;
+    display:flex;gap:1.2rem;align-items:baseline;
+  }
+  .agenda-idx{
+    font-size:.66rem;font-weight:500;letter-spacing:var(--track);
+    color:rgba(255,255,255,.28);flex-shrink:0;
+    transition:color .5s ease;
+  }
+  .agenda-row.active .agenda-need{color:var(--paper)}
+  .agenda-row.active .agenda-idx{color:var(--red)}
+  .agenda-row:not(.active) .agenda-btn:hover .agenda-need{color:rgba(255,255,255,.35)}
+  .agenda-detail{
+    max-height:0;overflow:hidden;opacity:0;
+    transition:max-height .55s ease,opacity .55s ease;
+    padding-left:calc(1.2rem + 1.6em);
+  }
+  .agenda-row.active .agenda-detail{max-height:340px;opacity:1;padding-bottom:1.6rem}
+  .agenda-q{max-width:34rem;font-size:.95rem;margin-bottom:.9rem}
+  .tick{
+    position:absolute;left:0;bottom:-1px;height:2px;width:100%;
+    transform:scaleX(0);transform-origin:left;
+    background:var(--red);opacity:0;
+  }
+  .agenda-row.active .tick{opacity:1}
+  .tick.run{transition:transform 6s linear;transform:scaleX(1)}
+  @media (max-width:640px){ .agenda-detail{padding-left:0} }
+
+  /* ghost link */
+  .ghost-link{
+    display:inline-flex;align-items:center;gap:.6rem;
+    font-size:.66rem;font-weight:500;letter-spacing:var(--track);text-transform:uppercase;
+    color:var(--paper);text-decoration:none;
+    border-bottom:1px solid rgba(255,255,255,.22);padding-bottom:3px;
+    transition:border-color .25s ease;
+  }
+  .ghost-link:hover{border-bottom-color:#fff}
+  .ghost-link svg{width:12px;height:12px;flex-shrink:0}
+
+  /* ---------- pillars 02-04 ---------- */
+  .pillar{overflow:hidden}
+  .pillar-bg{
+    position:absolute;inset:0;z-index:-1;pointer-events:none;
+  }
+  .pillar-bg img{
+    width:100%;height:100%;object-fit:cover;
+    filter:grayscale(1) brightness(.5) contrast(1.05);
+    -webkit-mask-image:radial-gradient(115% 85% at 50% 46%, #000 22%, transparent 76%);
+    mask-image:radial-gradient(115% 85% at 50% 46%, #000 22%, transparent 76%);
+    opacity:.3;
+  }
+  .pillar-h{
+    font-size:clamp(2.6rem,7.4vw,6rem);
+    font-weight:800;line-height:.98;letter-spacing:-.015em;
+    color:var(--paper);
+    margin-bottom:clamp(1.5rem,4vh,2.5rem);
+  }
+  .pillar-promise{max-width:34rem;font-size:1.05rem;margin-bottom:clamp(2rem,5vh,3rem)}
+  .pillar-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:2.5rem;
+    margin-bottom:clamp(2rem,5vh,3rem);
+  }
+  .pill-item{border-top:1px solid var(--rule);padding-top:1.1rem}
+  .pill-item h3{
+    font-size:.72rem;font-weight:500;letter-spacing:var(--track);text-transform:uppercase;
+    color:var(--paper);margin-bottom:.6rem;line-height:1.5;
+  }
+  .pill-item p{font-size:.88rem;color:var(--body)}
+  @media (max-width:820px){ .pillar-grid{grid-template-columns:1fr;gap:1.4rem} }
+
+  /* ---------- 05 forge ---------- */
+  .forge-thesis{max-width:38rem;font-size:1.05rem;margin-bottom:clamp(2.5rem,6vh,4rem)}
+  .forge-wrap{position:relative;margin-left:.2rem}
+  .forge-list{list-style:none}
+  .forge-line{
+    position:absolute;left:19px;top:10px;bottom:10px;width:1px;
+    background:rgba(255,255,255,.14);
+  }
+  .forge-progress{
+    position:absolute;left:19px;top:10px;width:1px;height:0;
+    background:rgba(255,255,255,.85);
+    box-shadow:0 0 8px rgba(255,255,255,.5);
+    transition:height 2.4s ease;
+  }
+  .forge-wrap.in .forge-progress{height:calc(100% - 20px)}
+  .forge-stage{
+    display:grid;grid-template-columns:40px minmax(9rem,14rem) 1fr;
+    gap:1.6rem;align-items:baseline;
+    padding:1.5rem 0;position:relative;
+  }
+  .forge-letter{
+    width:40px;height:40px;display:flex;align-items:center;justify-content:center;
+    border:1px solid rgba(255,255,255,.25);background:var(--bg);
+    font-weight:700;font-size:.95rem;color:var(--paper);
+    position:relative;z-index:2;align-self:center;
+  }
+  .forge-name{
+    font-size:.78rem;font-weight:500;letter-spacing:var(--track);text-transform:uppercase;
+    color:var(--paper);
+  }
+  .forge-q{font-size:.95rem;color:var(--body)}
+  .forge-foot{margin-top:clamp(2rem,5vh,3rem);max-width:34rem;font-size:.88rem;color:rgba(185,189,196,.75)}
+  @media (max-width:640px){
+    .forge-stage{grid-template-columns:40px 1fr;row-gap:.4rem}
+    .forge-q{grid-column:2}
+  }
+
+  /* ---------- 06 bastion ---------- */
+  .console{
+    border:1px solid var(--rule);background:var(--panel);
+    max-width:56rem;
+  }
+  .console-head{
+    display:flex;align-items:center;gap:.7rem;
+    padding:1rem 1.5rem;border-bottom:1px solid var(--rule);
+    font-size:.62rem;font-weight:500;letter-spacing:var(--track);text-transform:uppercase;
+    color:var(--paper);
+  }
+  .console-row{
+    display:grid;grid-template-columns:minmax(8rem,16rem) 1fr;gap:1.5rem;
+    padding:1.1rem 1.5rem;border-bottom:1px solid var(--rule-soft);
+    font-size:.7rem;font-weight:500;letter-spacing:var(--track);text-transform:uppercase;
+  }
+  .console-row:last-of-type{border-bottom:0}
+  .console-key{color:rgba(255,255,255,.42)}
+  .console-val{color:var(--paper)}
+  .bastion-intro{max-width:34rem;font-size:1.05rem;margin-bottom:clamp(2rem,5vh,3rem)}
+  .bastion-analysts{
+    margin-top:1.6rem;font-size:.95rem;color:var(--paper);font-weight:400;
+  }
+  .bastion-link{margin-top:2.2rem}
+  @media (max-width:560px){ .console-row{grid-template-columns:1fr;gap:.3rem} }
+
+  /* ---------- closing ---------- */
+  .closing{
+    position:relative;overflow:hidden;
+    padding:clamp(6rem,16vh,11rem) clamp(1.25rem,4vw,3.5rem) clamp(5rem,12vh,9rem);
+    text-align:center;
+  }
+  .arc-wrap{
+    position:absolute;left:50%;bottom:calc(-1 * min(96vmin,900px) * .62);
+    transform:translateX(-50%);
+    width:min(120vmin,1300px);aspect-ratio:1;
+    pointer-events:none;
+  }
+  .arc{
+    position:absolute;inset:0;border-radius:50%;
+    background:
+      radial-gradient(closest-side,
+        transparent 66%,
+        rgba(255,255,255,.05) 68.6%,
+        rgba(255,255,255,.3) 69.6%,
+        rgba(255,255,255,.05) 70.6%,
+        transparent 74%);
+    animation:breathe 8s ease-in-out infinite;
+  }
+  .closing-inner{position:relative;z-index:5;max-width:900px;margin:0 auto}
+  .closing .matrix{margin-bottom:clamp(1.8rem,4vh,2.8rem)}
+  .closing p{max-width:34rem;margin:0 auto clamp(2.2rem,5vh,3.2rem);font-size:1rem}
+  .closing-ctas{
+    display:flex;align-items:center;justify-content:center;gap:2.2rem;flex-wrap:wrap;
+  }
+
+  /* ---------- footer ---------- */
+  .site-footer{
+    border-top:1px solid var(--rule);
+    padding:1.6rem clamp(1.25rem,4vw,3.5rem) 2.2rem;
+    display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap;
+    font-size:.62rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;
+    color:rgba(185,189,196,.6);
+  }
+  .site-footer img{height:13px;width:auto;opacity:.85}
+  .foot-meta{display:flex;gap:1.6rem;flex-wrap:wrap;align-items:center}
+  .foot-meta a{text-decoration:none}
+  .foot-meta a:hover{color:var(--paper)}
+  .all-concepts{
+    color:rgba(185,189,196,.55);text-decoration:none;
+    border-bottom:1px solid rgba(255,255,255,.14);padding-bottom:2px;
+  }
+  .all-concepts:hover{color:var(--paper)}
+
+  /* ---------- responsive / motion ---------- */
+  @media (max-width:820px){
+    .hero-foot{flex-direction:column;align-items:flex-start;gap:1.6rem}
+    .halo-wrap{width:130vw;top:-18vw}
+    .ch-head{flex-direction:column;gap:.35rem}
+    .ch-title{text-align:left}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .halo,.arc{animation:none}
+    .status-dot,.b-dot{animation:none}
+    [data-rise]{opacity:1;transform:none;transition:none}
+    .agenda-detail{transition:none}
+    .tick{display:none}
+    .forge-progress{transition:none}
+    .forge-wrap .forge-progress{height:calc(100% - 20px)}
+    .chip-sticky{transition:none}
+  }
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="top">
+  <a class="mark" href="/" aria-label="bostoncyberx home">
+    <img src="/assets/img/bcx-wordmark-line.svg" alt="bostoncyberx" width="150" height="15">
+  </a>
+  <div class="top-right">
+    <span class="status" aria-label="bcxBastion operations live"><span class="status-dot" aria-hidden="true"></span>Live · 24/7</span>
+    <a class="top-link" href="/discovery/">Discovery call</a>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" aria-label="Introduction">
+    <div class="halo-wrap" aria-hidden="true">
+      <div class="halo"></div>
+      <div class="halo-scene">
+        <img src="/assets/img/agenda-next.jpg" alt="" loading="eager">
+      </div>
+    </div>
+
+    <div class="hero-inner">
+      <p class="hero-label">AI-native security and transformation · Boston</p>
+      <h1 class="visually-hidden">Transform with AI. Defend with AI. Achieve with AI.</h1>
+      <div class="matrix" data-matrix data-text="TRANSFORM.|DEFEND.|ACHIEVE." data-autoplay aria-hidden="true">
+        <canvas></canvas>
+      </div>
+    </div>
+
+    <div class="hero-foot">
+      <p class="lead">We are an AI-native firm. We run our own company on the technology we recommend, and we help businesses achieve meaningful outcomes through AI transformation, secured by proactive defense and fortified by enterprise resilience.</p>
+      <a class="chip" href="/discovery/">
+        <span class="chip-tile" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.6"/></svg></span>
+        <span class="chip-label">Schedule a 30-minute discovery call</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ============ 01 THE AGENDA ============ -->
+  <section class="chapter" id="agenda" data-chapter>
+    <header class="ch-head">
+      <span class="ch-left"><span class="ch-num">01</span><span>The Agenda</span></span>
+      <span class="ch-title">Five needs</span>
+    </header>
+
+    <h2 class="visually-hidden">The CEO agenda</h2>
+
+    <ul class="agenda-rows" id="agendaRows">
+      <li class="agenda-row" data-rise>
+        <button class="agenda-btn" type="button" aria-expanded="false">
+          <span class="agenda-need"><span class="agenda-idx">01</span>I need to grow.</span>
+          <span class="tick" aria-hidden="true"></span>
+        </button>
+        <div class="agenda-detail">
+          <p class="agenda-q">How do I grow revenue, improve profitability, and create new business opportunities?</p>
+          <a class="ghost-link" href="/industries/">See the AI use cases in your industry<svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.4"/></svg></a>
+        </div>
+      </li>
+      <li class="agenda-row" data-rise>
+        <button class="agenda-btn" type="button" aria-expanded="false">
+          <span class="agenda-need"><span class="agenda-idx">02</span>I need to reduce risk.</span>
+          <span class="tick" aria-hidden="true"></span>
+        </button>
+        <div class="agenda-detail">
+          <p class="agenda-q">How do I protect my business, customers, reputation, and operations while enabling growth?</p>
+          <a class="ghost-link" href="/platform/">See how bcxBastion holds the line<svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.4"/></svg></a>
+        </div>
+      </li>
+      <li class="agenda-row" data-rise>
+        <button class="agenda-btn" type="button" aria-expanded="false">
+          <span class="agenda-need"><span class="agenda-idx">03</span>I need to become more productive.</span>
+          <span class="tick" aria-hidden="true"></span>
+        </button>
+        <div class="agenda-detail">
+          <p class="agenda-q">How do I help my people accomplish more while improving quality and reducing costs?</p>
+          <a class="ghost-link" href="/services/">See the working playbook<svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.4"/></svg></a>
+        </div>
+      </li>
+      <li class="agenda-row" data-rise>
+        <button class="agenda-btn" type="button" aria-expanded="false">
+          <span class="agenda-need"><span class="agenda-idx">04</span>I need to transform my business.</span>
+          <span class="tick" aria-hidden="true"></span>
+        </button>
+        <div class="agenda-detail">
+          <p class="agenda-q">How do I modernize my business, operating model, and technology without disrupting what already works?</p>
+          <a class="ghost-link" href="/services/">See how FORGE stages the change<svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.4"/></svg></a>
+        </div>
+      </li>
+      <li class="agenda-row" data-rise>
+        <button class="agenda-btn" type="button" aria-expanded="false">
+          <span class="agenda-need"><span class="agenda-idx">05</span>I need to prepare for what's next.</span>
+          <span class="tick" aria-hidden="true"></span>
+        </button>
+        <div class="agenda-detail">
+          <p class="agenda-q">How do I harness AI and emerging technologies responsibly while positioning my organization for the future?</p>
+          <a class="ghost-link" href="/ai-readiness-assessment/">Take the free AI Assessment<svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.4"/></svg></a>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ============ 02 TRANSFORM ============ -->
+  <section class="chapter pillar" id="transform" data-chapter>
+    <div class="pillar-bg" aria-hidden="true"><img src="/assets/img/agenda-transform.jpg" alt="" loading="lazy"></div>
+    <header class="ch-head">
+      <span class="ch-left"><span class="ch-num">02</span><span>Transform</span></span>
+      <span class="ch-title">Pillar one</span>
+    </header>
+    <h2 class="pillar-h" data-rise>Put AI to work.</h2>
+    <p class="pillar-promise" data-rise>Strategy, governance, and deployment from a fractional AI office. The use cases that pay, the policies that protect, the rollout your people actually adopt.</p>
+    <div class="pillar-grid" data-rise>
+      <div class="pill-item"><h3>An AI roadmap your board can read</h3><p>Use cases ranked by return, owners and dates attached.</p></div>
+      <div class="pill-item"><h3>Governance that speeds you up</h3><p>Clear rules end the quiet chaos of unapproved tools.</p></div>
+      <div class="pill-item"><h3>Adoption, not shelfware</h3><p>Training and guardrails so the rollout sticks.</p></div>
+    </div>
+    <a class="ghost-link" href="/services/ai-consulting-boston/" data-rise>Explore AI consulting<svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.4"/></svg></a>
+  </section>
+
+  <!-- ============ 03 DEFEND ============ -->
+  <section class="chapter pillar" id="defend" data-chapter>
+    <div class="pillar-bg" aria-hidden="true"><img src="/assets/img/bg-defend.jpg" alt="" loading="lazy"></div>
+    <header class="ch-head">
+      <span class="ch-left"><span class="ch-num">03</span><span>Defend</span></span>
+      <span class="ch-title">Pillar two</span>
+    </header>
+    <h2 class="pillar-h" data-rise>Hold the line.</h2>
+    <p class="pillar-promise" data-rise>Security leadership on retainer and AI-powered operations that never clock out. The same intelligence attackers use, working for you.</p>
+    <div class="pillar-grid" data-rise>
+      <div class="pill-item"><h3>A CISO in the seat</h3><p>Fractional leadership without the $250K hire.</p></div>
+      <div class="pill-item"><h3>Insurance renewals without drama</h3><p>Evidence ready before the underwriter asks.</p></div>
+      <div class="pill-item"><h3>Watched around the clock</h3><p>bcxBastion detection and response, 24/7.</p></div>
+    </div>
+    <a class="ghost-link" href="/services/vciso-boston/" data-rise>Explore security leadership<svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.4"/></svg></a>
+  </section>
+
+  <!-- ============ 04 ACHIEVE ============ -->
+  <section class="chapter pillar" id="achieve" data-chapter>
+    <div class="pillar-bg" aria-hidden="true"><img src="/assets/img/bg-achieve.jpg" alt="" loading="lazy"></div>
+    <header class="ch-head">
+      <span class="ch-left"><span class="ch-num">04</span><span>Achieve</span></span>
+      <span class="ch-title">Pillar three</span>
+    </header>
+    <h2 class="pillar-h" data-rise>Show the board.</h2>
+    <p class="pillar-promise" data-rise>Outcomes in writing, every month. Measured productivity from AI, measured risk reduction, deadlines met with room to spare.</p>
+    <div class="pillar-grid" data-rise>
+      <div class="pill-item"><h3>Fixed scopes, published ranges</h3><p>You know the price before you commit.</p></div>
+      <div class="pill-item"><h3>Deliverables in writing</h3><p>What you get each month, named in advance.</p></div>
+      <div class="pill-item"><h3>Board-ready reporting</h3><p>One page that answers the questions directors ask.</p></div>
+    </div>
+    <a class="ghost-link" href="/about/" data-rise>How we stay accountable<svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.4"/></svg></a>
+  </section>
+
+  <!-- ============ 05 FORGE ============ -->
+  <section class="chapter" id="forge" data-chapter>
+    <header class="ch-head">
+      <span class="ch-left"><span class="ch-num">05</span><span>Forge</span></span>
+      <span class="ch-title">The framework</span>
+    </header>
+    <h2 class="pillar-h" data-rise>One framework runs through everything.</h2>
+    <p class="forge-thesis" data-rise>You cannot adopt trustworthy AI without cybersecurity, and you cannot defend your organization from disruption without AI. FORGE is the one framework we run across both, from first readiness check to enterprise-grade scale.</p>
+
+    <div class="forge-wrap" id="forgeList" data-rise>
+    <span class="forge-line" aria-hidden="true"></span>
+    <span class="forge-progress" aria-hidden="true"></span>
+    <ol class="forge-list">
+      <li class="forge-stage">
+        <span class="forge-letter" aria-hidden="true">F</span>
+        <span class="forge-name">Foundations</span>
+        <span class="forge-q">Are we ready?</span>
+      </li>
+      <li class="forge-stage">
+        <span class="forge-letter" aria-hidden="true">O</span>
+        <span class="forge-name">Objectives</span>
+        <span class="forge-q">What are we solving for?</span>
+      </li>
+      <li class="forge-stage">
+        <span class="forge-letter" aria-hidden="true">R</span>
+        <span class="forge-name">Rapid Pilots</span>
+        <span class="forge-q">Can we prove it fast?</span>
+      </li>
+      <li class="forge-stage">
+        <span class="forge-letter" aria-hidden="true">G</span>
+        <span class="forge-name">Growth</span>
+        <span class="forge-q">How do we scale it?</span>
+      </li>
+      <li class="forge-stage">
+        <span class="forge-letter" aria-hidden="true">E</span>
+        <span class="forge-name">Enterprise-Grade</span>
+        <span class="forge-q">Is it safe long-term?</span>
+      </li>
+    </ol>
+    </div>
+
+    <p class="forge-foot" data-rise>Raw material gets shaped, tempered, and hardened. Each stage adds strength, and a typical mid-sized company runs the full journey in nine to twelve months.</p>
+  </section>
+
+  <!-- ============ 06 BASTION ============ -->
+  <section class="chapter" id="bastion" data-chapter>
+    <header class="ch-head">
+      <span class="ch-left"><span class="ch-num">06</span><span>Bastion</span></span>
+      <span class="ch-title">The platform</span>
+    </header>
+    <h2 class="pillar-h" data-rise>bcxBastion never closes.</h2>
+    <p class="bastion-intro" data-rise>Everything watched in one place, AI-assisted triage, and a 24/7 response path.</p>
+
+    <div class="console" data-rise aria-label="bcxBastion operations readout">
+      <div class="console-head">
+        <span class="status-dot b-dot" aria-hidden="true"></span>
+        <span>bcxBastion · Operations readout</span>
+      </div>
+      <dl class="console-body">
+        <div class="console-row"><dt class="console-key">Monitoring</dt><dd class="console-val">24/7/365</dd></div>
+        <div class="console-row"><dt class="console-key">Telemetry</dt><dd class="console-val">One console</dd></div>
+        <div class="console-row"><dt class="console-key">Triage</dt><dd class="console-val">AI-assisted, human-decided</dd></div>
+        <div class="console-row"><dt class="console-key">Reporting</dt><dd class="console-val">Monthly, board-ready</dd></div>
+      </dl>
+    </div>
+
+    <p class="bastion-analysts" data-rise>Senior analysts, not a ticket queue.</p>
+
+    <div class="bastion-link" data-rise>
+      <a class="ghost-link" href="/platform/">Explore the platform<svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.4"/></svg></a>
+    </div>
+  </section>
+
+  <!-- ============ CLOSING ============ -->
+  <section class="closing" aria-label="Your next move">
+    <div class="arc-wrap" aria-hidden="true"><div class="arc"></div></div>
+    <div class="closing-inner">
+      <h2 class="visually-hidden">Your next move is a conversation.</h2>
+      <div class="matrix" data-matrix data-text="YOUR NEXT MOVE." aria-hidden="true">
+        <canvas></canvas>
+      </div>
+      <p data-rise>Thirty minutes with a senior practitioner, no pitch deck, no obligation. Or start on your own: fourteen questions, ten minutes, and the free AI Assessment shows where you stand across seven pillars.</p>
+      <div class="closing-ctas" data-rise>
+        <a class="chip" href="/discovery/">
+          <span class="chip-tile" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.6"/></svg></span>
+          <span class="chip-label">Schedule a 30-minute discovery call</span>
+        </a>
+        <a class="ghost-link" href="/ai-readiness-assessment/">Take the free AI Assessment<svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.4"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- sticky CTA -->
+<a class="chip chip-sticky" id="stickyCta" href="/discovery/" aria-hidden="true" tabindex="-1">
+  <span class="chip-tile" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.6"/></svg></span>
+  <span class="chip-label">Discovery call</span>
+</a>
+
+<footer class="site-footer">
+  <img src="/assets/img/bcx-wordmark-line.svg" alt="bostoncyberx">
+  <div class="foot-meta">
+    <span>One Marina Park Drive, Boston, MA 02210</span>
+    <a href="tel:+16172415445">617.241.5445</a>
+    <a href="mailto:info@bostoncyberx.com">info@bostoncyberx.com</a>
+    <span>Boston · New York · Los Angeles · Jacksonville</span>
+    <span>© 2026 bostoncyberx. All rights reserved.</span>
+    <a class="all-concepts" href="/concepts/">All concepts</a>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var RM = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ============ dot-matrix headlines ============ */
+  function easeOutCubic(t){ return 1 - Math.pow(1 - t, 3); }
+
+  function Matrix(el){
+    this.el = el;
+    this.canvas = el.querySelector("canvas");
+    this.ctx = this.canvas.getContext("2d");
+    this.lines = el.getAttribute("data-text").split("|");
+    this.played = false;
+    this.dots = [];
+  }
+
+  Matrix.prototype.build = function(){
+    var cssW = this.el.clientWidth;
+    if (cssW < 10) return;
+    var small = cssW < 700;
+    var cell = small ? 4 : 6;      // grid pitch
+    var dotSize = small ? 2 : 3;   // square dot
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+    // measure widest line at reference size
+    var off = document.createElement("canvas");
+    var octx = off.getContext("2d");
+    octx.font = "900 100px Archivo, sans-serif";
+    var maxW = 0;
+    for (var i = 0; i < this.lines.length; i++){
+      maxW = Math.max(maxW, octx.measureText(this.lines[i]).width);
+    }
+    var fs = Math.floor(100 * (cssW * 0.97) / maxW);
+    fs = Math.min(fs, this.lines.length > 1 ? 230 : 190);
+    var lh = Math.round(fs * 0.98);
+    var cssH = lh * this.lines.length + Math.round(fs * 0.12);
+
+    off.width = cssW;
+    off.height = cssH;
+    octx = off.getContext("2d");
+    octx.fillStyle = "#fff";
+    octx.textAlign = "center";
+    octx.textBaseline = "middle";
+    octx.font = "900 " + fs + "px Archivo, sans-serif";
+    for (i = 0; i < this.lines.length; i++){
+      octx.fillText(this.lines[i], cssW / 2, lh * i + lh / 2 + fs * 0.06);
+    }
+
+    var img = octx.getImageData(0, 0, cssW, cssH).data;
+    var dots = [];
+    var spread = cssW * 0.45;
+    for (var y = Math.floor(cell / 2); y < cssH; y += cell){
+      for (var x = Math.floor(cell / 2); x < cssW; x += cell){
+        var a = img[(y * cssW + x) * 4 + 3];
+        if (a > 140){
+          dots.push({
+            tx: x, ty: y,
+            sx: x + (Math.random() - 0.5) * spread,
+            sy: y + (Math.random() - 0.5) * spread,
+            d: Math.random() * 0.35   // stagger fraction
+          });
+        }
+      }
+    }
+
+    this.dots = dots;
+    this.cssW = cssW; this.cssH = cssH;
+    this.dotSize = dotSize; this.dpr = dpr;
+    this.canvas.width = cssW * dpr;
+    this.canvas.height = cssH * dpr;
+    this.canvas.style.width = cssW + "px";
+    this.canvas.style.height = cssH + "px";
+    this.ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  };
+
+  Matrix.prototype.render = function(p){
+    var ctx = this.ctx, s = this.dotSize, h = s / 2;
+    ctx.clearRect(0, 0, this.cssW, this.cssH);
+    ctx.fillStyle = "#E9EBEF";
+    for (var i = 0; i < this.dots.length; i++){
+      var d = this.dots[i];
+      var lt = Math.min(1, Math.max(0, (p - d.d) / 0.65));
+      if (lt <= 0) continue;
+      var e = easeOutCubic(lt);
+      var x = d.sx + (d.tx - d.sx) * e;
+      var y = d.sy + (d.ty - d.sy) * e;
+      ctx.globalAlpha = Math.min(1, e * 1.4);
+      ctx.fillRect(x - h, y - h, s, s);
+    }
+    ctx.globalAlpha = 1;
+  };
+
+  Matrix.prototype.play = function(){
+    if (this.played) return;
+    this.played = true;
+    if (RM || !this.dots.length){ this.render(1); return; }
+    var self = this, start = null, DUR = 600 / 0.65; // full sweep incl. stagger ~920ms
+    function frame(ts){
+      if (start === null) start = ts;
+      var p = Math.min(1, (ts - start) / DUR);
+      self.render(p);
+      if (p < 1) requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  };
+
+  var matrices = [];
+  document.querySelectorAll("[data-matrix]").forEach(function(el){
+    matrices.push(new Matrix(el));
+  });
+
+  function buildAll(){
+    matrices.forEach(function(m){
+      m.build();
+      if (m.played) m.render(1);
+    });
+  }
+
+  var fontReady = document.fonts && document.fonts.load
+    ? Promise.all([document.fonts.load("900 100px Archivo"), document.fonts.ready])
+    : Promise.resolve();
+
+  fontReady.then(function(){
+    buildAll();
+    var mo = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (en.isIntersecting){
+          var m = matrices.find(function(mm){ return mm.el === en.target; });
+          if (m) m.play();
+          mo.unobserve(en.target);
+        }
+      });
+    }, { threshold: 0.25 });
+    matrices.forEach(function(m){
+      if (m.el.hasAttribute("data-autoplay")) m.play();
+      else mo.observe(m.el);
+    });
+  });
+
+  var rT;
+  window.addEventListener("resize", function(){
+    clearTimeout(rT);
+    rT = setTimeout(buildAll, 220);
+  });
+
+  /* ============ fade-up on intersection ============ */
+  if (!RM){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (en.isIntersecting){ en.target.classList.add("in"); io.unobserve(en.target); }
+      });
+    }, { threshold: 0.15, rootMargin: "0px 0px -40px 0px" });
+    document.querySelectorAll("[data-rise]").forEach(function(el){ io.observe(el); });
+  }
+
+  /* ============ active chapter numeral ============ */
+  var chIo = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      en.target.classList.toggle("live", en.isIntersecting);
+    });
+  }, { rootMargin: "-35% 0px -35% 0px" });
+  document.querySelectorAll("[data-chapter]").forEach(function(s){ chIo.observe(s); });
+
+  /* ============ agenda auto-advance ============ */
+  var rows = Array.prototype.slice.call(document.querySelectorAll("#agendaRows .agenda-row"));
+  var active = 0, timer = null, agendaVisible = false;
+
+  function setActive(i, restart){
+    active = i;
+    rows.forEach(function(r, idx){
+      var on = idx === i;
+      r.classList.toggle("active", on);
+      r.querySelector(".agenda-btn").setAttribute("aria-expanded", on ? "true" : "false");
+      var tick = r.querySelector(".tick");
+      tick.classList.remove("run");
+      if (on && !RM && restart){
+        void tick.offsetWidth; /* reflow to restart transition */
+        tick.classList.add("run");
+      }
+    });
+  }
+
+  function startTimer(){
+    stopTimer();
+    if (RM) return;
+    setActive(active, true);
+    timer = setInterval(function(){
+      setActive((active + 1) % rows.length, true);
+    }, 6000);
+  }
+  function stopTimer(){ if (timer){ clearInterval(timer); timer = null; } }
+
+  rows.forEach(function(r, idx){
+    r.querySelector(".agenda-btn").addEventListener("click", function(){
+      setActive(idx, true);
+      if (agendaVisible) startTimer();
+    });
+  });
+  setActive(0, false);
+
+  var agIo = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      agendaVisible = en.isIntersecting;
+      if (agendaVisible) startTimer(); else stopTimer();
+    });
+  }, { threshold: 0.25 });
+  agIo.observe(document.getElementById("agendaRows"));
+
+  /* ============ forge progress line ============ */
+  var forge = document.getElementById("forgeList");
+  var fIo = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if (en.isIntersecting){ forge.classList.add("in"); fIo.unobserve(forge); }
+    });
+  }, { threshold: 0.3 });
+  fIo.observe(forge);
+
+  /* ============ sticky CTA after 60% scroll ============ */
+  var sticky = document.getElementById("stickyCta");
+  function onScroll(){
+    var max = document.documentElement.scrollHeight - window.innerHeight;
+    var show = max > 0 && (window.scrollY / max) > 0.6;
+    sticky.classList.toggle("show", show);
+    sticky.setAttribute("aria-hidden", show ? "false" : "true");
+    sticky.setAttribute("tabindex", show ? "0" : "-1");
+  }
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+})();
+</script>
+</body>
+</html>
