@@ -8,10 +8,19 @@
   var panel = document.getElementById("forge-panel");
   if (!line || !panel) return;
   var items = [].slice.call(line.querySelectorAll(".forge-item"));
-  var pLetter = document.getElementById("forge-panel-letter");
   var pStage = document.getElementById("forge-panel-stage");
   var pQ = document.getElementById("forge-panel-q");
   var swapTimer = null;
+
+  // Stage name renders with its FORGE letter in red, so the big letter
+  // above is not repeated in the panel.
+  function stageMarkup(name) {
+    if (!name) return "";
+    var b = document.createElement("b");
+    b.className = "fl";
+    b.textContent = name.charAt(0);
+    return b.outerHTML + name.slice(1).replace(/&/g, "&amp;").replace(/</g, "&lt;");
+  }
 
   function setForge(item) {
     if (!item || item.classList.contains("active")) return;
@@ -22,9 +31,7 @@
       if (b) b.setAttribute("aria-expanded", on ? "true" : "false");
     });
     var write = function () {
-      var btn = item.querySelector(".forge-letter-btn");
-      if (pLetter && btn) pLetter.textContent = btn.textContent;
-      if (pStage) pStage.textContent = item.getAttribute("data-stage") || "";
+      if (pStage) pStage.innerHTML = stageMarkup(item.getAttribute("data-stage") || "");
       if (pQ) pQ.textContent = item.getAttribute("data-q") || "";
       panel.classList.remove("swap");
     };

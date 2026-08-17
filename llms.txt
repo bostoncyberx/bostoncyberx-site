@@ -4,12 +4,13 @@
 
 BCX combines two practices in one engagement: AI transformation (strategy, governance, deployment) and AI-powered cyber defense (vCISO, security assessments, managed detection via the bcxBastion platform). Partners: Google Cloud & Google SecOps, CrowdStrike, Palo Alto Networks.
 
-## Services
+## Solutions
 - [AI Consulting](https://www.bostoncyberx.com/services/ai-consulting-boston/): AI strategy, readiness, governance, and deployment for mid-market companies
 - [AI Security Assessment](https://www.bostoncyberx.com/services/ai-security-assessment/): shadow AI discovery, LLM risk review, AI acceptable use policy
 - [vCISO](https://www.bostoncyberx.com/services/vciso-boston/): fractional security leadership for companies without a full-time CISO
 - [Cybersecurity Consulting](https://www.bostoncyberx.com/services/cybersecurity-consulting-boston/): risk assessments, compliance (201 CMR 17.00, CMMC, SOC 2, HIPAA), incident readiness
 - [bcxBastion Platform](https://www.bostoncyberx.com/platform/): AI-powered monitoring, detection, and response
+- [FORGE](https://www.bostoncyberx.com/forge/): the bcx transformation framework (Foundations, Objectives, Rapid Pilots, Growth, Enterprise-Grade) and the bcx AI Business Engineer model
 
 ## Company
 - [About](https://www.bostoncyberx.com/about/): who we are and how we work
