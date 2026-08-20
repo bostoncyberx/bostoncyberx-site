@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Free AI and Security Readiness Assessment | bostoncyberx</title>
-<meta name="description" content="Score your AI and security readiness in ten minutes. 14 questions across 7 pillars, instant results, and your top three priority moves. Free and ungated.">
+<meta name="description" content="Score your AI and security readiness in ten minutes. 14 questions across 7 pillars, instant results, and your top three priority moves.">
 <link rel="canonical" href="https://www.bostoncyberx.com/ai-readiness-assessment/">
 <meta property="og:title" content="Free AI and Security Readiness Assessment | bostoncyberx">
-<meta property="og:description" content="14 questions, 7 pillars, a 0 to 100 score, and the three moves that matter most for your company. No email required to see results.">
+<meta property="og:description" content="14 questions, 7 pillars, a 0 to 100 score, and the three moves that matter most for your company.">
 <meta property="og:url" content="https://www.bostoncyberx.com/ai-readiness-assessment/">
 <meta property="og:site_name" content="bostoncyberx">
 <meta property="og:type" content="website">
@@ -38,7 +38,7 @@
       "@type": "FAQPage",
       "mainEntity": [
         {"@type": "Question", "name": "How is the readiness score calculated?", "acceptedAnswer": {"@type": "Answer", "text": "You answer 14 questions, two for each of seven pillars: AI use, data, identity, detection, compliance, people, and resilience. Each yes scores 2 points, each partial 1, each no 0. Your overall score is your points out of 28 converted to a 0 to 100 scale. 70 and above reads as Ready, 40 to 69 as Building, and below 40 as At Risk."}},
-        {"@type": "Question", "name": "Do I have to give my email to see my results?", "acceptedAnswer": {"@type": "Answer", "text": "No. Your score, pillar breakdown, and top three priority moves appear immediately, with no form in the way. The scoring runs in your browser and your answers are not sent anywhere. Leaving your email is optional and gets you the full report and a 90-day roadmap template."}},
+        {"@type": "Question", "name": "Do I have to give my email to see my results?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Work email, name, and company are required so we can send your score and follow up. We do not sell this."}},
         {"@type": "Question", "name": "What happens after the free assessment?", "acceptedAnswer": {"@type": "Answer", "text": "The free version gives you a preliminary score and priorities. If you want the rigorous version, bcxCompass is our fixed-fee, three-week engagement: evidence-based scoring of the same seven pillars, a board-ready report, and a 90-day roadmap with owners and budgets."}}
       ]
     }
@@ -98,7 +98,7 @@
     <div class="wrap">
       <span class="kicker">Free assessment</span>
       <h1>Find out where you stand in ten minutes.</h1>
-      <p class="lead" style="margin-top:1.2rem">Answer 14 questions and get a 0 to 100 AI and security readiness score across seven pillars, plus the three moves that matter most for your company. Results appear instantly in your browser. No email required, and your answers are never sent anywhere.</p>
+      <p class="lead" style="margin-top:1.2rem">Answer 14 questions and get a 0 to 100 AI and security readiness score across seven pillars, plus the three moves that matter most for your company. Leave your name, work email, and company so we can send your results and follow up.</p>
       <div class="hero-ctas">
         <a class="btn btn-primary" href="#quiz">Start the assessment</a>
       </div>
@@ -116,11 +116,28 @@
         <p class="lead">Two questions each on AI use, data, identity, detection, compliance, people, and resilience. Answer honestly; partial credit exists for a reason. Yes means done and verified, partial means started or inconsistent, no means not yet.</p>
       </div>
 
-      <form id="bcx-quiz">
+      <form id="bcx-quiz" class="form">
         <p id="progress-text" aria-live="polite" class="mono" style="font-size:.85rem;color:#94A3B8;margin-bottom:.5rem">0 of 14 answered</p>
         <div style="height:6px;background:#151d2e;border-radius:3px;margin-bottom:2rem;max-width:36rem" aria-hidden="true"><div id="progress-bar" style="height:6px;width:0%;background:#22D3EE;border-radius:3px"></div></div>
         <div id="questions"></div>
+        <div>
+          <label for="lead-name">Name</label>
+          <input id="lead-name" name="name" type="text" autocomplete="name" required>
+          <span class="error" id="lead-name-error">Please enter your name.</span>
+        </div>
+        <div>
+          <label for="lead-email">Work email</label>
+          <input id="lead-email" name="email" type="email" autocomplete="email" required>
+          <span class="error" id="lead-email-error">Please enter a valid work email address.</span>
+        </div>
+        <div>
+          <label for="lead-company">Company</label>
+          <input id="lead-company" name="company" type="text" autocomplete="organization" required>
+          <span class="error" id="lead-company-error">Please enter your company name.</span>
+        </div>
         <p id="quiz-warn" class="error" role="alert" style="display:none">Please answer every question. Unanswered questions are marked below.</p>
+        <p id="capture-warn" class="error" role="status" style="display:none">We could not send your details just now. Your score is still below. A consultant can follow up if you <a href="/contact/">contact us</a>.</p>
+        <p class="hint">Name, work email, and company are required so we can send your results and follow up. We do not sell this. <a href="/privacy/">Privacy policy</a>.</p>
         <button class="btn btn-primary" type="submit" style="margin-top:1.2rem">See my score</button>
       </form>
     </div>
@@ -146,43 +163,7 @@
         <h3>Want the rigorous version?</h3>
         <p>This free score is based on your self-report. bcxCompass is the evidence-based version: a fixed-fee, three-week engagement where BCX verifies the same seven pillars against your actual environment, then hands you a board-ready report and a 90-day roadmap with owners and budgets. <a href="/services/">See how engagements work</a> or <a href="/contact/">talk to us</a>.</p>
       </div>
-
-      <div class="section-head" style="margin-bottom:1.4rem">
-        <h3>Get the full report and 90-day roadmap template by email</h3>
-        <p class="muted" style="max-width:40rem">Optional. Your score is already yours, above. Leave your email and we send a written version of your results plus the roadmap template we use with clients.</p>
-      </div>
-      <form class="form" method="POST" data-netlify="true" netlify-honeypot="bot-field" data-validate name="assessment" action="/thanks/">
-        <input type="hidden" name="form-name" value="assessment">
-        <p class="hp"><label>Don't fill this out: <input name="bot-field"></label></p>
-        <input type="hidden" name="overall-score" id="f-overall">
-        <input type="hidden" name="band" id="f-band">
-        <input type="hidden" name="pillar-ai-use" id="f-ai">
-        <input type="hidden" name="pillar-data" id="f-data">
-        <input type="hidden" name="pillar-identity" id="f-identity">
-        <input type="hidden" name="pillar-detection" id="f-detection">
-        <input type="hidden" name="pillar-compliance" id="f-compliance">
-        <input type="hidden" name="pillar-people" id="f-people">
-        <input type="hidden" name="pillar-resilience" id="f-resilience">
-        <div>
-          <label for="lead-name">Name</label>
-          <input id="lead-name" name="name" type="text" autocomplete="name" required>
-          <span class="error" id="lead-name-error">Please enter your name.</span>
-        </div>
-        <div>
-          <label for="lead-email">Work email</label>
-          <input id="lead-email" name="email" type="email" autocomplete="email" required>
-          <span class="error" id="lead-email-error">Please enter a valid work email address.</span>
-        </div>
-        <div>
-          <label for="lead-company">Company</label>
-          <input id="lead-company" name="company" type="text" autocomplete="organization" required>
-          <span class="error" id="lead-company-error">Please enter your company name.</span>
-        </div>
-        <div>
-          <button class="btn btn-green" type="submit">Email me the report</button>
-          <p class="hint" style="margin-top:.6rem">We use this to send your report and nothing else without asking. <a href="/privacy/">Privacy policy</a>.</p>
-        </div>
-      </form>
+      <p class="muted" style="max-width:44rem">We already have your name, work email, and company. A consultant will follow up.</p>
     </div>
   </section>
 
@@ -191,7 +172,7 @@
       <div class="section-head"><span class="kicker">Questions</span><h2 id="faq-h">About this assessment</h2></div>
       <div class="faq">
         <details><summary>How is the readiness score calculated?</summary><p>You answer 14 questions, two for each of seven pillars: AI use, data, identity, detection, compliance, people, and resilience. Each yes scores 2 points, each partial 1, each no 0. Your overall score is your points out of 28 converted to a 0 to 100 scale. 70 and above reads as Ready, 40 to 69 as Building, and below 40 as At Risk.</p></details>
-        <details><summary>Do I have to give my email to see my results?</summary><p>No. Your score, pillar breakdown, and top three priority moves appear immediately, with no form in the way. The scoring runs in your browser and your answers are not sent anywhere. Leaving your email is optional and gets you the full report and a 90-day roadmap template.</p></details>
+        <details><summary>Do I have to give my email to see my results?</summary><p>Yes. Work email, name, and company are required so we can send your score and follow up. We do not sell this.</p></details>
         <details><summary>What happens after the free assessment?</summary><p>The free version gives you a preliminary score and priorities. If you want the rigorous version, bcxCompass is our fixed-fee, three-week engagement: evidence-based scoring of the same seven pillars, a board-ready report, and a 90-day roadmap with owners and budgets.</p></details>
       </div>
     </div>
@@ -356,6 +337,38 @@
     return { label: 'At Risk', note: 'Be glad you measured. Most companies at this score do not know it. The three moves below are the fastest way to take the worst outcomes off the table.' };
   }
 
+  function showFieldError(id, show) {
+    var el = document.getElementById(id);
+    if (el) el.style.display = show ? 'block' : 'none';
+  }
+
+  function leadFields() {
+    var name = (document.getElementById('lead-name').value || '').trim();
+    var email = (document.getElementById('lead-email').value || '').trim();
+    var company = (document.getElementById('lead-company').value || '').trim();
+    var emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    showFieldError('lead-name-error', !name);
+    showFieldError('lead-email-error', !emailOk);
+    showFieldError('lead-company-error', !company);
+    if (!name || !emailOk || !company) {
+      var first = !name ? 'lead-name' : (!emailOk ? 'lead-email' : 'lead-company');
+      document.getElementById(first).focus();
+      return null;
+    }
+    return { name: name, email: email, company: company };
+  }
+
+  function captureLead(payload) {
+    return fetch('https://www.bostoncyberx.com/api/assessment-lead', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    }).then(function (res) {
+      if (!res.ok) throw new Error('capture_failed');
+      return res.json();
+    });
+  }
+
   quizForm.addEventListener('submit', function (e) {
     e.preventDefault();
 
@@ -374,6 +387,9 @@
       return;
     }
     warn.style.display = 'none';
+
+    var lead = leadFields();
+    if (!lead) return;
 
     // Score: yes=2, partial=1, no=0. Overall = points/28*100 rounded. Pillar = points/4*100.
     var totalPoints = 0;
@@ -441,18 +457,50 @@
       movesBox.appendChild(li);
     });
 
-    // Fill hidden lead-form fields
-    document.getElementById('f-overall').value = String(overall);
-    document.getElementById('f-band').value = band.label;
-    PILLARS.forEach(function (p) {
-      document.getElementById(p.field).value = String((pillarPoints[p.key] / 4) * 100);
-    });
+    var captureWarn = document.getElementById('capture-warn');
+    if (captureWarn) captureWarn.style.display = 'none';
+    var submitBtn = quizForm.querySelector('button[type="submit"]');
+    if (submitBtn) submitBtn.disabled = true;
 
-    // Reveal and move to results
-    results.hidden = false;
-    results.scrollIntoView(reducedMotion ? { behavior: 'auto' } : { behavior: 'smooth' });
-    document.getElementById('results-h').focus && document.getElementById('results-h').setAttribute('tabindex', '-1');
-    document.getElementById('results-h').focus();
+    var payload = {
+      name: lead.name,
+      email: lead.email,
+      company: lead.company,
+      overall: overall,
+      band: band.label,
+      pillarAi: (pillarPoints.ai / 4) * 100,
+      pillarData: (pillarPoints.data / 4) * 100,
+      pillarIdentity: (pillarPoints.identity / 4) * 100,
+      pillarDetection: (pillarPoints.detection / 4) * 100,
+      pillarCompliance: (pillarPoints.compliance / 4) * 100,
+      pillarPeople: (pillarPoints.people / 4) * 100,
+      pillarResilience: (pillarPoints.resilience / 4) * 100,
+      answers: QUESTIONS.map(function (q, i) {
+        return {
+          n: i + 1,
+          pillar: q.pillar,
+          text: q.text,
+          value: parseInt(quizForm.querySelector('input[name="q' + (i + 1) + '"]:checked').value, 10)
+        };
+      })
+    };
+
+    function reveal() {
+      results.hidden = false;
+      results.scrollIntoView(reducedMotion ? { behavior: 'auto' } : { behavior: 'smooth' });
+      document.getElementById('results-h').focus && document.getElementById('results-h').setAttribute('tabindex', '-1');
+      document.getElementById('results-h').focus();
+      if (submitBtn) submitBtn.disabled = false;
+    }
+
+    captureLead(payload).catch(function () {
+      return captureLead(payload);
+    }).then(function () {
+      reveal();
+    }).catch(function () {
+      if (captureWarn) captureWarn.style.display = 'block';
+      reveal();
+    });
   });
 
   updateProgress();
