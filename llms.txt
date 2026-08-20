@@ -15,4 +15,4 @@ BCX combines two practices in one engagement: AI transformation (strategy, gover
 ## Company
 - [About](https://www.bostoncyberx.com/about/): who we are and how we work
 - [Contact](https://www.bostoncyberx.com/contact/): 1 Marina Park Drive, Boston, MA 02210 · 617.241.5445 · info@bostoncyberx.com
-- [AI Readiness Assessment](https://www.bostoncyberx.com/ai-readiness-assessment/): free scored assessment, the standard way to start with BCX
+- [Business AI Maturity](https://www.bostoncyberx.com/ai-readiness-assessment/): free scored assessment, the standard way to start with BCX
