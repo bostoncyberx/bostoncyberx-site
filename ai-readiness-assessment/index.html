@@ -15,9 +15,13 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/svg+xml" href="/assets/img/bcx-mark.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/css/bcx.css">
+<style>
+#main .btn-primary{background:#3B82F6;box-shadow:0 12px 30px rgba(59,130,246,.25)}
+#main .btn-primary:hover{background:#2563EB}
+</style>
 <!-- Analytics: GA4. Replace G-XXXXXXXXXX with the live measurement ID, then uncomment.
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag()&#123;dataLayer.push(arguments)&#125;;gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
@@ -38,7 +42,7 @@
       "@type": "FAQPage",
       "mainEntity": [
         {"@type": "Question", "name": "How is the maturity index calculated?", "acceptedAnswer": {"@type": "Answer", "text": "You answer 21 scored questions, each from 1 to 5, plus one unscored question about which AI tools are in use. Each dimension score is the mean of its answers. The index is a weighted mean of the six dimensions, reported to one decimal from 1.0 to 5.0. Strategy and Leadership is 20 percent, Value Realization and Investment Discipline is 20 percent, and the other four dimensions are 15 percent each. Bands: 1.0 to 1.7 Initial, 1.8 to 2.5 Developing, 2.6 to 3.3 Defined, 3.4 to 4.2 Managed, 4.3 to 5.0 Optimized."}},
-        {"@type": "Question", "name": "Do I have to give my email to see my results?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Work email, name, and company are required so we can send your score and follow up. We do not sell this."}},
+        {"@type": "Question", "name": "Do I have to give my email to see my results?", "acceptedAnswer": {"@type": "Answer", "text": "After you click See my score, we ask for your name, work email, and company. We email your results to that address. We do not sell this."}},
         {"@type": "Question", "name": "What happens after the free assessment?", "acceptedAnswer": {"@type": "Answer", "text": "You see your index, six dimension scores, and a natural next engagement. Book a discovery call if you want to walk through the results with a BCX consultant."}}
       ]
     }
@@ -98,7 +102,7 @@
     <div class="wrap">
       <span class="kicker">Free assessment</span>
       <h1>Business AI Maturity Assessment</h1>
-      <p class="lead" style="margin-top:1.2rem">22 questions, six dimensions, about 7 to 8 minutes. Name, work email, and company are required so we can send your results and follow up.</p>
+      <p class="lead" style="margin-top:1.2rem">22 questions, six dimensions, about 7 to 8 minutes.</p>
       <div class="hero-ctas">
         <a class="btn btn-primary" href="#quiz">Start the assessment</a>
       </div>
@@ -113,32 +117,37 @@
       <div class="section-head">
         <span class="kicker">The questions</span>
         <h2 id="quiz-h">22 questions, six dimensions.</h2>
-        <p class="lead">21 scored questions from 1 to 5, then one unscored question about the AI tools in use. Pick the statement closest to how your organization works today.</p>
+        <p class="lead">Pick the statement closest to how your organization works today.</p>
       </div>
 
       <form id="bcx-quiz" class="form">
-        <div>
-          <label for="lead-name">Name</label>
-          <input id="lead-name" name="name" type="text" autocomplete="name" required>
-          <span class="error" id="lead-name-error">Please enter your name.</span>
-        </div>
-        <div>
-          <label for="lead-email">Work email</label>
-          <input id="lead-email" name="email" type="email" autocomplete="email" required>
-          <span class="error" id="lead-email-error">Please enter a valid work email address.</span>
-        </div>
-        <div>
-          <label for="lead-company">Company</label>
-          <input id="lead-company" name="company" type="text" autocomplete="organization" required>
-          <span class="error" id="lead-company-error">Please enter your company name.</span>
-        </div>
-        <p class="hint">Name, work email, and company are required so we can send your results and follow up. We do not sell this. <a href="/privacy/">Privacy policy</a>.</p>
-        <p id="progress-text" aria-live="polite" class="mono" style="font-size:.85rem;color:#94A3B8;margin:1.6rem 0 .5rem">0 of 22</p>
+        <div id="quiz-work">
+        <p id="progress-text" aria-live="polite" class="mono" style="font-size:.85rem;color:#94A3B8;margin:0 0 .5rem">0 of 22</p>
         <div style="height:6px;background:#151d2e;border-radius:3px;margin-bottom:2rem;max-width:36rem" aria-hidden="true"><div id="progress-bar" style="height:6px;width:0%;background:#22D3EE;border-radius:3px"></div></div>
         <div id="questions"></div>
         <p id="quiz-warn" class="error" role="alert" style="display:none">Please answer every question. Unanswered questions are marked below.</p>
-        <p id="capture-warn" class="error" role="status" style="display:none">We could not send your details just now. Your score is still below. A consultant can follow up if you <a href="/contact/">contact us</a>.</p>
-        <button class="btn btn-primary" type="submit" style="margin-top:1.2rem">See my score</button>
+        <button class="btn btn-primary" id="see-score-btn" type="button" style="margin-top:1.2rem">See my score</button>
+        </div>
+        <div id="lead-gate" hidden>
+          <p class="lead" style="margin-bottom:1.2rem">Enter your name, work email, and company. We will email your results to that address: your index, six dimension scores, and the recommended next step. We do not sell this. <a href="/privacy/">Privacy policy</a>.</p>
+          <div>
+            <label for="lead-name">Name</label>
+            <input id="lead-name" name="name" type="text" autocomplete="name">
+            <span class="error" id="lead-name-error">Please enter your name.</span>
+          </div>
+          <div>
+            <label for="lead-email">Work email</label>
+            <input id="lead-email" name="email" type="email" autocomplete="email">
+            <span class="error" id="lead-email-error">Please enter a valid work email address.</span>
+          </div>
+          <div>
+            <label for="lead-company">Company</label>
+            <input id="lead-company" name="company" type="text" autocomplete="organization">
+            <span class="error" id="lead-company-error">Please enter your company name.</span>
+          </div>
+          <p id="capture-warn" class="error" role="status" style="display:none">We could not send your details just now. Your score is still below. A consultant can follow up if you <a href="/contact/">contact us</a>.</p>
+          <button class="btn btn-primary" id="email-results-btn" type="submit" style="margin-top:1.2rem">Email me my results</button>
+        </div>
       </form>
     </div>
   </section>
@@ -166,7 +175,7 @@
         <p>This free score is based on your self-report. A discovery call is the next step: we walk through the results and the engagement that fits. <a href="/discovery/">Book a discovery call</a> or <a href="/services/">see how engagements work</a>.</p>
       </div>
 
-      <p class="muted" style="max-width:44rem">We already have your name, work email, and company. A consultant will follow up.</p>
+      <p id="results-email-note" class="muted" style="max-width:44rem"></p>
     </div>
   </section>
 
@@ -175,7 +184,7 @@
       <div class="section-head"><span class="kicker">Questions</span><h2 id="faq-h">About this assessment</h2></div>
       <div class="faq">
         <details><summary>How is the maturity index calculated?</summary><p>You answer 21 scored questions, each from 1 to 5, plus one unscored question about which AI tools are in use. Each dimension score is the mean of its answers. The index is a weighted mean of the six dimensions, reported to one decimal from 1.0 to 5.0. Strategy and Leadership is 20 percent, Value Realization and Investment Discipline is 20 percent, and the other four dimensions are 15 percent each. Bands: 1.0 to 1.7 Initial, 1.8 to 2.5 Developing, 2.6 to 3.3 Defined, 3.4 to 4.2 Managed, 4.3 to 5.0 Optimized.</p></details>
-        <details><summary>Do I have to give my email to see my results?</summary><p>Yes. Work email, name, and company are required so we can send your score and follow up. We do not sell this.</p></details>
+        <details><summary>Do I have to give my email to see my results?</summary><p>After you click See my score, we ask for your name, work email, and company. We email your results to that address. We do not sell this.</p></details>
         <details><summary>What happens after the free assessment?</summary><p>You see your index, six dimension scores, and a natural next engagement. Book a discovery call if you want to walk through the results with a BCX consultant.</p></details>
       </div>
     </div>
@@ -622,9 +631,7 @@
     el.style.borderColor = missing ? '#FBBF24' : 'rgba(148,163,184,.18)';
   }
 
-  quizForm.addEventListener('submit', function (e) {
-    e.preventDefault();
-
+  function questionsComplete() {
     var firstMissing = null;
     for (var i = 1; i <= QUESTIONS.length; i++) {
       var fs = document.getElementById('q' + i + '-group');
@@ -635,14 +642,41 @@
     var toolsOk = toolsAnswered();
     markMissing(document.getElementById('q22-group'), !toolsOk);
     if (!toolsOk && !firstMissing) firstMissing = document.getElementById('q22-group');
-
     if (firstMissing) {
       warn.style.display = 'block';
       var focusEl = firstMissing.querySelector('input');
       if (focusEl) focusEl.focus();
-      return;
+      return false;
     }
     warn.style.display = 'none';
+    return true;
+  }
+
+  function collapseQuestions() {
+    var work = document.getElementById('quiz-work');
+    var gate = document.getElementById('lead-gate');
+    var inputs = work.querySelectorAll('input, button');
+    for (var i = 0; i < inputs.length; i++) inputs[i].disabled = true;
+    work.setAttribute('hidden', '');
+    work.style.display = 'none';
+    gate.hidden = false;
+    gate.removeAttribute('hidden');
+    gate.scrollIntoView(reducedMotion ? { behavior: 'auto' } : { behavior: 'smooth' });
+    document.getElementById('lead-name').focus();
+  }
+
+  document.getElementById('see-score-btn').addEventListener('click', function () {
+    if (!questionsComplete()) return;
+    collapseQuestions();
+  });
+
+  quizForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (document.getElementById('lead-gate').hidden) {
+      if (!questionsComplete()) return;
+      collapseQuestions();
+      return;
+    }
 
     var lead = leadFields();
     if (!lead) return;
@@ -707,7 +741,7 @@
 
     var captureWarn = document.getElementById('capture-warn');
     captureWarn.style.display = 'none';
-    var submitBtn = quizForm.querySelector('button[type="submit"]');
+    var submitBtn = document.getElementById('email-results-btn');
     if (submitBtn) submitBtn.disabled = true;
 
     var payload = {
@@ -746,7 +780,13 @@
       }
     };
 
-    function reveal() {
+    function reveal(emailed) {
+      var note = document.getElementById('results-email-note');
+      if (emailed) {
+        note.textContent = 'We sent your results to ' + lead.email + '.';
+      } else {
+        note.textContent = 'Your score is below. We could not email it just now.';
+      }
       results.hidden = false;
       results.scrollIntoView(reducedMotion ? { behavior: 'auto' } : { behavior: 'smooth' });
       document.getElementById('results-h').setAttribute('tabindex', '-1');
@@ -756,11 +796,12 @@
 
     captureLead(payload).catch(function () {
       return captureLead(payload);
-    }).then(function () {
-      reveal();
+    }).then(function (data) {
+      reveal(!!(data && data.emailed));
+      if (data && data.ok && !data.emailed) captureWarn.style.display = 'block';
     }).catch(function () {
       captureWarn.style.display = 'block';
-      reveal();
+      reveal(false);
     });
   });
 
