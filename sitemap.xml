@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://www.bostoncyberx.com/</loc><lastmod>2026-08-17</lastmod></url>
-  <url><loc>https://www.bostoncyberx.com/services/</loc><lastmod>2026-08-03</lastmod></url>
+  <url><loc>https://www.bostoncyberx.com/services/</loc><lastmod>2026-08-20</lastmod></url>
   <url><loc>https://www.bostoncyberx.com/services/ai-consulting-boston/</loc><lastmod>2026-08-03</lastmod></url>
   <url><loc>https://www.bostoncyberx.com/services/ai-security-assessment/</loc><lastmod>2026-08-03</lastmod></url>
   <url><loc>https://www.bostoncyberx.com/services/vciso-boston/</loc><lastmod>2026-08-03</lastmod></url>
@@ -21,4 +21,10 @@
     <loc>https://www.bostoncyberx.com/resources/</loc>
     <lastmod>2026-08-03</lastmod>
   </url>
+  <url><loc>https://www.bostoncyberx.com/services/ai-value-accelerator/</loc><lastmod>2026-08-20</lastmod></url>
+  <url><loc>https://www.bostoncyberx.com/services/ai-at-scale/</loc><lastmod>2026-08-20</lastmod></url>
+  <url><loc>https://www.bostoncyberx.com/services/intelligent-cyber-defense/</loc><lastmod>2026-08-20</lastmod></url>
+  <url><loc>https://www.bostoncyberx.com/services/ai-trust/</loc><lastmod>2026-08-20</lastmod></url>
+  <url><loc>https://www.bostoncyberx.com/services/intelligent-operations-accelerator/</loc><lastmod>2026-08-20</lastmod></url>
+  <url><loc>https://www.bostoncyberx.com/services/business-resilience-assurance/</loc><lastmod>2026-08-20</lastmod></url>
 </urlset>
