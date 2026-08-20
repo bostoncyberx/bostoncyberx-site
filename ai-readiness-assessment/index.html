@@ -21,6 +21,23 @@
 <style>
 #main .btn-primary{background:#3B82F6;box-shadow:0 12px 30px rgba(59,130,246,.25)}
 #main .btn-primary:hover{background:#2563EB}
+#main .btn-primary:disabled,#main .btn-primary:disabled:hover{background:#3B82F6;opacity:.45;transform:none;cursor:not-allowed;box-shadow:none}
+#main .btn-secondary{background:transparent;color:#F8FAFC;border:1px solid rgba(148,163,184,.28);box-shadow:none}
+#main .btn-secondary:hover{background:rgba(148,163,184,.08);border-color:#94A3B8}
+#main .btn-secondary:disabled,#main .btn-secondary:disabled:hover{opacity:.4;transform:none;cursor:not-allowed}
+#bcx-quiz .q-card{border:1px solid rgba(148,163,184,.18);border-radius:12px;padding:1.2rem 1.4rem 1.3rem;max-width:44rem;background:#151d2e}
+#bcx-quiz .q-card[hidden]{display:none !important}
+#bcx-quiz .q-meta{color:#22D3EE;font-size:.8rem;margin:0 0 .7rem;font-weight:500}
+#bcx-quiz .q-prompt{margin:0 0 1rem;font-weight:500;line-height:1.45;text-align:left}
+#bcx-quiz .q-opts{display:grid;gap:.2rem}
+#bcx-quiz .q-opt{display:flex;align-items:flex-start;gap:.65rem;cursor:pointer;font-weight:400;line-height:1.45;text-align:left;margin:0;padding:.55rem .15rem}
+#bcx-quiz .q-opt-text{flex:1 1 auto;min-width:0;text-align:left}
+#bcx-quiz .q-card input[type="radio"],#bcx-quiz .q-card input[type="checkbox"]{width:auto;min-width:1.05em;max-width:1.05em;height:1.05em;margin:.2rem 0 0;padding:0;background:none;border:none;border-radius:0;box-shadow:none;flex:0 0 auto;accent-color:#3B82F6}
+#bcx-quiz .q-card input[type="radio"]:focus,#bcx-quiz .q-card input[type="checkbox"]:focus{outline:2px solid #22D3EE;outline-offset:2px;box-shadow:none;border-color:transparent}
+#bcx-quiz .quiz-nav{display:flex;gap:.8rem;align-items:center;flex-wrap:wrap;margin-top:.2rem}
+#bcx-quiz #other-tool-wrap label{display:block}
+@media (prefers-reduced-motion: no-preference){#bcx-quiz .q-card.is-active{animation:qFade .16s ease}}
+@keyframes qFade{from{opacity:0}to{opacity:1}}
 </style>
 <!-- Analytics: GA4. Replace G-XXXXXXXXXX with the live measurement ID, then uncomment.
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
@@ -126,7 +143,10 @@
         <div style="height:6px;background:#151d2e;border-radius:3px;margin-bottom:2rem;max-width:36rem" aria-hidden="true"><div id="progress-bar" style="height:6px;width:0%;background:#22D3EE;border-radius:3px"></div></div>
         <div id="questions"></div>
         <p id="quiz-warn" class="error" role="alert" style="display:none">Please answer every question. Unanswered questions are marked below.</p>
-        <button class="btn btn-primary" id="see-score-btn" type="button" style="margin-top:1.2rem">See my score</button>
+        <div class="quiz-nav">
+          <button class="btn btn-secondary" id="quiz-back" type="button" disabled>Back</button>
+          <button class="btn btn-primary" id="see-score-btn" type="button" disabled>Next</button>
+        </div>
         </div>
         <div id="lead-gate" hidden>
           <p class="lead" style="margin-bottom:1.2rem">Enter your name, work email, and company. We will email your results to that address: your index, six dimension scores, and the recommended next step. We do not sell this. <a href="/privacy/">Privacy policy</a>.</p>
@@ -435,80 +455,71 @@
     return key;
   }
 
-  function fieldStyle() {
-    return 'border:1px solid rgba(148,163,184,.18);border-radius:12px;padding:1.2rem 1.4rem;margin-bottom:1rem;max-width:44rem;background:#151d2e';
+  var currentIndex = 0;
+  var cards = [];
+
+  function makeCard(id, n, dimLabel, prompt) {
+    var card = document.createElement('div');
+    card.className = 'q-card';
+    card.id = id;
+    card.setAttribute('role', 'group');
+    card.setAttribute('aria-labelledby', id + '-prompt');
+    card.hidden = true;
+
+    var meta = document.createElement('p');
+    meta.className = 'mono q-meta';
+    meta.textContent = n + ' of 22 · ' + dimLabel;
+
+    var promptEl = document.createElement('p');
+    promptEl.className = 'q-prompt';
+    promptEl.id = id + '-prompt';
+    promptEl.textContent = prompt;
+
+    var opts = document.createElement('div');
+    opts.className = 'q-opts';
+
+    card.appendChild(meta);
+    card.appendChild(promptEl);
+    card.appendChild(opts);
+    cards.push(card);
+    return { card: card, opts: opts };
+  }
+
+  function makeChoice(input, text) {
+    var label = document.createElement('label');
+    label.className = 'q-opt';
+    var span = document.createElement('span');
+    span.className = 'q-opt-text';
+    span.textContent = text;
+    label.appendChild(input);
+    label.appendChild(span);
+    return label;
   }
 
   QUESTIONS.forEach(function (q, i) {
     var n = i + 1;
-    var fs = document.createElement('fieldset');
-    fs.id = 'q' + n + '-group';
-    fs.style.cssText = fieldStyle();
-    var lg = document.createElement('legend');
-    lg.style.cssText = 'font-weight:500;padding:0 .4rem';
-    var meta = document.createElement('span');
-    meta.className = 'mono';
-    meta.style.cssText = 'color:#22D3EE;font-size:.8rem';
-    meta.textContent = n + ' of 22 · ' + dimName(q.dim);
-    lg.appendChild(meta);
-    lg.appendChild(document.createElement('br'));
-    var qt = document.createElement('span');
-    qt.textContent = q.prompt;
-    lg.appendChild(qt);
-    fs.appendChild(lg);
-
-    var opts = document.createElement('div');
-    opts.style.cssText = 'display:grid;gap:.65rem;margin-top:.8rem';
+    var built = makeCard('q' + n + '-group', n, dimName(q.dim), q.prompt);
     q.options.forEach(function (text, idx) {
-      var label = document.createElement('label');
-      label.style.cssText = 'display:flex;align-items:flex-start;gap:.55rem;cursor:pointer;font-weight:400;line-height:1.4';
       var input = document.createElement('input');
       input.type = 'radio';
       input.name = 'q' + n;
       input.value = String(idx + 1);
-      input.style.marginTop = '.2rem';
       input.addEventListener('change', updateProgress);
-      label.appendChild(input);
-      label.appendChild(document.createTextNode(text));
-      opts.appendChild(label);
+      built.opts.appendChild(makeChoice(input, text));
     });
-    fs.appendChild(opts);
-    questionsBox.appendChild(fs);
+    questionsBox.appendChild(built.card);
   });
 
-  var toolsFs = document.createElement('fieldset');
-  toolsFs.id = 'q22-group';
-  toolsFs.style.cssText = fieldStyle();
-  var toolsLg = document.createElement('legend');
-  toolsLg.style.cssText = 'font-weight:500;padding:0 .4rem';
-  var toolsMeta = document.createElement('span');
-  toolsMeta.className = 'mono';
-  toolsMeta.style.cssText = 'color:#22D3EE;font-size:.8rem';
-  toolsMeta.textContent = '22 of 22 · AI tools in use';
-  toolsLg.appendChild(toolsMeta);
-  toolsLg.appendChild(document.createElement('br'));
-  var toolsPrompt = document.createElement('span');
-  toolsPrompt.textContent = 'Which AI tools are in use in your organization today? Select all that apply, including tools people use on their own.';
-  toolsLg.appendChild(toolsPrompt);
-  toolsFs.appendChild(toolsLg);
-
-  var toolsOpts = document.createElement('div');
-  toolsOpts.style.cssText = 'display:grid;gap:.65rem;margin-top:.8rem';
+  var toolsBuilt = makeCard('q22-group', 22, 'AI tools in use', 'Which AI tools are in use in your organization today? Select all that apply, including tools people use on their own.');
   TOOL_OPTIONS.forEach(function (text, idx) {
-    var label = document.createElement('label');
-    label.style.cssText = 'display:flex;align-items:flex-start;gap:.55rem;cursor:pointer;font-weight:400;line-height:1.4';
     var input = document.createElement('input');
     input.type = 'checkbox';
     input.name = 'tools';
     input.value = text;
     input.id = 'tool-' + idx;
-    input.style.marginTop = '.2rem';
     input.addEventListener('change', onToolChange);
-    label.appendChild(input);
-    label.appendChild(document.createTextNode(text));
-    toolsOpts.appendChild(label);
+    toolsBuilt.opts.appendChild(makeChoice(input, text));
   });
-  toolsFs.appendChild(toolsOpts);
 
   var otherWrap = document.createElement('div');
   otherWrap.id = 'other-tool-wrap';
@@ -524,8 +535,8 @@
   otherInput.addEventListener('input', updateProgress);
   otherWrap.appendChild(otherLabel);
   otherWrap.appendChild(otherInput);
-  toolsFs.appendChild(otherWrap);
-  questionsBox.appendChild(toolsFs);
+  toolsBuilt.card.appendChild(otherWrap);
+  questionsBox.appendChild(toolsBuilt.card);
 
   function selectedTools() {
     var out = [];
@@ -571,10 +582,46 @@
     return n;
   }
 
+  function isQuestionAnswered(i) {
+    if (i < QUESTIONS.length) {
+      return !!quizForm.querySelector('input[name="q' + (i + 1) + '"]:checked');
+    }
+    return toolsAnswered();
+  }
+
+  function showQuestion(i, opts) {
+    if (i < 0) i = 0;
+    if (i > cards.length - 1) i = cards.length - 1;
+    currentIndex = i;
+    for (var k = 0; k < cards.length; k++) {
+      var on = k === i;
+      cards[k].hidden = !on;
+      if (on) cards[k].classList.add('is-active');
+      else cards[k].classList.remove('is-active');
+    }
+    var backBtn = document.getElementById('quiz-back');
+    var nextBtn = document.getElementById('see-score-btn');
+    backBtn.disabled = i === 0;
+    nextBtn.textContent = (i === cards.length - 1) ? 'See my score' : 'Next';
+    nextBtn.disabled = !isQuestionAnswered(i);
+    var n = answeredCount();
+    progressText.textContent = n + ' of ' + TOTAL;
+    progressBar.style.width = Math.round((n / TOTAL) * 100) + '%';
+    if (opts && opts.focus) {
+      cards[i].setAttribute('tabindex', '-1');
+      cards[i].focus({ preventScroll: true });
+    }
+  }
+
   function updateProgress() {
     var n = answeredCount();
     progressText.textContent = n + ' of ' + TOTAL;
     progressBar.style.width = Math.round((n / TOTAL) * 100) + '%';
+    var nextBtn = document.getElementById('see-score-btn');
+    var work = document.getElementById('quiz-work');
+    if (nextBtn && work && !work.hidden) {
+      nextBtn.disabled = !isQuestionAnswered(currentIndex);
+    }
   }
 
   function mean(values) {
@@ -633,17 +680,25 @@
 
   function questionsComplete() {
     var firstMissing = null;
+    var firstMissingIndex = null;
     for (var i = 1; i <= QUESTIONS.length; i++) {
       var fs = document.getElementById('q' + i + '-group');
       var checked = quizForm.querySelector('input[name="q' + i + '"]:checked');
       markMissing(fs, !checked);
-      if (!checked && !firstMissing) firstMissing = fs;
+      if (!checked && firstMissingIndex === null) {
+        firstMissing = fs;
+        firstMissingIndex = i - 1;
+      }
     }
     var toolsOk = toolsAnswered();
     markMissing(document.getElementById('q22-group'), !toolsOk);
-    if (!toolsOk && !firstMissing) firstMissing = document.getElementById('q22-group');
+    if (!toolsOk && firstMissingIndex === null) {
+      firstMissing = document.getElementById('q22-group');
+      firstMissingIndex = QUESTIONS.length;
+    }
     if (firstMissing) {
       warn.style.display = 'block';
+      showQuestion(firstMissingIndex, { focus: true });
       var focusEl = firstMissing.querySelector('input');
       if (focusEl) focusEl.focus();
       return false;
@@ -665,7 +720,19 @@
     document.getElementById('lead-name').focus();
   }
 
+  document.getElementById('quiz-back').addEventListener('click', function () {
+    if (currentIndex <= 0) return;
+    warn.style.display = 'none';
+    showQuestion(currentIndex - 1, { focus: true });
+  });
+
   document.getElementById('see-score-btn').addEventListener('click', function () {
+    if (!isQuestionAnswered(currentIndex)) return;
+    if (currentIndex < cards.length - 1) {
+      warn.style.display = 'none';
+      showQuestion(currentIndex + 1, { focus: true });
+      return;
+    }
     if (!questionsComplete()) return;
     collapseQuestions();
   });
@@ -805,7 +872,7 @@
     });
   });
 
-  updateProgress();
+  showQuestion(0);
 })();
 
 </script>
