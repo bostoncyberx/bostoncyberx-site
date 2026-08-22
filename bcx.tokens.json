@@ -1,0 +1,493 @@
+{
+  "$description": "bostoncyberx design tokens. Format: Design Tokens Format Module 2025.10 (DTCG). Single source of truth for colour, typography and motion across web, decks and print. Generate CSS custom properties, Figma variables and deck theme values from this file. Do not hand-edit bcx.css values that originate here.",
+  "$extensions": {
+    "com.bostoncyberx.meta": {
+      "version": "1.0.1",
+      "brandGuideVersion": "2.1-pending",
+      "owner": "scott.mccarthy@bostoncyberx.com",
+      "notes": "Prose rules (voice, banned words, punctuation, product-name casing, the red budget) are NOT tokens. They live in the bostoncyberx-brand skill. Tokens carry values; the skill carries rules. Synced Astro-only tokens blue-hover, blue-glow, elevation.button-signal from Wix Astro SoT; D1 deferred descriptions on red button tokens."
+    }
+  },
+  "color": {
+    "$type": "color",
+    "$description": "Core palette. Brand Red is identity only: never a button, chart series or section wash. That rule is enforced in prose, not by this file.",
+    "ink": {
+      "$value": "#0A0E1A",
+      "$description": "Page ground"
+    },
+    "paper": {
+      "$value": "#F8FAFC",
+      "$description": "Primary text on ink"
+    },
+    "deep": {
+      "$value": "#111827",
+      "$description": "Raised surface on ink"
+    },
+    "deep-2": {
+      "$value": "#151D2E",
+      "$description": "Second raised surface"
+    },
+    "slate": {
+      "$value": "#94A3B8",
+      "$description": "Secondary text, default icon"
+    },
+    "slate-2": {
+      "$value": "#7A8CA6",
+      "$description": "Mono labels. Introduced by the Deck OS."
+    },
+    "red": {
+      "$value": "#FF3B30",
+      "$description": "Brand Red. Identity only: the wordmark x, the monogram, one watermark, emphasised headline words, the defense beam."
+    },
+    "red-print": {
+      "$value": "#E02D22",
+      "$description": "Brand Red, print. CMYK C0 M88 Y84 K0."
+    },
+    "signal-blue": {
+      "$value": "#3B82F6",
+      "$description": "Transform pillar"
+    },
+    "electric-cyan": {
+      "$value": "#22D3EE",
+      "$description": "Defend pillar"
+    },
+    "guard-green": {
+      "$value": "#34D399",
+      "$description": "Achieve pillar"
+    },
+    "alert-amber": {
+      "$value": "#FBBF24",
+      "$description": "Risk and gap callouts only"
+    },
+    "line": {
+      "$value": "rgba(148,163,184,.16)",
+      "$description": "Default hairline / border. From bcx.css --line."
+    },
+    "red-hover": {
+      "$value": "#C42218",
+      "$description": "Deferred brand conflict. Red on buttons contradicts Brand Guidelines v2.0. Do not extend to new components."
+    },
+    "white": {
+      "$value": "#fff",
+      "$description": "Solid white text on filled buttons and skip-link."
+    },
+    "shadow-ink": {
+      "$value": "rgba(2,6,17,.35)",
+      "$description": "Card elevation shadow color stop. From bcx.css --shadow."
+    },
+    "red-glow": {
+      "$value": "rgba(224,45,34,.25)",
+      "$description": "Deferred brand conflict. Red on buttons contradicts Brand Guidelines v2.0. Do not extend to new components."
+    },
+    "cyan-focus-ring": {
+      "$value": "rgba(34,211,238,.15)",
+      "$description": "Form focus ring. From bcx.css .form input:focus box-shadow."
+    },
+    "blue-hover": {
+      "$value": "#2563EB",
+      "$description": "Signal button hover. From Astro bcx.css .btn-signal:hover."
+    },
+    "blue-glow": {
+      "$value": "rgba(59,130,246,.28)",
+      "$description": "Signal button box-shadow tint. From Astro bcx.css .btn-signal."
+    }
+  },
+  "pillar": {
+    "$type": "color",
+    "$description": "Semantic aliases. Use these in pillar-scoped surfaces so a palette change propagates without find-and-replace.",
+    "transform": {
+      "$value": "{color.signal-blue}"
+    },
+    "defend": {
+      "$value": "{color.electric-cyan}"
+    },
+    "achieve": {
+      "$value": "{color.guard-green}"
+    }
+  },
+  "font": {
+    "family": {
+      "$type": "fontFamily",
+      "$description": "Three families, each with one job. Body copy never uses display. Mono never leaves a data position.",
+      "display": {
+        "$value": [
+          "Archivo",
+          "system-ui",
+          "sans-serif"
+        ],
+        "$description": "Headings, display type, the wordmark. Width axis 112."
+      },
+      "body": {
+        "$value": [
+          "Inter",
+          "system-ui",
+          "-apple-system",
+          "sans-serif"
+        ],
+        "$description": "All running text"
+      },
+      "data": {
+        "$value": [
+          "Geist Mono",
+          "ui-monospace",
+          "SFMono-Regular",
+          "Menlo",
+          "monospace"
+        ],
+        "$description": "Data positions only: statistics, telemetry, measurements, section numbers, code, URLs"
+      },
+      "body-web": {
+        "$value": [
+          "Archivo",
+          "system-ui",
+          "sans-serif"
+        ],
+        "$description": "Live site body stack (matches current bcx.css --font-body). Inter remains the brand body token for decks/print; not wired to bcx.css in this PR."
+      },
+      "mono-web": {
+        "$value": [
+          "Archivo",
+          "system-ui",
+          "sans-serif"
+        ],
+        "$description": "Live site mono alias equals display/Archivo today (--font-mono: var(--font-display)). Geist Mono not applied yet."
+      }
+    },
+    "weight": {
+      "$type": "fontWeight",
+      "body": {
+        "$value": 400
+      },
+      "body-medium": {
+        "$value": 500
+      },
+      "label": {
+        "$value": 600
+      },
+      "wordmark": {
+        "$value": 640,
+        "$description": "Archivo variable weight for the wordmark"
+      },
+      "display": {
+        "$value": 700
+      },
+      "display-max": {
+        "$value": 800
+      },
+      "numeral": {
+        "$value": 700,
+        "$description": "Numerals when they carry an argument"
+      }
+    },
+    "size": {
+      "$type": "dimension",
+      "body-min": {
+        "$value": {
+          "value": 1,
+          "unit": "rem"
+        },
+        "$description": "16px floor for body copy"
+      }
+    },
+    "tracking": {
+      "$type": "dimension",
+      "$description": "Letter-spacing. Source values are in thousandths of an em, the design-tool convention; expressed here in rem, which DTCG permits. Display minus 28 becomes -0.028rem.",
+      "display": {
+        "$value": {
+          "value": -0.028,
+          "unit": "rem"
+        }
+      },
+      "subhead": {
+        "$value": {
+          "value": -0.02,
+          "unit": "rem"
+        }
+      },
+      "wordmark": {
+        "$value": {
+          "value": -0.012,
+          "unit": "rem"
+        }
+      },
+      "label": {
+        "$value": {
+          "value": 0.16,
+          "unit": "rem"
+        },
+        "$description": "Label caps, plus 160"
+      }
+    },
+    "line-height": {
+      "$type": "number",
+      "$description": "Unitless multipliers.",
+      "body": {
+        "$value": 1.62
+      },
+      "display": {
+        "$value": 1.05
+      }
+    },
+    "measure": {
+      "$type": "number",
+      "body": {
+        "$value": 70,
+        "$description": "Maximum characters per line for body copy"
+      }
+    }
+  },
+  "motion": {
+    "duration": {
+      "$type": "duration",
+      "entrance": {
+        "$value": {
+          "value": 700,
+          "unit": "ms"
+        },
+        "$description": "22px rise plus fade"
+      },
+      "line-draw": {
+        "$value": {
+          "value": 600,
+          "unit": "ms"
+        },
+        "$description": "Lines draw, never fade in"
+      },
+      "state-feedback": {
+        "$value": {
+          "value": 200,
+          "unit": "ms"
+        },
+        "$description": "Ceiling for state feedback"
+      },
+      "stagger-min": {
+        "$value": {
+          "value": 120,
+          "unit": "ms"
+        }
+      },
+      "stagger-max": {
+        "$value": {
+          "value": 140,
+          "unit": "ms"
+        }
+      },
+      "logo-sequence": {
+        "$value": {
+          "value": 2000,
+          "unit": "ms"
+        },
+        "$description": "Plays once per session"
+      },
+      "deck-build": {
+        "$value": {
+          "value": 400,
+          "unit": "ms"
+        },
+        "$description": "Deck builds are fades only, 300 to 500ms"
+      },
+      "fast": {
+        "$value": {
+          "value": 120,
+          "unit": "ms"
+        },
+        "$description": "Nav color / small state changes (.12s)."
+      },
+      "control": {
+        "$value": {
+          "value": 180,
+          "unit": "ms"
+        },
+        "$description": "Button transform, card hover, forge card (.18s)."
+      },
+      "panel": {
+        "$value": {
+          "value": 300,
+          "unit": "ms"
+        },
+        "$description": "Forge panel swap (.3s)."
+      },
+      "node": {
+        "$value": {
+          "value": 400,
+          "unit": "ms"
+        },
+        "$description": "Signal node stroke/fill (.4s)."
+      },
+      "reveal": {
+        "$value": {
+          "value": 500,
+          "unit": "ms"
+        },
+        "$description": "Territory list rise (.5s)."
+      },
+      "swap": {
+        "$value": {
+          "value": 450,
+          "unit": "ms"
+        },
+        "$description": "Forge letter color/transform (.45s)."
+      },
+      "expand": {
+        "$value": {
+          "value": 550,
+          "unit": "ms"
+        },
+        "$description": "Agenda body expand / intro splash (.55s)."
+      },
+      "view-in": {
+        "$value": {
+          "value": 260,
+          "unit": "ms"
+        },
+        "$description": "View transition in (.26s)."
+      },
+      "color-shift": {
+        "$value": {
+          "value": 350,
+          "unit": "ms"
+        },
+        "$description": "Agenda need color/size (.35s)."
+      },
+      "progress": {
+        "$value": {
+          "value": 1100,
+          "unit": "ms"
+        },
+        "$description": "Gapviz fill (1.1s)."
+      },
+      "gauge": {
+        "$value": {
+          "value": 1400,
+          "unit": "ms"
+        },
+        "$description": "Gauge fill (1.4s)."
+      }
+    },
+    "easing": {
+      "$type": "cubicBezier",
+      "entrance": {
+        "$value": [
+          0.16,
+          1,
+          0.3,
+          1
+        ]
+      },
+      "soft": {
+        "$value": [
+          0.22,
+          0.61,
+          0.36,
+          1
+        ],
+        "$description": "Secondary easing used by forge, scroll-hint, panel swaps in bcx.css."
+      }
+    },
+    "distance": {
+      "$type": "dimension",
+      "entrance-rise": {
+        "$value": {
+          "value": 22,
+          "unit": "px"
+        }
+      }
+    }
+  },
+  "layout": {
+    "grid": {
+      "$description": "Deck canvas geometry, 1920 by 1080.",
+      "columns": {
+        "$type": "number",
+        "$value": 12
+      },
+      "margin-pct": {
+        "$type": "number",
+        "$value": 6.4
+      },
+      "gutter-pct": {
+        "$type": "number",
+        "$value": 1.6
+      },
+      "points-max": {
+        "$type": "number",
+        "$value": 3,
+        "$description": "Maximum points per slide"
+      },
+      "lines-max": {
+        "$type": "number",
+        "$value": 2,
+        "$description": "Maximum lines per point"
+      }
+    },
+    "web": {
+      "$description": "Static site layout primitives from bcx.css :root.",
+      "max-width": {
+        "$type": "dimension",
+        "$value": {
+          "value": 1160,
+          "unit": "px"
+        },
+        "$description": "From --maxw"
+      },
+      "radius": {
+        "$type": "dimension",
+        "$value": {
+          "value": 12,
+          "unit": "px"
+        },
+        "$description": "From --radius"
+      }
+    }
+  },
+  "logo": {
+    "clearspace": {
+      "$type": "dimension",
+      "$description": "The x-height on all four sides.",
+      "all-sides": {
+        "$value": {
+          "value": 1,
+          "unit": "rem"
+        }
+      }
+    },
+    "min-width": {
+      "$type": "dimension",
+      "primary": {
+        "$value": {
+          "value": 120,
+          "unit": "px"
+        }
+      },
+      "stacked": {
+        "$value": {
+          "value": 64,
+          "unit": "px"
+        }
+      },
+      "mark": {
+        "$value": {
+          "value": 16,
+          "unit": "px"
+        }
+      }
+    }
+  },
+  "elevation": {
+    "card": {
+      "$type": "shadow",
+      "$value": "0 10px 28px rgba(2,6,17,.35)",
+      "$description": "From bcx.css --shadow. Kept as CSS shadow string for exact parity."
+    },
+    "button-primary": {
+      "$type": "shadow",
+      "$value": "0 12px 30px rgba(224,45,34,.25)",
+      "$description": "Deferred brand conflict. Red on buttons contradicts Brand Guidelines v2.0. Do not extend to new components."
+    },
+    "button-signal": {
+      "$type": "shadow",
+      "$value": "0 12px 30px rgba(59,130,246,.28)",
+      "$description": "From Astro bcx.css .btn-signal box-shadow."
+    }
+  }
+}
