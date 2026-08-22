@@ -2,10 +2,10 @@
   "$description": "bostoncyberx design tokens. Format: Design Tokens Format Module 2025.10 (DTCG). Single source of truth for colour, typography and motion across web, decks and print. Generate CSS custom properties, Figma variables and deck theme values from this file. Do not hand-edit bcx.css values that originate here.",
   "$extensions": {
     "com.bostoncyberx.meta": {
-      "version": "1.0.0",
+      "version": "1.0.1",
       "brandGuideVersion": "2.1-pending",
       "owner": "scott.mccarthy@bostoncyberx.com",
-      "notes": "Prose rules (voice, banned words, punctuation, product-name casing, the red budget) are NOT tokens. They live in the bostoncyberx-brand skill. Tokens carry values; the skill carries rules."
+      "notes": "Prose rules (voice, banned words, punctuation, product-name casing, the red budget) are NOT tokens. They live in the bostoncyberx-brand skill. Tokens carry values; the skill carries rules. Synced Astro-only tokens blue-hover, blue-glow, elevation.button-signal from Wix Astro SoT; D1 deferred descriptions on red button tokens."
     }
   },
   "color": {
@@ -65,7 +65,7 @@
     },
     "red-hover": {
       "$value": "#C42218",
-      "$description": "Primary button hover. From bcx.css .btn-primary:hover / .btn-green:hover."
+      "$description": "Deferred brand conflict. Red on buttons contradicts Brand Guidelines v2.0. Do not extend to new components."
     },
     "white": {
       "$value": "#fff",
@@ -77,11 +77,19 @@
     },
     "red-glow": {
       "$value": "rgba(224,45,34,.25)",
-      "$description": "Primary button box-shadow tint."
+      "$description": "Deferred brand conflict. Red on buttons contradicts Brand Guidelines v2.0. Do not extend to new components."
     },
     "cyan-focus-ring": {
       "$value": "rgba(34,211,238,.15)",
       "$description": "Form focus ring. From bcx.css .form input:focus box-shadow."
+    },
+    "blue-hover": {
+      "$value": "#2563EB",
+      "$description": "Signal button hover. From Astro bcx.css .btn-signal:hover."
+    },
+    "blue-glow": {
+      "$value": "rgba(59,130,246,.28)",
+      "$description": "Signal button box-shadow tint. From Astro bcx.css .btn-signal."
     }
   },
   "pillar": {
@@ -474,7 +482,12 @@
     "button-primary": {
       "$type": "shadow",
       "$value": "0 12px 30px rgba(224,45,34,.25)",
-      "$description": "From .btn-primary / .btn-green box-shadow."
+      "$description": "Deferred brand conflict. Red on buttons contradicts Brand Guidelines v2.0. Do not extend to new components."
+    },
+    "button-signal": {
+      "$type": "shadow",
+      "$value": "0 12px 30px rgba(59,130,246,.28)",
+      "$description": "From Astro bcx.css .btn-signal box-shadow."
     }
   }
 }

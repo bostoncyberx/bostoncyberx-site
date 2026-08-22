@@ -16,11 +16,13 @@
   --color-guard-green: #34D399; /** Achieve pillar */
   --color-alert-amber: #FBBF24; /** Risk and gap callouts only */
   --color-line: rgba(148,163,184,.16); /** Default hairline / border. From bcx.css --line. */
-  --color-red-hover: #C42218; /** Primary button hover. From bcx.css .btn-primary:hover / .btn-green:hover. */
+  --color-red-hover: #C42218; /** Deferred brand conflict. Red on buttons contradicts Brand Guidelines v2.0. Do not extend to new components. */
   --color-white: #fff; /** Solid white text on filled buttons and skip-link. */
   --color-shadow-ink: rgba(2,6,17,.35); /** Card elevation shadow color stop. From bcx.css --shadow. */
-  --color-red-glow: rgba(224,45,34,.25); /** Primary button box-shadow tint. */
+  --color-red-glow: rgba(224,45,34,.25); /** Deferred brand conflict. Red on buttons contradicts Brand Guidelines v2.0. Do not extend to new components. */
   --color-cyan-focus-ring: rgba(34,211,238,.15); /** Form focus ring. From bcx.css .form input:focus box-shadow. */
+  --color-blue-hover: #2563EB; /** Signal button hover. From Astro bcx.css .btn-signal:hover. */
+  --color-blue-glow: rgba(59,130,246,.28); /** Signal button box-shadow tint. From Astro bcx.css .btn-signal. */
   --pillar-transform: #3B82F6;
   --pillar-defend: #22D3EE;
   --pillar-achieve: #34D399;
@@ -77,7 +79,8 @@
   --logo-min-width-stacked: 64px;
   --logo-min-width-mark: 16px;
   --elevation-card: 0 10px 28px rgba(2,6,17,.35); /** From bcx.css --shadow. Kept as CSS shadow string for exact parity. */
-  --elevation-button-primary: 0 12px 30px rgba(224,45,34,.25); /** From .btn-primary / .btn-green box-shadow. */
+  --elevation-button-primary: 0 12px 30px rgba(224,45,34,.25); /** Deferred brand conflict. Red on buttons contradicts Brand Guidelines v2.0. Do not extend to new components. */
+  --elevation-button-signal: 0 12px 30px rgba(59,130,246,.28); /** From Astro bcx.css .btn-signal box-shadow. */
 
   /* Legacy aliases for assets/css/bcx.css */
   --ink: var(--color-ink);
