@@ -1,0 +1,106 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+
+:root {
+  --color-ink: #0A0E1A; /** Page ground */
+  --color-paper: #F8FAFC; /** Primary text on ink */
+  --color-deep: #111827; /** Raised surface on ink */
+  --color-deep-2: #151D2E; /** Second raised surface */
+  --color-slate: #94A3B8; /** Secondary text, default icon */
+  --color-slate-2: #7A8CA6; /** Mono labels. Introduced by the Deck OS. */
+  --color-red: #FF3B30; /** Brand Red. Identity only: the wordmark x, the monogram, one watermark, emphasised headline words, the defense beam. */
+  --color-red-print: #E02D22; /** Brand Red, print. CMYK C0 M88 Y84 K0. */
+  --color-signal-blue: #3B82F6; /** Transform pillar */
+  --color-electric-cyan: #22D3EE; /** Defend pillar */
+  --color-guard-green: #34D399; /** Achieve pillar */
+  --color-alert-amber: #FBBF24; /** Risk and gap callouts only */
+  --color-line: rgba(148,163,184,.16); /** Default hairline / border. From bcx.css --line. */
+  --color-red-hover: #C42218; /** Primary button hover. From bcx.css .btn-primary:hover / .btn-green:hover. */
+  --color-white: #fff; /** Solid white text on filled buttons and skip-link. */
+  --color-shadow-ink: rgba(2,6,17,.35); /** Card elevation shadow color stop. From bcx.css --shadow. */
+  --color-red-glow: rgba(224,45,34,.25); /** Primary button box-shadow tint. */
+  --color-cyan-focus-ring: rgba(34,211,238,.15); /** Form focus ring. From bcx.css .form input:focus box-shadow. */
+  --pillar-transform: #3B82F6;
+  --pillar-defend: #22D3EE;
+  --pillar-achieve: #34D399;
+  --font-family-display: "Archivo", system-ui, sans-serif; /** Headings, display type, the wordmark. Width axis 112. */
+  --font-family-body: "Inter", system-ui, -apple-system, sans-serif; /** All running text */
+  --font-family-data: "Geist Mono", ui-monospace, "SFMono-Regular", "Menlo", monospace; /** Data positions only: statistics, telemetry, measurements, section numbers, code, URLs */
+  --font-family-body-web: "Archivo", system-ui, sans-serif; /** Live site body stack (matches current bcx.css --font-body). Inter remains the brand body token for decks/print; not wired to bcx.css in this PR. */
+  --font-family-mono-web: "Archivo", system-ui, sans-serif; /** Live site mono alias equals display/Archivo today (--font-mono: var(--font-display)). Geist Mono not applied yet. */
+  --font-weight-body: 400;
+  --font-weight-body-medium: 500;
+  --font-weight-label: 600;
+  --font-weight-wordmark: 640; /** Archivo variable weight for the wordmark */
+  --font-weight-display: 700;
+  --font-weight-display-max: 800;
+  --font-weight-numeral: 700; /** Numerals when they carry an argument */
+  --font-size-body-min: 1rem; /** 16px floor for body copy */
+  --font-tracking-display: -0.028rem;
+  --font-tracking-subhead: -0.02rem;
+  --font-tracking-wordmark: -0.012rem;
+  --font-tracking-label: 0.16rem; /** Label caps, plus 160 */
+  --font-line-height-body: 1.62;
+  --font-line-height-display: 1.05;
+  --font-measure-body: 70; /** Maximum characters per line for body copy */
+  --motion-duration-entrance: 700ms; /** 22px rise plus fade */
+  --motion-duration-line-draw: 600ms; /** Lines draw, never fade in */
+  --motion-duration-state-feedback: 200ms; /** Ceiling for state feedback */
+  --motion-duration-stagger-min: 120ms;
+  --motion-duration-stagger-max: 140ms;
+  --motion-duration-logo-sequence: 2000ms; /** Plays once per session */
+  --motion-duration-deck-build: 400ms; /** Deck builds are fades only, 300 to 500ms */
+  --motion-duration-fast: 120ms; /** Nav color / small state changes (.12s). */
+  --motion-duration-control: 180ms; /** Button transform, card hover, forge card (.18s). */
+  --motion-duration-panel: 300ms; /** Forge panel swap (.3s). */
+  --motion-duration-node: 400ms; /** Signal node stroke/fill (.4s). */
+  --motion-duration-reveal: 500ms; /** Territory list rise (.5s). */
+  --motion-duration-swap: 450ms; /** Forge letter color/transform (.45s). */
+  --motion-duration-expand: 550ms; /** Agenda body expand / intro splash (.55s). */
+  --motion-duration-view-in: 260ms; /** View transition in (.26s). */
+  --motion-duration-color-shift: 350ms; /** Agenda need color/size (.35s). */
+  --motion-duration-progress: 1100ms; /** Gapviz fill (1.1s). */
+  --motion-duration-gauge: 1400ms; /** Gauge fill (1.4s). */
+  --motion-easing-entrance: cubic-bezier(0.16, 1, 0.3, 1);
+  --motion-easing-soft: cubic-bezier(0.22, 0.61, 0.36, 1); /** Secondary easing used by forge, scroll-hint, panel swaps in bcx.css. */
+  --motion-distance-entrance-rise: 22px;
+  --layout-grid-columns: 12;
+  --layout-grid-margin-pct: 6.4;
+  --layout-grid-gutter-pct: 1.6;
+  --layout-grid-points-max: 3; /** Maximum points per slide */
+  --layout-grid-lines-max: 2; /** Maximum lines per point */
+  --layout-web-max-width: 1160px; /** From --maxw */
+  --layout-web-radius: 12px; /** From --radius */
+  --logo-clearspace-all-sides: 1rem;
+  --logo-min-width-primary: 120px;
+  --logo-min-width-stacked: 64px;
+  --logo-min-width-mark: 16px;
+  --elevation-card: 0 10px 28px rgba(2,6,17,.35); /** From bcx.css --shadow. Kept as CSS shadow string for exact parity. */
+  --elevation-button-primary: 0 12px 30px rgba(224,45,34,.25); /** From .btn-primary / .btn-green box-shadow. */
+
+  /* Legacy aliases for assets/css/bcx.css */
+  --ink: var(--color-ink);
+  --paper: var(--color-paper);
+  --deep: var(--color-deep);
+  --deep2: var(--color-deep-2);
+  --blue: var(--color-signal-blue);
+  --cyan: var(--color-electric-cyan);
+  --green: var(--color-guard-green);
+  --amber: var(--color-alert-amber);
+  --red: var(--color-red);
+  --red-deep: var(--color-red-print);
+  --red-hover: var(--color-red-hover);
+  --slate: var(--color-slate);
+  --line: var(--color-line);
+  --white: var(--color-white);
+  --font-display: var(--font-family-display);
+  --font-body: var(--font-family-body-web);
+  --font-mono: var(--font-family-mono-web);
+  --maxw: var(--layout-web-max-width);
+  --radius: var(--layout-web-radius);
+  --ease-entrance: var(--motion-easing-entrance);
+  --ease-soft: var(--motion-easing-soft);
+  --shadow: var(--elevation-card);
+  --shadow-btn: var(--elevation-button-primary);
+}

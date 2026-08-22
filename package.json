@@ -1,0 +1,27 @@
+{
+  "name": "bostoncyberx-site",
+  "version": "1.0.0",
+  "description": "bostoncyberx static site",
+  "scripts": {
+    "tokens": "python3 scripts/preprocess_tokens.py && style-dictionary build --config scripts/sd.config.js && python3 scripts/postprocess_tokens.py"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bostoncyberx/bostoncyberx-site.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bostoncyberx/bostoncyberx-site/issues"
+  },
+  "homepage": "https://github.com/bostoncyberx/bostoncyberx-site#readme",
+  "devDependencies": {
+    "pixelmatch": "^7.2.0",
+    "playwright": "^1.62.1",
+    "pngjs": "^7.0.0",
+    "style-dictionary": "^4.4.0"
+  },
+  "private": true,
+  "type": "module"
+}
