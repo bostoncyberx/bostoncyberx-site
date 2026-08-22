@@ -1,6 +1,0 @@
-# Leftover Netlify host: do not 301 to Wix. Serve an error for every path.
-[[redirects]]
-  from = "/*"
-  to = "/404.html"
-  status = 404
-  force = true
