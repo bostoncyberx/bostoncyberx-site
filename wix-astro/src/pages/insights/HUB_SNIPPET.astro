@@ -1,0 +1,24 @@
+---
+/**
+ * Merge this into the existing src/pages/insights/index.astro on the
+ * live Wix project. Keep the three reserved custom cards. List published
+ * Blog posts above or among them. Do not delete the custom articles.
+ *
+ * If the live hub is prerendered (pages.json currently marks it static),
+ * set `export const prerender = false` on that file so new posts appear
+ * without another hand-built page.
+ */
+import { hubEntries, listPublishedPosts, insightsHref } from '../../lib/blog';
+
+const entries = hubEntries(await listPublishedPosts());
+---
+<div class="cards">
+  {entries.map((entry) => (
+    <article class="card">
+      <span class="kicker" style="margin-bottom:.2rem">{entry.kicker}</span>
+      <h3><a href={insightsHref(entry.slug)} style="color:inherit">{entry.title}</a></h3>
+      <p>{entry.excerpt}</p>
+      <a class="more" href={insightsHref(entry.slug)}>Read the article →</a>
+    </article>
+  ))}
+</div>

@@ -50,11 +50,21 @@ Networks), projects (pen testing, AI security assessment, tabletops, CMMC).
   Transformation Services" (must match top and bottom of page). Change
   these only when the owner asking for the edit says so explicitly.
 
-## How the site is built
+## Live hosting (read this before adding pages)
 
-Plain static HTML/CSS/JS. No framework, no build step: what is in the repo
-is what ships. Netlify publishes the repo root. Shared assets live in
-`assets/` (css, js, img). Key JS: `field.js` (ambient particle canvas on
+Live traffic is Wix-managed headless Astro at https://www.bostoncyberx.com
+(site `58909a01-8b53-415a-918a-6184ede50ac8`, `x-wix-request-id`). Pages
+are `src/pages/**/*.astro` on that Wix project, listed at
+`/_wix/pages.json`. This GitHub repo is leftover Netlify HTML. Netlify
+must stay 404 (`netlify.toml` force-404). Do not treat a commit here as
+a www publish. Insights articles on Wix are static Astro files today.
+New Blog posts should use `wix-astro/src/pages/insights/[slug].astro`,
+not another hand-built HTML folder (see `wix-astro/README.md`).
+
+## How the leftover repo is built
+
+Plain static HTML/CSS/JS. No framework, no build step. Shared assets live
+in `assets/` (css, js, img). Key JS: `field.js` (ambient particle canvas on
 every page, hue follows scroll red→blue→cyan→green), `constellation.js`
 (hero X particles), `agenda.js` (CEO agenda carousel), `forge.js`,
 `motion.js` (scroll reveals), `signal.js`. The intro logo animation lives

@@ -1,0 +1,69 @@
+---
+/**
+ * Dynamic Insights article. Copy to src/pages/insights/[slug].astro
+ * on the live Wix-managed Astro project, then `wix release`.
+ *
+ * Static reserved pages (grok-bot-client-zero, shadow-ai-..., 201-cmr-...)
+ * keep winning those exact URLs. This file only handles published Blog
+ * slugs that do not have a hand-built page, including
+ * /insights/trusted-execution-environment-ai-personal-data
+ *
+ * Native Wix Blog still wants /blog and /post/<slug>. Do not add those
+ * pages if you want Insights to stay the public reader. Do not publish
+ * the three reserved drafts: that would create /post/<slug> duplicates
+ * if Blog feed/post pages are ever added.
+ */
+export const prerender = false;
+
+import RicosViewer from '@wix/astro-ricos';
+import Layout from '../../layouts/Layout.astro';
+import { getPostBySlug, RESERVED_SLUGS } from '../../lib/blog';
+
+const slug = Astro.params.slug;
+if (!slug || RESERVED_SLUGS.includes(slug)) {
+  return new Response(null, { status: 404 });
+}
+
+let post = null;
+try {
+  post = await getPostBySlug(slug);
+} catch (error) {
+  post = null;
+}
+
+if (!post || !post.title) {
+  return new Response(null, { status: 404 });
+}
+
+const title = post.title;
+const description = post.excerpt || title;
+const canonical = `https://www.bostoncyberx.com/insights/${slug}`;
+const published = post.firstPublishedDate;
+const bylineDate = published
+  ? new Date(published).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
+  : '';
+---
+<Layout>
+  <main id="main">
+    <article class="article">
+      <nav aria-label="Breadcrumb" class="mono muted" style="font-size:.8rem;margin-bottom:1.6rem">
+        <a href="/">Home</a> / <a href="/insights">Insights</a> / <span aria-current="page">{title}</span>
+      </nav>
+      <h1>{title}</h1>
+      <p class="byline">bcx Research Team{bylineDate ? ` · ${bylineDate}` : ''}</p>
+      {post.richContent ? (
+        <RicosViewer content={post.richContent} />
+      ) : (
+        <p>{post.contentText}</p>
+      )}
+      <h2>Next step</h2>
+      <p>Map which data classes leave the firm when people and agents talk to hosted models. Book a Discovery Call and we will scope whether confidential compute is the right control for your workloads.</p>
+      <p><a class="btn btn-primary" href="https://www.bostoncyberx.com/discovery">Book a Discovery Call</a></p>
+    </article>
+    <section class="cta-band">
+      <h2>Protect the data that trains your advantage.</h2>
+      <p>A 30-minute Discovery Call with a senior practitioner. No deck, no pitch theater.</p>
+      <a class="btn btn-green" href="https://www.bostoncyberx.com/discovery">Book a Discovery Call</a>
+    </section>
+  </main>
+</Layout>
